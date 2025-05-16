@@ -35,7 +35,7 @@ const aboutPage = {
       name: 'title',
       title: 'Page Title',
       type: 'string',
-      description: 'The main title of the About Page (for internal use).',
+      description: 'The main title (for navigation use).',
       group: 'general',
     },
     {
@@ -53,12 +53,6 @@ const aboutPage = {
 
     // Horizontal Images Group
     {
-      name: 'horizontalImageTopText',
-      title: 'Top Horizontal Image Text',
-      type: 'text',
-      group: 'horizontalImages',
-    },
-    {
       name: 'horizontalImageTopImage',
       title: 'Top Horizontal Image',
       type: 'image',
@@ -73,8 +67,8 @@ const aboutPage = {
       group: 'horizontalImages',
     },
     {
-      name: 'horizontalImageBottomText',
-      title: 'Bottom Horizontal Image Text',
+      name: 'horizontalImageTopText',
+      title: 'Top Horizontal Image Text',
       type: 'text',
       group: 'horizontalImages',
     },
@@ -90,6 +84,12 @@ const aboutPage = {
           type: 'string',
         },
       ],
+      group: 'horizontalImages',
+    },
+    {
+      name: 'horizontalImageBottomText',
+      title: 'Bottom Horizontal Image Text',
+      type: 'text',
       group: 'horizontalImages',
     },
 

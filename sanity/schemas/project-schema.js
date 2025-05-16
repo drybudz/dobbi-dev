@@ -19,27 +19,34 @@ const project = {
     {
       name: 'stats',
       title: 'Project Statistics',
-    },
-    {
-      name: 'footer',
-      title: 'Footer',
-    },
+    }
   ],
   fields: [
     // General Information Group
     {
       name: 'name',
-      title: 'Name',
+      title: 'Project Name',
       type: 'string',
-      description: 'The name of the project.',
+      description: 'The name of the project (used to generate the URL slug).',
       group: 'general',
+      validation: Rule => Rule.required().error('Project name is required'),
     },
     {
       name: 'slug',
-      title: 'Slug',
+      title: 'Project URL Slug',
       type: 'slug',
-      options: { source: 'name' },
+      description: 'The unique URL-friendly identifier for this project (auto-generated from name but can be customized).',
+      options: {
+        source: 'name',
+        maxLength: 96, // Recommended for SEO
+        slugify: input => input
+          .toLowerCase()
+          .replace(/\s+/g, '-')    // Replace spaces with -
+          .replace(/[^\w\-]+/g, '') // Remove non-word chars
+          .slice(0, 96)             // Trim to 96 chars
+      },
       group: 'general',
+      validation: Rule => Rule.required().error('Slug is required for URLs'),
     },
     {
       name: 'clientName',
@@ -203,16 +210,6 @@ const project = {
       type: 'text',
       description: 'Description of the project located at the end of the page.',
       group: 'about',
-    },
-
-    // Footer Group
-    {
-      name: 'footer',
-      title: 'Footer Reference',
-      type: 'reference',
-      to: { type: 'pageFooter' },
-      description: 'Footer to associate with this project.',
-      group: 'footer',
     }
   ],
   preview: {

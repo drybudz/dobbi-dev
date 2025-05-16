@@ -19,7 +19,7 @@ const servicesPage = {
         name: 'title',
         title: 'Page Title',
         type: 'string',
-        description: 'The main title of the Services Page (for internal use).',
+        description: 'The main title (for navigation use).',
         group: 'main',
       },
       {
@@ -48,21 +48,21 @@ const servicesPage = {
       },
       {
         name: 'servicesSideTitle',
-        title: 'Side Title',
+        title: 'Side Middle Title',
         type: 'string',
         description: 'Title for the side content middle section',
         group: 'sideContent',
       },
       {
         name: 'servicesSideDescription',
-        title: 'Side Description',
+        title: 'Side Middle Description',
         type: 'text',
         description: 'Description for the side content middle section',
         group: 'sideContent',
       },
       {
         name: 'servicesSideList',
-        title: 'Side List (Middle)',
+        title: 'Side Middle Horizontal List',
         type: 'array',
         of: [
           {

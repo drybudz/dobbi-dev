@@ -4,6 +4,11 @@ const homePage = {
   type: 'document',
   groups: [
     {
+      name: 'general',
+      title: 'General Information',
+      default: true,
+    },
+    {
       name: 'banner',
       title: 'Banner Section',
     },
@@ -22,11 +27,6 @@ const homePage = {
     {
       name: 'connect',
       title: 'Connect Section',
-    },
-    {
-      name: 'general',
-      title: 'General Information',
-      default: true,
     },
     {
       name: 'seo',

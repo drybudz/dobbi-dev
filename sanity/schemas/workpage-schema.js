@@ -5,15 +5,21 @@ const workPage = {
     fields: [
       {
         name: 'pageTitle',
-        title: 'Page Title (Internal)',
+        title: 'Page Title',
         type: 'string',
-        description: 'Administrative title for CMS organization',
+        description: 'The main title (for navigation use).',
       },
       {
         name: 'workPageTitle',
         title: 'Work Page Title',
         type: 'string',
         description: 'Main headline displayed on the page',
+      },
+      {
+        name: 'workDescription',
+        title: 'Work Description',
+        type: 'text',
+        description: 'Main description for the work page',
       },
       {
         name: 'featuredProjects',
