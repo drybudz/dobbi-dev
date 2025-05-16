@@ -1,58 +1,40 @@
-const homepage = {
-  name: 'homepage',
-  title: 'Home Pages',
+const homePage = {
+  name: 'homePage',
+  title: 'Home Page',
   type: 'document',
   groups: [
     {
-      name: 'hero',
-      title: 'Hero Section',
+      name: 'banner',
+      title: 'Banner Section',
     },
     {
-      name: 'services',
-      title: 'Services Section',
+      name: 'whatWeDo',
+      title: 'What We Do Section',
     },
     {
-      name: 'process',
-      title: 'Process Section',
+      name: 'projects',
+      title: 'Projects Section',
     },
     {
-      name: 'approach',
-      title: 'Approach Section',
+      name: 'solutions',
+      title: 'Solutions Section',
+    },
+    {
+      name: 'connect',
+      title: 'Connect Section',
     },
     {
       name: 'general',
       title: 'General Information',
-      default: true, // Make this the default group
-    },
-    {
-      name: 'pageNoteGroup',
-      title: 'Page Note & Footer',
+      default: true,
     },
     {
       name: 'seo',
-      title: 'SEO', // You might want an SEO group as well
+      title: 'SEO',
     },
   ],
   fields: [
     // General Information Group
-    {
-      name: 'companyLogo',
-      title: 'Company Logo',
-      type: 'image',
-      options: {
-        hotspot: true,
-      },
-      fields: [
-        {
-          name: 'alt',
-          title: 'Company Logo Alt Text',
-          type: 'string',
-          description: 'Alternative text for the company logo.',
-        },
-      ],
-      description: 'The logo of the company for the Home Navigation.',
-      group: 'general',
-    },
     {
       name: 'companyName',
       title: 'Company Name',
@@ -61,43 +43,8 @@ const homepage = {
       group: 'general',
     },
     {
-      name: 'companyIcon',
-      title: 'Company Icon',
-      type: 'image',
-      options: {
-        hotspot: true,
-      },
-      description: 'A smaller icon for the company, used in previews.',
-      group: 'general',
-    },
-    // Page Note & Footer Group
-
-    {
-      name: 'locations',
-      title: 'Locations',
-      type: 'string',
-      description: 'A list of locations to be displayed in the footer of home videos.',
-      group: 'pageNoteGroup',
-    },
-    {
-      name: 'email',
-      title: 'Email',
-      type: 'string',
-      description: 'Contact email address.',
-      group: 'pageNoteGroup',
-    },
-    {
-      name: 'pageNote',
-      title: 'Page Note',
-      type: 'reference',
-      to: { type: 'pageNote' },
-      description: 'Page note to associate with this homepage.',
-      validation: Rule => Rule.required(),
-      group: 'pageNoteGroup',
-    },
-    {
-      name: 'homeFrame',
-      title: 'Home Frame Image',
+      name: 'companyLogoBlack',
+      title: 'Company Logo (Black)',
       type: 'image',
       options: {
         hotspot: true,
@@ -105,183 +52,172 @@ const homepage = {
       fields: [
         {
           name: 'alt',
-          title: 'Home Frame Alt',
+          title: 'Alt Text',
           type: 'string',
-          description: 'Alternative text for the home frame.',
+          description: 'Alternative text for the black logo.',
         },
       ],
-      description: 'home frame image.',
-      group: 'pageNoteGroup',
+      description: 'Black version of the company logo.',
+      group: 'general',
     },
-    // Hero Section Group
+    {
+      name: 'companyLogoWhite',
+      title: 'Company Logo (White)',
+      type: 'image',
+      options: {
+        hotspot: true,
+      },
+      fields: [
+        {
+          name: 'alt',
+          title: 'Alt Text',
+          type: 'string',
+          description: 'Alternative text for the white logo.',
+        },
+      ],
+      description: 'White version of the company logo.',
+      group: 'general',
+    },
     {
       name: 'slogan',
       title: 'Slogan',
       type: 'string',
-      description: 'The main slogan for the homepage.',
-      group: 'hero',
+      description: 'The main slogan for the home page.',
+      group: 'general',
     },
+
+    // Banner Section Group
     {
-      name: 'backgroundColor',
-      title: 'Background Color',
-      type: 'string',
-      description: 'Optional background color for the homepage (e.g., #f0f0f0).',
-      group: 'hero',
-    },
-    {
-      name: 'homeVideo1',
-      title: 'Home Video',
-      type: 'file',
-      options: {
-        accept: 'video/*',
-      },
-      description: 'The main background video for the homepage.',
-      group: 'hero',
-    },
-    {
-      name: 'videoAlt1',
-      title: 'Video Alt Text',
-      type: 'string',
-      description: 'Alternative text for the video.',
-      group: 'hero',
-    },
-    {
-      name: 'videoDescription1',
-      title: 'Video Description',
-      type: 'text',
-      description: 'Optional description for the video.',
-      group: 'hero',
-    },
-    // Services Section Group
-    {
-      name: 'servicesTitle',
-      title: 'Services Title',
-      type: 'string',
-      description: 'Title for the "Services" section.',
-      group: 'services',
-    },
-    {
-      name: 'osDescription',
-      title: 'Services Description',
+      name: 'bannerProjects',
+      title: 'Banner Project Images',
       type: 'array',
-      of: [{ type: 'block' }],
-      description: 'Description for the "Services" section.',
-      group: 'services',
+      of: [
+        {
+          type: 'reference',
+          to: { type: 'project' }
+        }
+      ],
+      description: 'Projects to display in the home banner.',
+      group: 'banner',
+    },
+
+    // What We Do Section Group
+    {
+      name: 'whatTitle',
+      title: 'What Title',
+      type: 'string',
+      description: 'Title for the "What We Do" section.',
+      group: 'whatWeDo',
     },
     {
-      name: 'servicesList',
-      title: 'Services List',
+      name: 'whatDescription',
+      title: 'What Description',
+      type: 'text',
+      description: 'Description for the "What We Do" section.',
+      group: 'whatWeDo',
+    },
+
+    // Projects Section Group
+    {
+      name: 'homeBeforeProjectDescription',
+      title: 'Before Projects Description',
+      type: 'text',
+      description: 'Text to display before featured projects.',
+      group: 'projects',
+    },
+    {
+      name: 'featuredProjects',
+      title: 'Featured Projects',
+      type: 'array',
+      of: [
+        {
+          type: 'reference',
+          to: { type: 'project' }
+        }
+      ],
+      description: 'Projects to feature on the home page (will use first large image).',
+      group: 'projects',
+    },
+    {
+      name: 'homeAfterProjectDescription',
+      title: 'After Projects Description',
+      type: 'text',
+      description: 'Text to display after featured projects.',
+      group: 'projects',
+    },
+    {
+      name: 'homeGroupTitle',
+      title: 'Projects Group Title',
+      type: 'string',
+      description: 'Title for the projects group section.',
+      group: 'projects',
+    },
+
+    // Solutions Section Group
+    {
+      name: 'solutions',
+      title: 'Solutions',
       type: 'array',
       of: [
         {
           type: 'object',
           fields: [
             {
-              name: 'osTitle',
-              title: 'Service Title',
+              name: 'solutionTitle',
+              title: 'Solution Title',
               type: 'string',
-              description: 'Title for a service category.',
+              description: 'Title for this solution.',
             },
             {
-              name: 'osItems',
-              title: 'Service Items',
-              type: 'array',
-              of: [{ type: 'string' }],
-              description: 'List of services under this category.',
+              name: 'solutionTextA',
+              title: 'Solution Text (Part A)',
+              type: 'text',
+              description: 'First part of solution description.',
+            },
+            {
+              name: 'solutionTextB',
+              title: 'Solution Text (Part B)',
+              type: 'text',
+              description: 'Second part of solution description.',
             },
           ],
           preview: {
             select: {
-              title: 'osTitle',
-              subtitle: 'osItems.0',
+              title: 'solutionTitle',
+              subtitle: 'solutionTextA',
             },
           },
         },
       ],
-      description: 'List of service categories with their items.',
-      group: 'services',
+      validation: Rule => Rule.max(5),
+      description: 'List of solutions (max 5).',
+      group: 'solutions',
     },
-    // Process Section Group
+
+    // Connect Section Group
     {
-      name: 'processTitle',
-      title: 'Process Title',
+      name: 'connectTitle',
+      title: 'Connect Title',
       type: 'string',
-      description: 'Title for the "Process" section.',
-      group: 'process',
+      description: 'Title for the connect section.',
+      group: 'connect',
     },
     {
-      name: 'opTitle1',
-      title: 'Process Step 1 Title',
+      name: 'connectName',
+      title: 'Connect Name',
       type: 'string',
-      description: 'Title for the first process step.',
-      group: 'process',
+      description: 'Name for the connect section.',
+      group: 'connect',
     },
     {
-      name: 'opText1',
-      title: 'Process Step 1 Text',
-      type: 'text',
-      description: 'Description for the first process step.',
-      group: 'process',
-    },
-    {
-      name: 'opTitle2',
-      title: 'Process Step 2 Title',
+      name: 'connectEmail',
+      title: 'Connect Email',
       type: 'string',
-      description: 'Title for the second process step.',
-      group: 'process',
+      description: 'Email for the connect section.',
+      group: 'connect',
     },
-    {
-      name: 'opText2',
-      title: 'Process Step 2 Text',
-      type: 'text',
-      description: 'Description for the second process step.',
-      group: 'process',
-    },
-    {
-      name: 'opTitle3',
-      title: 'Process Step 3 Title',
-      type: 'string',
-      description: 'Title for the third process step.',
-      group: 'process',
-    },
-    {
-      name: 'opText3',
-      title: 'Process Step 3 Text',
-      type: 'text',
-      description: 'Description for the third process step.',
-      group: 'process',
-    },
-    {
-      name: 'opTitle4',
-      title: 'Process Step 4 Title',
-      type: 'string',
-      description: 'Title for the fourth process step.',
-      group: 'process',
-    },
-    {
-      name: 'opText4',
-      title: 'Process Step 4 Text',
-      type: 'text',
-      description: 'Description for the fourth process step.',
-      group: 'process',
-    },
-    // Approach Section Group
-    {
-      name: 'approachTitle',
-      title: 'Approach Title',
-      type: 'string',
-      description: 'Title for the "Approach" section.',
-      group: 'approach',
-    },
-    {
-      name: 'aDescription',
-      title: 'Approach Description',
-      type: 'array',
-      of: [{ type: 'block' }],
-      description: 'Description for the "Approach" section.',
-      group: 'approach',
-    },
-    // SEO Group (Example - Add more SEO fields as needed)
+
+    // SEO Group
     {
       name: 'seoTitle',
       title: 'SEO Title',
@@ -308,9 +244,9 @@ const homepage = {
   preview: {
     select: {
       title: 'companyName',
-      media: 'companyIcon',
+      media: 'companyLogoBlack',
     },
   },
 };
 
-export default homepage;
+export default homePage;

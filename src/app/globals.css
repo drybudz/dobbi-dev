@@ -1,35 +1,27 @@
-@font-face {
-  font-family: 'Helvetica Neue'; /* Use a specific font-family name */
-  src: url('/fonts/HelveticaNeue.ttc') format('truetype-collection');
-  font-weight: 500; /* Medium weight is 500 */
-  font-style: normal; /* Assuming Medium is not italic */
-  font-display: swap; /* Recommended for performance */
+/* In your global.css */
+@import url('https://fonts.googleapis.com/css2?family=Albert+Sans:wght@500;700&display=swap');
+
+:root {
+  --font-albert: 'Albert Sans', sans-serif;
 }
 
-/* Regular face */
-@font-face {
-  font-family: 'Baskerville';
-  src: url('/fonts/Baskerville.ttc') format('truetype-collection');
-  font-weight: normal;
-  font-style: normal;
-  font-display: swap; /* Optional for performance */
-}
-
-/* Italic face - MUST use same font-family name */
-@font-face {
-  font-family: 'Baskerville';
-  src: url('/fonts/Baskerville.ttc') format('truetype-collection');
-  font-weight: normal;
-  font-style: italic;
-  font-display: swap;
-}
-
-@font-face {
-  font-family: 'Sloop Script'; /* Choose a name for this font-family */
-  src: url('/fonts/Sloop Script Regular.ttf') format('truetype'); /* Use 'truetype' for .ttf files */
-  font-weight: normal;
+/* Usage examples */
+/* Medium */
+.albert-sans-500 {
+  font-family: var(--font-albert);
+  font-optical-sizing: auto;
+  font-weight: 500;
   font-style: normal;
 }
+
+/* Bold */
+.albert-sans-700 {
+  font-family: var(--font-albert);
+  font-optical-sizing: auto;
+  font-weight: 700;
+  font-style: normal;
+}
+
 
 html,
 body {
@@ -37,21 +29,18 @@ body {
   overflow-x: hidden;
 }
 
-/* here is using the css variables */
 body {
-  color: #5F1B19;
-  background-color: #fff;
-  /* font-family: Rubik, Helvetica, sans-serif; */
-  font-family: Helvetica Neue, sans-serif;
-  /* Improves the rendering of fonts on WebKit-based browsers (like Chrome and Safari), making them appear smoother. */
-  -webkit-font-smoothing: antialiased;
-  /* Similar but for Gecko-based browsers (like Firefox) on macOS. */
-  -moz-osx-font-smoothing: grayscale;
+  color: #fff;
+  background-color: #000;
+  font-family: 'Albert Sans', sans-serif;
+   /* Font smoothing */
+   -webkit-font-smoothing: antialiased;
+   -moz-osx-font-smoothing: grayscale;
 }
 
-body.homeBody {
+/* body.homeBody {
     background: #5F1B19;
-}
+} */
 
 * {
   box-sizing: border-box;
@@ -95,7 +84,7 @@ a {
   /* Optional: Add a slight background blur for better readability over video */
   /* backdrop-filter: blur(10px);
   background-color: rgba(0, 0, 0, 0.1); /* Adjust opacity as needed */
-  font-family: 'Helvetica Neue', sans-serif;
+  font-family: 'Albert Sans', sans-serif;
 }
 
 .navBar.homeNavBar .homeNavLink,
@@ -326,7 +315,7 @@ header.navBar.homeNavBar + main {
   align-items: center; /* Vertically align items in case they have different heights */
   width: 100%; /* Ensure it takes the full width of the section */
   padding: 10px 0 20px 0; /* Removed top because of the frame, only if I apply the bg per sectino approach */
-  font-family: Helvetica Neue, sans-serif;
+  font-family: 'Albert Sans', sans-serif;
   text-transform: uppercase;
   font-size: 12px;
   font-weight: 500;
@@ -339,7 +328,7 @@ header.navBar.homeNavBar + main {
   align-items: center; /* Vertically align items in case they have different heights */
   width: 100%; /* Ensure it takes the full width of the section */
   padding: 10px 0 20px 0; /* Removed top because of the frame, only if I apply the bg per sectino approach */
-  font-family: Helvetica Neue, sans-serif;
+  font-family: 'Albert Sans', sans-serif;
   text-transform: uppercase;
   font-size: 12px;
   font-weight: 500;
@@ -539,7 +528,7 @@ header.navBar.homeNavBar a, .homeBody .menu-trigger, section.sloganVideo h2, .lo
     list-style: none;
     padding: 0;
     text-transform: uppercase;
-    font-family: Helvetica Neue, sans-serif;
+    font-family: 'Albert Sans', sans-serif;
     font-size: 12px;
     font-weight: 500;
     letter-spacing: 0.32px;
@@ -595,15 +584,6 @@ header.navBar.homeNavBar a, .homeBody .menu-trigger, section.sloganVideo h2, .lo
   font-style: italic;
   line-height: 93%;
   letter-spacing: -0.32px;
-}
-
-.pinyon-script-regular, .processContainer span {
-  font-family: "Pinyon Script", cursive;
-  font-size: 60px;
-  letter-spacing: -0.32px;
-  line-height: 83%;
-  font-weight: 400;
-  font-style: normal;
 }
 
 .processDescription > div p {
@@ -1590,7 +1570,7 @@ footer .contactLink:hover {
   line-height: 107%;
   text-transform: uppercase;
   letter-spacing: -0.48px;
-  font-family: Helvetica Neue;
+  font-family: 'Albert Sans';
   font-weight: 500;
   text-wrap: balance;
 }

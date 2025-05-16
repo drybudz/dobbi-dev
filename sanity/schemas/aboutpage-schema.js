@@ -1,270 +1,247 @@
 const aboutPage = {
-    name: 'aboutPage',
-    title: 'About Pages',
-    type: 'document',
-    fields: [
-      {
-        name: 'title',
-        title: 'Page Title',
-        type: 'string',
-        description: 'The main title of the About Page (for internal use).',
-      },
-      {
-        name: 'status',
-        title: 'Status',
-        type: 'boolean',
-        description:
-          'If on, this about page will be rendered. Useful for switching between available about pages.',
-      },
-      {
-        name: 'pageNote',
-        title: 'Page Note',
-        type: 'reference',
-        to: { type: 'pageNote' },
-        description: 'The page note to associate with this about page.',
-        validation: Rule => Rule.required(),
-      },
-      // Philosophy Section
-      {
-        name: 'philosophyTitle',
-        title: 'Philosophy Title',
-        type: 'string',
-        group: 'philosophy',
-      },
-      {
-        name: 'philosophyDescription1',
-        title: 'Philosophy Description 1',
-        type: 'text',
-        group: 'philosophy',
-      },
-      {
-        name: 'philosophyImageCount',
-        title: 'Number of Philosophy Project Images',
-        type: 'string',
-        options: {
-          list: [
-            { value: '2', title: '2 Images' },
-            { value: '3', title: '3 Images' },
-          ],
-          layout: 'radio',
-        },
-        group: 'philosophy',
-        description: 'Select either 2 Images or 3 Images to display from the referenced project.',
-        validation: Rule => Rule.required(),
-      },
-      {
-        name: 'philosophyProject',
-        title: 'Philosophy Project Reference',
-        type: 'reference',
-        to: { type: 'project' },
-        group: 'philosophy',
-        description: 'Reference to a project to display images and info from.',
-      },
-      {
-        name: 'philosophyDescription2',
-        title: 'Philosophy Description 2',
-        type: 'text',
-        group: 'philosophy',
-      },
-      {
-        name: 'philosophyFeaturedImage',
-        title: 'Philosophy Featured Image',
-        type: 'image',
-        options: {
-          hotspot: true,
-        },
-        fields: [
-          {
-            name: 'alt',
-            title: 'Alt Text',
-            type: 'string',
-            description: 'Alternative text for the featured image.',
-          },
-        ],
-        group: 'philosophy',
-      },
-      {
-        name: 'philosophyFeaturedImageSize',
-        title: 'Philosophy Featured Image Size',
-        type: 'string',
-        options: {
-          list: [
-            { value: 'short', title: 'Short' },
-            { value: 'tall', title: 'Tall' },
-          ],
-          layout: 'radio',
-        },
-        group: 'philosophy',
-        description: 'Choose the display size of the featured image.',
-      },
-  
-      // Story Section
-      {
-        name: 'storyTitle',
-        title: 'Story Title',
-        type: 'string',
-        group: 'story',
-      },
-      {
-        name: 'storyDescription1',
-        title: 'Story Description 1',
-        type: 'text',
-        group: 'story',
-      },
-      {
-        name: 'storyImageCount',
-        title: 'Number of Story Project Images',
-        type: 'string',
-        options: {
-          list: [
-            { value: '2', title: '2 Images' },
-            { value: '3', title: '3 Images' },
-          ],
-          layout: 'radio',
-        },
-        group: 'story',
-        description: 'Select either 2 Images or 3 Images to display from the referenced project.',
-        validation: Rule => Rule.required(),
-      },
-      {
-        name: 'storyProject',
-        title: 'Story Project Reference',
-        type: 'reference',
-        to: { type: 'project' },
-        group: 'story',
-        description: 'Reference to a project to display images and info from.',
-      },
-      {
-        name: 'storyDescription2',
-        title: 'Story Description 2',
-        type: 'text',
-        group: 'story',
-      },
-      {
-        name: 'storyFeaturedImage',
-        title: 'Story Featured Image',
-        type: 'image',
-        options: {
-          hotspot: true,
-        },
-        fields: [
-          {
-            name: 'alt',
-            title: 'Alt Text',
-            type: 'string',
-            description: 'Alternative text for the featured image.',
-          },
-        ],
-        group: 'story',
-      },
-      {
-        name: 'storyFeaturedImageSize',
-        title: 'Story Featured Image Size',
-        type: 'string',
-        options: {
-          list: [
-            { value: 'short', title: 'Short' },
-            { value: 'tall', title: 'Tall' },
-          ],
-          layout: 'radio',
-        },
-        group: 'story',
-        description: 'Choose the display size of the featured image.',
-      },
-  
-      // Who We Are Section
-      {
-        name: 'whoTitle',
-        title: 'Who We Are Title',
-        type: 'string',
-        group: 'who',
-      },
-      {
-        name: 'whoDescription1',
-        title: 'Who We Are Description 1',
-        type: 'text',
-        group: 'who',
-      },
-      {
-        name: 'whoImageCount',
-        title: 'Number of Who We Are Project Images',
-        type: 'string',
-        options: {
-          list: [
-            { value: '2', title: '2 Images' },
-            { value: '3', title: '3 Images' },
-          ],
-          layout: 'radio',
-        },
-        group: 'who',
-        description: 'Select either 2 Images or 3 Images to display from the referenced project.',
-        validation: Rule => Rule.required(),
-      },
-      {
-        name: 'whoProject',
-        title: 'Who We Are Project Reference',
-        type: 'reference',
-        to: { type: 'project' },
-        group: 'who',
-        description: 'Reference to a project to display images and info from.',
-      },
-      {
-        name: 'whoDescription2',
-        title: 'Who We Are Description 2',
-        type: 'text',
-        group: 'who',
-      },
-      {
-        name: 'whoFeaturedImage',
-        title: 'Who We Are Featured Image',
-        type: 'image',
-        options: {
-          hotspot: true,
-        },
-        fields: [
-          {
-            name: 'alt',
-            title: 'Alt Text',
-            type: 'string',
-            description: 'Alternative text for the featured image.',
-          },
-        ],
-        group: 'who',
-      },
-      {
-        name: 'whoFeaturedImageSize',
-        title: 'Who We Are Featured Image Size',
-        type: 'string',
-        options: {
-          list: [
-            { value: 'short', title: 'Short' },
-            { value: 'tall', title: 'Tall' },
-          ],
-          layout: 'radio',
-        },
-        group: 'who',
-        description: 'Choose the display size of the featured image.',
-      },
-    ],
-    groups: [
-      {
-        name: 'philosophy',
-        title: 'Philosophy Section',
-      },
-      {
-        name: 'story',
-        title: 'Story Section',
-      },
-      {
-        name: 'who',
-        title: 'Who We Are Section',
-      },
-    ],
-    preview: {
-      select: {
-        title: 'title',
-      },
+  name: 'aboutPage',
+  title: 'About Page',
+  type: 'document',
+  groups: [
+    {
+      name: 'general',
+      title: 'General Information',
+      default: true,
     },
-  };
-  
-  export default aboutPage;
+    {
+      name: 'horizontalImages',
+      title: 'Horizontal Images Section',
+    },
+    {
+      name: 'aboutBand',
+      title: 'About Band Section',
+    },
+    {
+      name: 'workKeys',
+      title: 'Work Keys Section',
+    },
+    {
+      name: 'miniGallery',
+      title: 'Mini Gallery',
+    },
+    {
+      name: 'chatLink',
+      title: 'Chat Link',
+    },
+  ],
+  fields: [
+    // General Information Group
+    {
+      name: 'title',
+      title: 'Page Title',
+      type: 'string',
+      description: 'The main title of the About Page (for internal use).',
+      group: 'general',
+    },
+    {
+      name: 'aboutTitle',
+      title: 'About Title',
+      type: 'text',
+      group: 'general',
+    },
+    {
+      name: 'aboutDescription',
+      title: 'About Description',
+      type: 'text',
+      group: 'general',
+    },
+
+    // Horizontal Images Group
+    {
+      name: 'horizontalImageTopText',
+      title: 'Top Horizontal Image Text',
+      type: 'text',
+      group: 'horizontalImages',
+    },
+    {
+      name: 'horizontalImageTopImage',
+      title: 'Top Horizontal Image',
+      type: 'image',
+      options: { hotspot: true },
+      fields: [
+        {
+          name: 'alt',
+          title: 'Alt Text',
+          type: 'string',
+        },
+      ],
+      group: 'horizontalImages',
+    },
+    {
+      name: 'horizontalImageBottomText',
+      title: 'Bottom Horizontal Image Text',
+      type: 'text',
+      group: 'horizontalImages',
+    },
+    {
+      name: 'horizontalImageBottomImage',
+      title: 'Bottom Horizontal Image',
+      type: 'image',
+      options: { hotspot: true },
+      fields: [
+        {
+          name: 'alt',
+          title: 'Alt Text',
+          type: 'string',
+        },
+      ],
+      group: 'horizontalImages',
+    },
+
+    // About Band Group
+    {
+      name: 'aboutBandTitle',
+      title: 'About Band Title',
+      type: 'string',
+      group: 'aboutBand',
+    },
+    {
+      name: 'aboutBandText',
+      title: 'About Band Text',
+      type: 'text',
+      group: 'aboutBand',
+    },
+    {
+      name: 'aboutLargeImage',
+      title: 'Large About Image',
+      type: 'image',
+      options: { hotspot: true },
+      fields: [
+        {
+          name: 'alt',
+          title: 'Alt Text',
+          type: 'string',
+        },
+      ],
+      group: 'aboutBand',
+    },
+    {
+      name: 'aboutMediumImage',
+      title: 'Medium About Image',
+      type: 'image',
+      options: { hotspot: true },
+      fields: [
+        {
+          name: 'alt',
+          title: 'Alt Text',
+          type: 'string',
+        },
+      ],
+      group: 'aboutBand',
+    },
+    {
+      name: 'aboutSmallImages',
+      title: 'Small About Images (Max 4)',
+      type: 'array',
+      of: [
+        {
+          type: 'image',
+          options: { hotspot: true },
+          fields: [
+            {
+              name: 'alt',
+              title: 'Alt Text',
+              type: 'string',
+            },
+          ],
+        },
+      ],
+      validation: Rule => Rule.max(4),
+      group: 'aboutBand',
+    },
+
+    // Work Keys Group
+    {
+      name: 'workKeysTitle',
+      title: 'Work Keys Title',
+      type: 'string',
+      group: 'workKeys',
+    },
+    {
+      name: 'workKeysSubtitle',
+      title: 'Work Keys Subtitle',
+      type: 'text',
+      group: 'workKeys',
+    },
+    {
+      name: 'workKeysList',
+      title: 'Work Keys (Max 5)',
+      type: 'array',
+      of: [
+        {
+          type: 'object',
+          fields: [
+            {
+              name: 'keyTitle',
+              title: 'Key Title',
+              type: 'string',
+            },
+            {
+              name: 'keyDescription',
+              title: 'Key Description',
+              type: 'text',
+            },
+          ],
+          preview: {
+            select: {
+              title: 'keyTitle',
+              subtitle: 'keyDescription',
+            },
+          },
+        },
+      ],
+      validation: Rule => Rule.max(5),
+      group: 'workKeys',
+    },
+
+    // Chat Link Group
+    {
+      name: 'chatLinkTitle',
+      title: 'Chat Link Title',
+      type: 'string',
+      group: 'chatLink',
+    },
+    {
+      name: 'chatLinkAction',
+      title: 'Chat Link Action',
+      type: 'string',
+      description: 'The action/URL for the chat link',
+      group: 'chatLink',
+    },
+
+    // Mini Gallery Group
+    {
+      name: 'miniGallery',
+      title: 'Mini Gallery Images (Max 12)',
+      type: 'array',
+      of: [
+        {
+          type: 'image',
+          options: { hotspot: true },
+          fields: [
+            {
+              name: 'alt',
+              title: 'Alt Text',
+              type: 'string',
+            },
+          ],
+        },
+      ],
+      validation: Rule => Rule.max(12),
+      group: 'miniGallery',
+    },
+  ],
+  preview: {
+    select: {
+      title: 'title',
+      subtitle: 'aboutTitle',
+    },
+  },
+};
+
+export default aboutPage;
