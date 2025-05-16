@@ -64,23 +64,34 @@ export async function getHomePage() {
   );
 }
 
+export async function getWorkPage() {
+  return createClient(clientConfig).fetch(
+    groq`*[_type == "workPage"][0]{
+      workPageTitle,
+      workDescription,
+      featuredProjects[]->{
+        name,
+        "slug": slug.current,
+        clientName,
+        projectYear,
+        "firstLargeImage": largeProjectImages[0].asset->url,
+        "firstLargeImageAlt": largeProjectImages[0].alt
+      }
+    }`
+  )
+}
+
 export async function getProjects() {
-    //we need this client to grab the data from the studio using GROQ, and I have moved it to config to avoid repeating code
-    // const client = createClient({
-    //     projectId: '2j7eol5d',
-    //     dataset: 'production',
-    //     apiVersion: "2025-04-23",
-    // })
 
     return createClient(clientConfig).fetch(
         groq`*[_type == "project"]{
             _id,
             _createdAt,
             name,
+            clientName,
+            projectYear,
             "slug": slug.current,
-            "image": image.asset->url,
-            url,
-            projectDescription,
+            "image": largeProjectImages.asset->url,
           }`
     )
 }
@@ -277,6 +288,32 @@ export async function getProject(slug) {
     );
   }
 
+  export async function getAllDobbiData() {
+    return createClient(clientConfig).fetch(
+      groq`{
+        "homePage": *[_type == "homePage"][0]{
+          companyName,
+          companyLogoWhite{
+            "url": asset->url,
+            alt
+          },
+          slogan
+        },
+        "aboutPage": *[_type == "aboutPage"][0]{
+          aboutTitle,
+          aboutDescription
+        },
+        "servicesPage": *[_type == "servicesPage"][0]{
+          servicesTitle,
+          servicesDescription
+        },
+        "workPage": *[_type == "workPage"][0]{
+          workPageTitle,
+          workDescription
+        }
+      }`
+    );
+  }
 
   export async function getAllPagesData() {
     return createClient(clientConfig).fetch(

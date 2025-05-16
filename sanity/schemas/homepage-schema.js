@@ -106,14 +106,14 @@ const homePage = {
       name: 'whatTitle',
       title: 'What Title',
       type: 'string',
-      description: 'Title for the "What We Do" section.',
+      description: 'Title for the section under the home banner.',
       group: 'whatWeDo',
     },
     {
       name: 'whatDescription',
       title: 'What Description',
       type: 'text',
-      description: 'Description for the "What We Do" section.',
+      description: 'Description for the section under the home banner.',
       group: 'whatWeDo',
     },
 
@@ -147,9 +147,9 @@ const homePage = {
     },
     {
       name: 'homeGroupTitle',
-      title: 'Projects Group Title',
+      title: 'Group Title',
       type: 'string',
-      description: 'Title for the projects group section.',
+      description: 'Title for the group section under featured project.',
       group: 'projects',
     },
 

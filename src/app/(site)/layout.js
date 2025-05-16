@@ -4,6 +4,7 @@ import { getPages } from "../../../sanity/schemas/sanity-utils";
 import HeaderNavigation from "../components/HeaderNavigation";
 import HomeChecker from "../components/HomeChecker";
 import { getAllPagesData } from "../../../sanity/schemas/sanity-utils";
+import { getAllDobbiData } from "../../../sanity/schemas/sanity-utils";
 
 
 export const metadata = {
@@ -18,7 +19,7 @@ export default async function RootLayout({ children }) {
   // const data = await getPages(); // The getPages function now returns an object
   // const pages = data?.pages || []; // Access the 'pages' array
 
-  const allData = await getAllPagesData();
+  const allData = await getAllDobbiData();
   //console.log("All Data:", allData); //  line to check the data structure
   const pages = allData?.pages || [];
   

@@ -24,18 +24,19 @@ export default async function Project({ params }) {
 
     return (
         <div className="projectContainer">
-        <header>
-            <h1 className="bg-gradient-text">{fetchedProject.name}</h1>  
+        <h1 className="bg-gradient-text">{fetchedProject.name}</h1>  
+        {/* <header>
+            
             <a href={fetchedProject.url} title="View Project" target="_blank" rel="noopener noreferrer">View Project</a>
         </header>
         
-        {/* Content HERE */}
+        
         <div className="projectContent"> 
             <PortableText value={fetchedProject.projectDescription}/>
         </div>
 
-        {/* Image HERE */}
-        <Image src={fetchedProject.image} alt={fetchedProject.name} width={250} height={100} className="singleProjectImage"/>
+        
+        <Image src={fetchedProject.image} alt={fetchedProject.name} width={250} height={100} className="singleProjectImage"/> */}
 
         </div>
     )  

@@ -17,6 +17,9 @@ export default function HeaderNavigation() { // Default empty array
     const [isMobile, setIsMobile] = useState(false);
     const [menuOpen, setMenuOpen] = useState(false);
     const { allData } = useAppContext();
+
+    console.log ("all Data @ Navigation:", allData)
+    const homePage = allData?.homePage || []; // Access the 'pages' array
     const pages = allData?.pages || []; // Access the 'pages' array
     // console.log("K------NAV WORKS Page Data:", pages); // Is working
 
@@ -42,50 +45,40 @@ export default function HeaderNavigation() { // Default empty array
         <header className={headerClasses}>
             <Link href="/" className="homeNavLink">
                 <Image
-                    src={logoData?.url || "/glove.svg"}
+                    // src={companyLogo?.url || "/glove.svg"}
+                    src={homePage?.companyLogoWhite.url || "/glove.svg"}
                     alt={logoData?.alt || "Dobbi Logo"} 
-                    width={77}
-                    height={18}
+                    width={110}
+                    height={30}
                     priority
                 />
             </Link>
-            {isMobile ? (
-                <div className="mobileNavContainer">
-                    {!menuOpen ? (
-                        <span className="menu-trigger" onClick={toggleMenu}>
-                            MENU
-                        </span>
-                    ) : (
-                        <MenuAnimation isOpen={menuOpen}>
-                            <div className="mobileNavLinks">
-                                {pages.slice().reverse().map((page) => (
-                                    <Link key={page._id} href={`/${page.slug}`} onClick={toggleMenu}>
-                                        {pathname === `/${page.slug}` ? (
-                                            <b>{page.navTitle}</b>
-                                        ) : (
-                                            page.navTitle
-                                        )}
-                                    </Link>
-                                ))}
-                                <Link href="/about" className="homeNavLink" onClick={toggleMenu}>
-                                    {pathname === "/about" ? <b>About</b> : "About"}
-                                </Link>
-                            </div>
-                        </MenuAnimation>
-                    )}
-                </div>
-            ) : (
-                <div className="homeNavLinksContainer">
-                    {pages.slice().reverse().map((page) => (
-                        <Link key={page._id} href={`/${page.slug}`}>
-                            {pathname === `/${page.slug}` ? <b>{page.navTitle}</b> : page.navTitle}
-                        </Link>
-                    ))}
-                    <Link href="/about" className="homeNavLink">
-                        {pathname === "/about" ? <b>About</b> : "About"}
-                    </Link>
-                </div>
-            )}
+            <div className="homeNavLinksContainer">
+                <Link 
+                    href="/services" 
+                    className={pathname === "/services" ? "active-nav" : ""}
+                >
+                    Services
+                </Link>
+                <Link 
+                    href="/work" 
+                    className={pathname === "/work" ? "active-nav" : ""}
+                >
+                    Work
+                </Link>
+                <Link 
+                    href="/about" 
+                    className={pathname === "/about" ? "active-nav" : ""}
+                >
+                    About
+                </Link>
+                <Link 
+                    href="#" 
+                    className={pathname === "#" ? "active-nav" : ""}
+                >
+                    Contact
+                </Link>
+            </div>
         </header>
     );
 }
