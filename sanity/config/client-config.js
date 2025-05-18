@@ -4,6 +4,7 @@ const config = {
     dataset: "production",
     apiVersion: "2025-05-15", // YYYY-MM-DD
     useCdn: false, // Live API higher costs.. 
+    withDraft: true
 }
 
 

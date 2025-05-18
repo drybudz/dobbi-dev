@@ -1,3 +1,5 @@
+import stat from './stat';
+
 const project = {
   name: 'project',
   title: 'Projects',
@@ -160,48 +162,12 @@ const project = {
       description: 'Description for 2nd block About Project Info',
       group: 'about',
     },
-
-    // Stats Group
     {
-      name: 'statsTitle1',
-      title: 'Stats Title 1',
-      type: 'string',
-      description: 'Text for Stats 1',
-      group: 'stats',
-    },
-    {
-      name: 'statsString1',
-      title: 'Stats String 1',
-      type: 'string',
-      description: 'Value for Stats 1',
-      group: 'stats',
-    },
-    {
-      name: 'statsTitle2',
-      title: 'Stats Title 2',
-      type: 'string',
-      description: 'Text for Stats 2',
-      group: 'stats',
-    },
-    {
-      name: 'statsString2',
-      title: 'Stats String 2',
-      type: 'string',
-      description: 'Value for Stats 2',
-      group: 'stats',
-    },
-    {
-      name: 'statsTitle3',
-      title: 'Stats Title 3',
-      type: 'string',
-      description: 'Text for Stats 3',
-      group: 'stats',
-    },
-    {
-      name: 'statsString3',
-      title: 'Stats String 3',
-      type: 'string',
-      description: 'Value for Stats 3',
+      name: 'stats',
+      title: 'Stats',
+      type: 'array',
+      of: [{ type: 'stat' }],
+      description: 'List of stats for the project',
       group: 'stats',
     },
     {

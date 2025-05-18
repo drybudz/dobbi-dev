@@ -16,7 +16,7 @@ export default async function Work() {
       <span>Dobbi leads digital communications programs that help brands grow, adapt, and perform. We work across industries and markets with a commitment to thoughtful strategy and measurable results.</span>
       {console.log("projectsData", workPageData)}
       {projects.map((project)=>(
-        <Link href={`/projects/${project.slug}`} className="aProject" key={project._id}>
+        <Link href={`/work/${project.slug}`} className="aProject" key={project._id}>
 
           {/* ADD IMAGE */}
           {project.image && (

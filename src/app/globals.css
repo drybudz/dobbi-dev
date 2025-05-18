@@ -1,6 +1,5 @@
 /* In your global.css */
 @import url('https://fonts.googleapis.com/css2?family=Albert+Sans:wght@500;700&display=swap');
-
 :root {
   --font-albert: 'Albert Sans', sans-serif;
 }
@@ -1261,48 +1260,6 @@ footer .contactLink:hover {
 }
 
 /* Project Page */
-
-.projectContainer header {
-  display: flex;
-  justify-content: space-between; /* Puts space between the title and the link */
-  align-items: center; /* Vertically aligns the title and the link in the center */
-  padding: 5rem; /* Add some padding around the header content */
-  /* You might want to add a border-bottom here to visually separate the header */
-  /* border-bottom: 1px solid #ccc; */
-}
-
-.projectContainer header h1 {
-  font-size: 1.5rem; /* Adjust the font size as needed */
-  margin: 0; /* Remove default margin for better alignment */
-}
-
-.projectContainer header a {
-  /* Basic link styling - feel free to customize */
-  color: green; /* Or your desired link color */
-  text-decoration: none;
-  padding: 0.5rem 1rem;
-  border: 1px solid green; /* Or your desired border */
-  border-radius: 5px;
-  font-weight: bold;
-  transition: background-color 0.3s ease;
-}
-
-.projectContainer header a:hover {
-  background-color: lightgreen; /* Example hover effect */
-  color: white;
-}
-
-.projectContent p {
-  padding: 40px;
-  text-align: center;
-}
-
-.singleProjectImage {
-  width: 50%;
-  height: auto;
-  display: block;
-  margin: 0 auto;
-}
 
 /* END Project Page */
 

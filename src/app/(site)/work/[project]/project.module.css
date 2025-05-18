@@ -1,0 +1,59 @@
+.Container {
+    max-width: 1440px;
+    margin: 0 auto;
+    padding: 135px 48px 56px;
+}
+
+.HeaderSection {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    margin-bottom: 28px;
+
+    h1 {
+        font-size: 80px;
+        font-weight: 700;
+        line-height: 1;
+    }
+
+    p {
+        font-size: 25px;
+        font-weight: 500;
+        line-height: 1;
+    }
+}
+
+.FPO {
+    font-size: 48px;
+    font-weight: 500;
+}
+
+.ImageContentRow {
+    display: flex;
+    margin-bottom: 90px;
+
+    .Image {
+        flex-basis: 50%;
+    }
+
+    .StatsSection {
+        flex-basis: 50%;
+        padding-left: 32px;
+    }
+
+    .StatContainer {
+        display: flex;
+        flex-direction: column;
+        font-weight: 700;
+
+        h3 {
+            font-size: 171px;
+            margin: 0;
+        }
+
+        p {
+            font-size: 40px;
+            margin: 0;
+        }
+    }
+}

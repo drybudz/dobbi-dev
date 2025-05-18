@@ -97,20 +97,46 @@ export async function getProjects() {
 }
 
 export async function getProject(slug) {
-  
-    return createClient(clientConfig).fetch(
-      groq`*[_type == "project" && slug.current == $slug][0]{
+  return createClient(clientConfig).fetch(
+    groq`*[_type == "project" && slug.current == $slug][0]{
+      _id,
+      _createdAt,
+      name,
+      clientName,
+      projectYear,
+      "slug": slug.current,
+      
+      // All image arrays with URLs and alt text
+      largeProjectImages[]{
+        "url": asset->url,
+        alt
+      },
+      mediumProjectImages[]{
+        "url": asset->url,
+        alt
+      },
+      smallProjectImages[]{
+        "url": asset->url,
+        alt
+      },
+
+      // About project fields
+      aboutProject1,
+      aboutProjectText1,
+      aboutProject2,
+      aboutProjectText2,
+      projectFPO,
+
+      // Stats with dereferenced fields
+      stats[]{
         _id,
-        _createdAt,
-        name,
-        "slug": slug.current,
-        "image": image.asset->url,
-        url,
-        projectDescription,
-      }`,
-      { slug }
-    )
-  }
+        title,
+        value,
+      }
+    }`,
+    { slug }
+  );
+}
 
   export async function getPages() {
     return createClient(clientConfig).fetch(
