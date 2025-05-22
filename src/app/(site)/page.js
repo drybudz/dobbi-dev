@@ -5,12 +5,11 @@ import { PortableText } from "@portabletext/react";
 // import { getHomePage } from "../../../sanity/schemas/sanity-utils";
 import H2Animation from "../components/H2Animator";
 import HomeVideo from "../components/HomeVideo";
-import Image from 'next/image';
 import LocationsAndEmailAnimator from "../components/LocationsAndEmailAnimator";
 import DivsAnimator from "../components/DivsAnimator";
 import { useAppContext } from "../components/AppContext";
 import BackgroundImage from "../components/BackgroundImage";
-
+import HeroBanner from "../components/HeroBanner";
 
 // export const revalidate = 300; // Revalidate every 5 minutes
 
@@ -26,9 +25,7 @@ export default function Home() {
 
   return (
     <div className="homePage">
-      <div className="container">
-        <h2>{homePageData?.slogan || "Where Vision Meets Execution"}</h2>
-      </div>
+      <HeroBanner title={homePageData?.slogan} imageSrc={homePageData?.heroBannerBackground.asset.url}/>
     </div>
   );
 }

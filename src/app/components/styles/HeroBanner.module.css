@@ -1,0 +1,46 @@
+.HeroBannerContainer {
+    text-align: center;
+    padding-top: 77px;
+    height: 100vh;
+
+    h2 {
+        position: absolute;
+        margin: 0 auto;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+    }
+}
+
+.HeroBannerWrapper {
+    margin-bottom: 72px;
+}
+
+.Even {
+    z-index: 15;
+}
+
+.Odd {
+    z-index: 10;
+}
+
+.title {
+    font-size: 48px;
+    width: 100%;
+}
+
+@media (min-width: 768px) {
+
+    /* Styles for large screens go here */
+    .title {
+        font-size: 56px;
+    }
+}
+
+@media (min-width: 1280px) {
+
+    /* Styles for large screens go here */
+    .title {
+        font-size: 80px;
+    }
+}

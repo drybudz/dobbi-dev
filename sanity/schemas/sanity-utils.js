@@ -323,7 +323,13 @@ export async function getProject(slug) {
             "url": asset->url,
             alt
           },
-          slogan
+          slogan,
+          heroBannerBackground {
+            asset-> {
+              url
+            },
+            alt
+          }
         },
         "aboutPage": *[_type == "aboutPage"][0]{
           aboutTitle,

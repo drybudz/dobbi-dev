@@ -234,14 +234,8 @@ header.navBar.homeNavBar + main {
   scroll-snap-type: y mandatory;  
 } */
 
-
-.homePage .container {
-  text-align: center;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  height: 100vh;
+.homePage {
+  position: relative;
 }
 
 /* section .two, section .three, section .four, section .five { */
@@ -1705,3 +1699,28 @@ p.copyRightText b {
 
 
 /* Common Media Query Ranges */
+
+
+/* InfiniteSlider.css */
+.infinite-slider-container {
+  position: absolute;
+  overflow: hidden;
+  width: 100%;
+}
+
+.infinite-slider-track {
+  display: flex;
+  gap: 10px;
+  /* Use gap instead of margin-right */
+  will-change: transform;
+}
+
+.infinite-slider-track img {
+  margin-right: 10px;
+  /* Gap between images */
+}
+
+.infinite-slider-track img:last-child {
+  margin-right: 0;
+  /* No gap on the last image */
+}

@@ -85,6 +85,24 @@ const homePage = {
       description: 'The main slogan for the home page.',
       group: 'general',
     },
+    {
+      name: 'heroBannerBackground',
+      title: 'Hero Banner Repeatable Image',
+      type: 'image',
+      options: {
+        hotspot: true,
+      },
+      fields: [
+        {
+          name: 'alt',
+          title: 'Alt Text',
+          type: 'string',
+          description: 'Alternative text Hero Banner Image',
+        },
+      ],
+      description: 'Repeatable image for the hero banner',
+      group: 'general',
+    },
 
     // Banner Section Group
     {
