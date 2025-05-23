@@ -1,0 +1,56 @@
+.footer {
+  display: flex;
+  justify-content: space-between;
+  padding: 50px;
+  height: 250px;
+  flex-shrink: 0;
+  width: 100%;
+  position: relative; 
+  /* Needed for absolute positioning */
+}
+
+.leftContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between; /* Pushes groups to top and bottom */
+  height: 100%;
+}
+
+.leftTopGroup {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.leftCopyRight {
+  white-space: pre-wrap;
+  font-size: 12px;
+  line-height: 118%;
+}
+.leftCopyRight span {
+  text-transform: uppercase;
+}
+
+.leftSocialMedia a {
+  display: block;
+  text-decoration: none;
+  font-size: 12px;
+  line-height: 118%;
+  width: 70px;
+}
+
+.leftCopyrightYear {
+  font-size: 12px;
+  line-height: 118%;
+  /* Optional: add margin-top if you want more space */
+}
+
+.right {
+  display: flex;
+  align-items: flex-end; /* Align logo to bottom */
+}
+
+.logo {
+  height: 30px;
+  width: auto;
+}

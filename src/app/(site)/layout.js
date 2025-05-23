@@ -2,9 +2,11 @@ import "./../globals.css";
 import { AppProvider } from "../components/AppContext";
 import { getPages } from "../../../sanity/schemas/sanity-utils";
 import HeaderNavigation from "../components/HeaderNavigation";
+import Footer from "../components/Footer";
 import HomeChecker from "../components/HomeChecker";
 import { getAllPagesData } from "../../../sanity/schemas/sanity-utils";
 import { getAllDobbiData } from "../../../sanity/schemas/sanity-utils";
+import styles from "./layout.module.css"
 
 
 export const metadata = {
@@ -20,11 +22,12 @@ export default async function RootLayout({ children }) {
   // const pages = data?.pages || []; // Access the 'pages' array
 
   const allData = await getAllDobbiData();
-  //console.log("All Data:", allData); //  line to check the data structure
+  console.log("All Data:", allData); //  line to check the data structure
   const pages = allData?.pages || [];
+  const footer = allData?.pageFooter || [];
+  // console.log("Footer @ Layout------:", footer); // Is working
   
   const homePageData = allData?.homepage || null;
-  // console.log("Home @ Layout------:", homePageData); // Search for workTitle, had to add the PageNote in the query
   const aboutPageData = allData?.aboutPage || null;
   // console.log("ABT @ Layout------:", aboutPageData); // Is working
   const pagesData = allData?.pages || []; // Or adjust as needed for TALENT/WORK
@@ -35,13 +38,14 @@ export default async function RootLayout({ children }) {
     <html lang="en">
       <head>
       </head>
-      <body>
-      <AppProvider initialData={allData}>
-        <HomeChecker />
-        {/* Add homeNavBar if not a homepage (check with slug)... */}
-        <HeaderNavigation pages={pages} />
-        
-        <main>{children}</main>
+      <body className={styles.body}>
+        <AppProvider initialData={allData}>
+          <div className={styles.siteContainer}>
+            <HomeChecker />
+            <HeaderNavigation pages={pages} />
+            <main className={styles.mainContent}>{children}</main>
+            <Footer />
+          </div>
         </AppProvider>
       </body>
     </html>

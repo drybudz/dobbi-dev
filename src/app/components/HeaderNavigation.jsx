@@ -7,78 +7,57 @@ import Image from 'next/image';
 import { useState, useEffect } from 'react';
 import MenuAnimation from './MenuAnimation';
 import { useAppContext } from './AppContext';
+import styles from './styles/HeaderNavigation.module.css'
 
 export default function HeaderNavigation() { // Default empty array
-    
     const pathname = usePathname();
-    // console.log("Current PATH :", pathname); // To check the current page
-    const isHomePage = pathname === '/';
-    const headerClasses = `navBar ${isHomePage ? 'homeNavBar' : ''}`;
-    const [isMobile, setIsMobile] = useState(false);
+    
     const [menuOpen, setMenuOpen] = useState(false);
     const { allData } = useAppContext();
 
-    console.log ("all Data @ Navigation:", allData)
+    // console.log ("all Data @ Navigation:", allData)
     const homePage = allData?.homePage || []; // Access the 'pages' array
     const pages = allData?.pages || []; // Access the 'pages' array
     // console.log("K------NAV WORKS Page Data:", pages); // Is working
 
-    useEffect(() => {
-        if (typeof window !== 'undefined') {
-            setIsMobile(window.innerWidth <= 575);
-            const handleResize = () => setIsMobile(window.innerWidth <= 575);
-            window.addEventListener('resize', handleResize);
-            return () => window.removeEventListener('resize', handleResize);
-        }
-    }, []);
-
-    const toggleMenu = () => {
-        setMenuOpen(!menuOpen);
-    };
-
-    // Safely get logo data with fallbacks
-    const logoData = (isHomePage 
-        ? pages[0]?.pageCompanyLogoWhite 
-        : pages[0]?.pageCompanyLogo) || {};
-
     return (
-        <header className={headerClasses}>
-            <Link href="/" className="homeNavLink">
+        <nav className={styles.nav}>
+            <Link href="/" className={styles.logoLink}>
                 <Image
-                    // src={companyLogo?.url || "/glove.svg"}
                     src={homePage?.companyLogoWhite.url || "/glove.svg"}
-                    alt={logoData?.alt || "Dobbi Logo"} 
+                    alt={homePage?.companyLogoWhite.alt || "Dobbi Logo"} 
                     width={110}
                     height={30}
                     priority
+                    className={styles.logo}
                 />
             </Link>
-            <div className="homeNavLinksContainer">
+            <div className={styles.linksContainer}>
                 <Link 
                     href="/services" 
-                    className={pathname === "/services" ? "active-nav" : ""}
+                    className={`${styles.navLink} ${pathname === "/services" ? styles.active : ""}`}
                 >
                     Services
                 </Link>
                 <Link 
                     href="/work" 
-                    className={pathname === "/work" ? "active-nav" : ""}
+                    className={`${styles.navLink} ${pathname === "/work" ? styles.active : ""}`}
                 >
                     Work
                 </Link>
                 <Link 
                     href="/about" 
-                    className={pathname === "/about" ? "active-nav" : ""}
+                    className={`${styles.navLink} ${pathname === "/about" ? styles.active : ""}`}
                 >
                     About
                 </Link>
                 <Link 
                     href="#" 
-                    className={pathname === "#" ? "active-nav" : ""}
+                    className={`${styles.navLink} ${pathname === "#" ? styles.active : ""}`}
                 >
                     Contact
                 </Link>
             </div>
-        </header>
+        </nav>
     );
 }

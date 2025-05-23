@@ -1,0 +1,71 @@
+/* Flex-based layout */
+.nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 27px 38px;
+    width: 100%;
+}
+
+.logoLink {
+    display: flex;
+    align-items: center;
+}
+
+.logo {
+    height: auto;
+    width: 110px;
+}
+
+.linksContainer {
+    display: flex;
+    gap: 20px;
+}
+
+.navLink {
+    color: #797979;
+    text-decoration: none;
+    font-size: 11px;
+    transition: all 0.3s ease;
+    position: relative; /* Required for absolute positioning */
+    padding-bottom: 8px; /* Space for indicator */
+    letter-spacing: -0.48px;
+    
+}
+
+.navLink:hover {
+    color: #ddd;
+}
+
+.active {
+    color: #fff;
+    font-weight: 600;
+}
+
+/* Circular indicator for active link */
+.active::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 4px;
+    height: 4px;
+    background: #fff;
+    border-radius: 50%;
+    opacity: 0.8;
+}
+
+/* Optional: Animation on hover */
+.navLink:hover::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 4px;
+    height: 4px;
+    background: #ddd;
+    border-radius: 50%;
+    opacity: 0.5;
+}

@@ -342,6 +342,16 @@ export async function getProject(slug) {
         "workPage": *[_type == "workPage"][0]{
           workPageTitle,
           workDescription
+        },
+        "pageFooter": *[_type == "pageFooter"][0]{
+          copyrightBrandName,
+          copyrightText,
+          copyrightYear,
+          connectLinks[] {
+            linkTitle,
+            linkUrl,
+            openNewTab
+          }
         }
       }`
     );
