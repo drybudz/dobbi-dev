@@ -9,7 +9,7 @@ export default function Footer() {
 const { allData } = useAppContext();
 const FooterData = allData?.pageFooter || []; // Access the 'pages' array
 const FooterLogo = allData?.homePage || [];
-console.log ("Footer Data @ Footer:", FooterData)
+// console.log ("Footer Data @ Footer:", FooterData)
 
   return (
     <footer className={styles.footer}>
