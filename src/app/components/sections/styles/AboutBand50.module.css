@@ -1,0 +1,38 @@
+/* components/sections/styles/AboutBand50.module.css */
+.bandContainer {
+    grid-template-columns: 50% 50%;
+    align-items: flex-start;
+    max-width: 1350px;
+    margin: 0 auto;
+    padding: 80px 0px;
+    display: grid;
+}
+
+.leftColumn {
+  display: flex;
+  align-items: flex-start; /* Align h3 to top */
+}
+
+.title {
+    letter-spacing: -.96px;
+    margin: 0;
+    font-size: 54px;
+    line-height: 87%;
+    text-align: left;
+    font-weight: 700;
+}
+
+.rightColumn {
+  display: flex;
+  align-items: center; /* Center text vertically */
+  height: 100%;
+}
+
+.text {
+    letter-spacing: -.96px;
+    color: #fff;
+    margin: 0;
+    font-size: 25px;
+    line-height: 108%;
+    text-align: left;
+}

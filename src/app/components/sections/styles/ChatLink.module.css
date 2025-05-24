@@ -1,0 +1,56 @@
+/* components/sections/styles/ChatLink.module.css */
+.chatLinkSection {
+  width: 100%;
+  padding: 40px 0;
+}
+
+.chatLinkContainer {
+  max-width: 1350px;
+  margin: 0 auto;
+  /* padding: 0 20px; */
+}
+
+.chatLink {
+  display: flex;
+  align-items: center;
+  justify-content: start;
+  width: 40%; /* 40% width */
+  min-width: 300px; /* Prevent becoming too narrow */
+  text-decoration: none;
+  color: #8D8D8D;
+  transition: all 0.3s ease;
+  padding: 15px 0;
+}
+
+.chatLink:hover {
+  color: #fff;
+}
+
+.arrow {
+  display: inline-block;
+  width: 17px;
+  height: 17px;
+  background-image: url('/arrow-link-dobbi.png');
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  transition: background-image 0.3s ease;
+  margin-left: 10px;
+}
+
+.chatLink:hover .arrow {
+  background-image: url('/arrow-link-dobbi-w.png');
+}
+
+.linkText {
+  font-size: 18px;
+  letter-spacing: -0.32px;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .chatLink {
+    width: 100%; /* Full width on mobile */
+    min-width: auto;
+  }
+}

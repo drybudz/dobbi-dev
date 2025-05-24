@@ -1,0 +1,29 @@
+/* components/sections/styles/TitleInfo.module.css */
+.titleInfo {
+  display: flex;
+  flex-direction: column;
+  gap: 80px;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 160px 20px;
+  align-items: center;
+}
+
+.title {
+    margin: 0;
+    font-size: 80px;
+    font-weight: 700;
+    line-height: 87%;
+    white-space: pre-wrap;
+    letter-spacing: -1.12px;
+}
+
+.description {
+      max-width: 800px;
+    margin: 0;
+    font-size: 25px;
+    line-height: 108%;
+    font-weight: 500;
+    letter-spacing: -0.96px;
+    white-space: pre-wrap;
+}

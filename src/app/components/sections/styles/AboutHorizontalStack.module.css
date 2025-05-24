@@ -1,0 +1,42 @@
+/* components/sections/styles/AboutHorizontalStack.module.css */
+.horizontalStack {
+  max-width: 1350px;
+  margin: 0 auto;
+  /* padding: 0 20px 160px; */
+}
+
+.row {
+  display: grid;
+  grid-template-columns: 75% 25%;
+  /* gap: 15px; */
+  /* margin-bottom: 80px; */
+}
+
+.row:last-child {
+  margin-bottom: 0;
+}
+
+.imageContainer img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.textContainer {
+  padding: 20px 0 0 20px;
+  border-top: solid;
+  border-width: 1px;
+  color: #8D8D8D;
+  
+}
+
+.textContainer p {
+  font-size: 20px;
+  line-height: 108%;
+  letter-spacing: -0.32px;
+  margin: 0;
+  white-space: normal;
+  word-wrap: break-word;
+  text-align: left;
+  color: #8D8D8D;
+}

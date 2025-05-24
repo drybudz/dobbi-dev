@@ -332,8 +332,68 @@ export async function getProject(slug) {
           }
         },
         "aboutPage": *[_type == "aboutPage"][0]{
+          // General Information
+          title,
           aboutTitle,
-          aboutDescription
+          aboutDescription,
+          
+          // Horizontal Images Section
+          horizontalImageTopImage{
+            asset->{
+              url
+            },
+            alt
+          },
+          horizontalImageTopText,
+          horizontalImageBottomImage{
+            asset->{
+              url
+            },
+            alt
+          },
+          horizontalImageBottomText,
+          
+          // About Band Section
+          aboutBandTitle,
+          aboutBandText,
+          aboutLargeImage{
+            asset->{
+              url
+            },
+            alt
+          },
+          aboutMediumImage{
+            asset->{
+              url
+            },
+            alt
+          },
+          aboutSmallImages[]{
+            asset->{
+              url
+            },
+            alt
+          },
+          
+          // Work Keys Section
+          workKeysTitle,
+          workKeysSubtitle,
+          workKeysList[]{
+            keyTitle,
+            keyDescription
+          },
+          
+          // Mini Gallery
+          miniGallery[]{
+            asset->{
+              url
+            },
+            alt
+          },
+          
+          // Chat Link
+          chatLinkTitle,
+          chatLinkAction
         },
         "servicesPage": *[_type == "servicesPage"][0]{
           servicesTitle,

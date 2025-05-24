@@ -1,11 +1,17 @@
 'use client';
 
+import TitleInfo from '@/app/components/sections/TitleInfo';
+import AboutHorizontalStack from '@/app/components/sections/AboutHorizontalStack';
+import AboutBand50 from '@/app/components/sections/AboutBand50';
+import AboutGallery from '@/app/components/sections/AboutGallery';
+import WorkKeysGrid from '@/app/components/sections/WorkKeysGrid';
+import ChatLink from '@/app/components/sections/ChatLink';
+import MiniGallery from '@/app/components/sections/MiniGallery';
+
 import Image from 'next/image';
 import StickySidebar from '@/app/components/StickySidebar';
 // import { getAboutPage } from "../../../../sanity/schemas/sanity-utils";
 import { useAppContext } from '@/app/components/AppContext';
-import AboutAnimations from '@/app/components/AboutAnimations';
-import AboutInitAnimation from '@/app/components/AboutInitAnimation';
 // import TypeAnimation from '@/app/components/TypeAnimation';
 
 // Elements within AboutAnimations and with the attribute data-animate will get animated
@@ -17,6 +23,7 @@ export default function About() {
     const { allData } = useAppContext();
     const aboutPageData = allData?.aboutPage || null;
     // console.log("@AB------About Page Data:", aboutPageData);
+    console.log("@AB------About Page Data:", aboutPageData.aboutSmallImages);
 
     if (!aboutPageData) {
         return <div>About Page Not Found</div>
@@ -24,9 +31,38 @@ export default function About() {
     return (
         
         <div className="aboutPage">
-            <h2 className="aboutTitle">{aboutPageData.aboutTitle}</h2>
-            <p className="aboutText">{aboutPageData.aboutDescription}</p>
-        </div>
+      <TitleInfo 
+        title={aboutPageData.aboutTitle}
+        description={aboutPageData.aboutDescription}
+      />
+      <AboutHorizontalStack 
+        image1Url={aboutPageData.horizontalImageTopImage?.asset?.url}
+        image1Alt={aboutPageData.horizontalImageTopImage?.alt}
+        image2Url={aboutPageData.horizontalImageBottomImage?.asset?.url}
+        image2Alt={aboutPageData.horizontalImageBottomImage?.alt}
+        text1={aboutPageData.horizontalImageTopText}
+        text2={aboutPageData.horizontalImageBottomText}
+      />
+      <AboutBand50 
+        title={aboutPageData.aboutBandTitle}
+        text={aboutPageData.aboutBandText}
+      />
+      <AboutGallery
+        largeImage={aboutPageData.aboutLargeImage}
+        mediumImage={aboutPageData.aboutMediumImage}
+        smallImages={aboutPageData.aboutSmallImages || []} 
+      />
+      <WorkKeysGrid
+        title={aboutPageData.workKeysTitle}
+        subtitle={aboutPageData.workKeysSubtitle}
+        items={aboutPageData.workKeysList || []}
+      />
+      <ChatLink 
+        title={aboutPageData.chatLinkTitle} 
+        action={aboutPageData.chatLinkAction} 
+      />
+      <MiniGallery images={aboutPageData.miniGallery || []} />
+    </div>
         
     );
 }

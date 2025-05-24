@@ -1,0 +1,90 @@
+/* components/sections/styles/WorkKeysGrid.module.css */
+.workKeys {
+  max-width: 1350px;
+  margin: 0 auto;
+  padding: 80px 0px;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr); /* 4 equal columns */
+  grid-template-rows: auto auto; /* 2 rows */
+  column-gap: 30px;
+  /* gap: 30px; */
+}
+
+.titleColumn {
+  grid-column: 1;
+  grid-row: 1 / span 2;
+  align-self: start; /* Aligns to top */
+}
+
+.title {
+    margin: 0;
+    font-size: 54px;
+    line-height: 87%;
+    letter-spacing: -0.96px;
+    text-align: left;
+}
+
+.keyItem {
+  padding: 20 0 0px;
+  text-align: left;  
+}
+
+.keyTitle {
+    letter-spacing: -.64px;
+    margin: 0 27px 0px 0;
+    font-size: 12px;
+    font-weight: 500;
+    line-height: 108%;
+    color: white;
+    border-top-color: #8D8D8D;
+    border-top-style: solid;
+    padding: 10px 0 20px;
+    border-width: 1px;
+}
+
+.keyDescription {
+  font-size: 20px;
+  line-height: 108%;
+  margin: 0;
+  color: #8D8D8D;
+  font-weight: 500;
+  /* -0.48px was taking the word scale to another linebreak */
+  letter-spacing: -.6px;
+  white-space: pre-wrap;
+}
+
+.subtitleColumn {
+  grid-column: 4;
+  grid-row: 2;
+  padding: 20px 0;
+}
+
+.subtitle {
+    margin: 0;
+    line-height: 108%;
+    text-align: left;
+    font-size: 25px;
+    white-space: pre-wrap;
+    letter-spacing: -0.80px;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .titleColumn,
+  .subtitleColumn,
+  .keyItem {
+    grid-column: 1 !important;
+    grid-row: auto !important;
+  }
+  
+  .titleColumn {
+    margin-bottom: 30px;
+  }
+}
