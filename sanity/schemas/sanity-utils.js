@@ -400,8 +400,33 @@ export async function getProject(slug) {
           servicesDescription
         },
         "workPage": *[_type == "workPage"][0]{
+          pageTitle,
           workPageTitle,
-          workDescription
+          workDescription,
+          featuredProjects[]->{
+            _id,
+            title,
+            client,
+            year,
+            largeProjectImages[]{
+              asset->{
+                url,
+                metadata {
+                  dimensions
+                }
+              },
+              alt
+            },
+            smallProjectImages[]{
+              asset->{
+                url,
+                metadata {
+                  dimensions
+                }
+              },
+              alt
+            }
+          }
         },
         "pageFooter": *[_type == "pageFooter"][0]{
           copyrightBrandName,
