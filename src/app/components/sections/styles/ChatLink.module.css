@@ -45,6 +45,7 @@
 .linkText {
   font-size: 18px;
   letter-spacing: -0.32px;
+  font-weight: 500;
 }
 
 /* Responsive adjustments */

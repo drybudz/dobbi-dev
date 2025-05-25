@@ -28,23 +28,27 @@
   white-space: pre-wrap;
   font-size: 12px;
   line-height: 118%;
+  font-weight: 500;
 }
 .leftCopyRight span {
   text-transform: uppercase;
 }
 
 .leftSocialMedia a {
-  display: block;
-  text-decoration: none;
-  font-size: 12px;
-  line-height: 118%;
-  width: 70px;
+    width: 70px;
+    font-size: 12px;
+    line-height: 118%;
+    text-decoration: none;
+    display: block;
+    font-weight: 400;
+    letter-spacing: 0;
 }
 
 .leftCopyrightYear {
   font-size: 12px;
   line-height: 118%;
-  /* Optional: add margin-top if you want more space */
+  letter-spacing: 0;
+  font-weight: 400;
 }
 
 .right {

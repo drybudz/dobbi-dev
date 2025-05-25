@@ -1,0 +1,94 @@
+/* components/sections/styles/Services8020Grid.module.css */
+.gridContainer {
+    grid-template-columns: 75% 25%;
+    align-items: flex-start;
+    max-width: 1350px;
+    margin: 0 auto;
+    padding: 150px 0 30px 0;
+    display: grid;
+    gap: 40px;
+}
+
+.leftColumn {
+  display: flex;
+  flex-direction: column;
+  gap: 200px;
+}
+
+.title {
+    letter-spacing: -4.96px;
+    margin: 0;
+    font-size: 80px;
+    line-height: 87%;
+    text-align: left;
+    font-weight: 700;
+    white-space: pre-wrap;
+}
+
+.description {
+    letter-spacing: -.48px;
+    margin: 0;
+    font-size: 25px;
+    line-height: 108%;
+    text-align: left;
+    white-space: pre-wrap;
+}
+
+.rightColumn {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+}
+
+.sideSection {
+  display: flex;
+  flex-direction: column;
+}
+
+.topListItem,
+.bottomListItem {
+    color: #8D8D8D;
+    text-align: left;
+    margin: 0 0 0px;
+    font-size: 20px;
+    line-height: 112%;
+    letter-spacing: -1.5px;
+}
+
+.sideTitle {
+    letter-spacing: -.96px;
+    text-align: left;
+    font-size: 25px;
+    font-weight: 700;
+    line-height: 87%;
+}
+
+.sideDescription {
+    letter-spacing: -.96px;
+    text-align: left;
+    margin-top: -20px;
+    font-size: 25px;
+    line-height: 108%;
+    font-weight: 500;
+    white-space: pre-wrap;
+}
+
+.horizontalList {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 5px;
+}
+
+.horizontalListItem {
+  display: flex;
+  align-items: center;
+  font-size: 12px;
+  letter-spacing: -0.64px;
+  line-height: 108%;
+}
+
+.dot {
+  margin-left: 5px;
+  color: white;
+}

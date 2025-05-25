@@ -465,8 +465,19 @@ export async function getProject(slug) {
           chatLinkAction
         },
         "servicesPage": *[_type == "servicesPage"][0]{
+          title,
+          // Main Content
           servicesTitle,
-          servicesDescription
+          servicesDescription,
+          
+          // Side Content
+          servicesSideListTop,
+          servicesSideTitle,
+          servicesSideDescription,
+          servicesSideList[]{
+            item
+          },
+          servicesSideListBottom
         },
         "workPage": *[_type == "workPage"][0]{
           pageTitle,

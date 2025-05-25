@@ -14,12 +14,12 @@
 }
 
 .title {
-    letter-spacing: -.96px;
-    margin: 0;
-    font-size: 54px;
-    line-height: 87%;
+    letter-spacing: -5.2px;
     text-align: left;
+    margin: 0;
+    font-size: 80px;
     font-weight: 700;
+    line-height: 87%;
 }
 
 .rightColumn {
