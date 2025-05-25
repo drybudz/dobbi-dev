@@ -3,8 +3,21 @@ import React, { useRef, useState, useLayoutEffect, useEffect } from 'react'
 import InfiniteSlider from "./InfiniteSlider";
 import styles from './styles/HeroBanner.module.css'
 
-const SliderWrapper = ({ containerHeight, imageSrc }) => {
+const SliderWrapper = ({ containerHeight, projects }) => {
+    // console.log("Projects @ Hero Banner:", projects.bannerProjects); 
 
+const SnMImageUrls = projects.bannerProjects.flatMap(project => {
+  const mediumUrls = project.mediumProjectImages?.map(img => img.asset?.url).filter(Boolean) || [];
+  const smallUrls = project.smallProjectImages?.map(img => img.asset?.url).filter(Boolean) || [];
+  
+  // Combine and deduplicate immediately
+  return [...new Set([...mediumUrls, ...smallUrls])];
+})
+.sort(() => Math.random() - 0.5); // Random shuffle
+
+    console.log("SnM Image URLs:", SnMImageUrls);
+
+    let imageSrc = "https://dobbi-dev.vercel.app/_next/image?url=https%3A%2F%2Fcdn.sanity.io%2Fimages%2F6agoqweu%2Fproduction%2F254359ec21724613bd10f47994dd785266d40af5-686x846.jpg&w=1080&q=75"
     const [sliderAmount, setSliderAmount] = useState(0)
     const smallImageUrls = [
         imageSrc,
@@ -30,7 +43,8 @@ const SliderWrapper = ({ containerHeight, imageSrc }) => {
                     <div key={index + (index + 1)} className={styles.HeroBannerWrapper}>
                         <InfiniteSlider
                             direction={index % 2 === 0 ? 'rtl' : 'ltr'}
-                            images={[...smallImageUrls, ...smallImageUrls, ...smallImageUrls]}
+                            images={[...SnMImageUrls, ...SnMImageUrls, ...SnMImageUrls]}
+                            // why 3?
                         />
                     </div>
                 )
@@ -40,7 +54,7 @@ const SliderWrapper = ({ containerHeight, imageSrc }) => {
     )
 }
 
-const HeroBanner = ({ title, imageSrc }) => {
+const HeroBanner = ({ title, projects }) => {
     const heroRef = useRef(null)
     const [offsetHeight, setOffsetHeight] = useState(0)
 
@@ -59,7 +73,7 @@ const HeroBanner = ({ title, imageSrc }) => {
                     <span style={{ position: 'relative', zIndex: i % 2 === 0 ? 0 : 2 }} key={word + i}>{word + " "}</span>
                 )
             })}</h2>
-            <SliderWrapper containerHeight={offsetHeight} imageSrc={imageSrc}></SliderWrapper>
+            <SliderWrapper containerHeight={offsetHeight} projects={projects}></SliderWrapper>
         </div>
     )
 }

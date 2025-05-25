@@ -22,7 +22,7 @@ export default async function RootLayout({ children }) {
   // const pages = data?.pages || []; // Access the 'pages' array
 
   const allData = await getAllDobbiData();
-  console.log("All Data:", allData); //  line to check the data structure
+  // console.log("All Data:", allData); //  line to check the data structure
   const pages = allData?.pages || [];
   const footer = allData?.pageFooter || [];
   // console.log("Footer @ Layout------:", footer); // Is working

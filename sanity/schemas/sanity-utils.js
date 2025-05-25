@@ -318,18 +318,102 @@ export async function getProject(slug) {
     return createClient(clientConfig).fetch(
       groq`{
         "homePage": *[_type == "homePage"][0]{
+          // General Information
           companyName,
+          companyLogoBlack{
+            asset->{
+              url,
+              metadata {
+                dimensions,
+                lqip
+              }
+            },
+            alt
+          },
           companyLogoWhite{
-            "url": asset->url,
+            asset->{
+              url,
+              metadata {
+                dimensions,
+                lqip
+              }
+            },
             alt
           },
           slogan,
           heroBannerBackground {
-            asset-> {
+            asset->{
+              url,
+              metadata {
+                dimensions,
+                lqip
+              }
+            },
+            alt
+          },
+
+          // Banner Section
+          bannerProjects[]->{
+          _id,
+          name,
+          slug,
+          clientName,
+          projectYear,
+          mediumProjectImages[]{
+            asset->{
+              url
+            },
+            alt
+          },
+          smallProjectImages[]{
+            asset->{
               url
             },
             alt
           }
+        },
+
+          // What We Do Section
+          whatTitle,
+          whatDescription,
+
+          // Projects Section, uses the L image
+          homeBeforeProjectDescription,
+          featuredProjects[]->{
+            _id,
+            name,
+            slug,
+            clientName,
+            projectYear,
+            largeProjectImages[0]{
+              asset->{
+                url,
+                metadata {
+                  dimensions
+                }
+              },
+              alt
+            }
+          },
+          homeAfterProjectDescription,
+          homeGroupTitle,
+
+          // Solutions Section
+          solutions[]{
+            solutionTitle,
+            solutionTextA,
+            solutionTextB
+          },
+
+          // Connect Section
+          connectTitle,
+          connectName,
+          connectEmail,
+
+          // SEO
+          seoTitle,
+          seoDescription,
+          keywords
         },
         "aboutPage": *[_type == "aboutPage"][0]{
           // General Information

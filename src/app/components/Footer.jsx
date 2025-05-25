@@ -48,7 +48,7 @@ const FooterLogo = allData?.homePage || [];
         {/* //Weird issue with Link @ Footer, I think it was the relative it had */}
         <Link href="/" className={styles.logoLink}>
         <Image
-            src={FooterLogo?.companyLogoWhite.url || "/glove.svg"}
+            src={FooterLogo?.companyLogoWhite?.asset?.url || "/dobbiLogo330x90.png"}
             alt={FooterLogo?.companyLogoWhite.alt || "Dobbi Logo"} 
             width={110}
             height={30}

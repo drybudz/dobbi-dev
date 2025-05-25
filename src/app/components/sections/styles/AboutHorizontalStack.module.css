@@ -18,10 +18,11 @@
 
 .imageContainer img {
   width: 100%;
-  height: auto;
+  height: 100%;
   display: block;
-  max-width: 1010px;
-  max-height: 339px;
+  /* max-width: 1010px;
+  max-height: 339px; */
+  aspect-ratio: 1010/339; /* Maintain your desired aspect ratio */
   object-fit: cover;
 }
 

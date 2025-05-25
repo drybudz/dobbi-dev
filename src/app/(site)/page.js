@@ -19,6 +19,7 @@ export default function Home() {
   const { allData } = useAppContext();
   const homePageData = allData?.homePage || null;
   // console.log("@H------Home Page Data:", homePageData); //is working
+  // console.log("Array:", homePageData); //is working
 
   if (!homePageData) {
     return <div>Home Page Not Found</div>;
@@ -26,7 +27,8 @@ export default function Home() {
 
   return (
     <div className="homePage">
-      <HeroBanner title={homePageData?.slogan} imageSrc={homePageData?.heroBannerBackground.asset.url}/>
+      {/* <HeroBanner title={homePageData?.slogan} imageSrc={homePageData?.heroBannerBackground.asset.url}/> */}
+      <HeroBanner title={homePageData?.slogan} projects={homePageData}/>
       <TwoLinks50s
         leftLink={{
           title: "Explore Our Services", 

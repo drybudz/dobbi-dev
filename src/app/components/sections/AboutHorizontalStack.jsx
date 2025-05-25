@@ -25,8 +25,10 @@ export default function AboutHorizontalStack({
               alt={image1Alt || "About section image"}
               width={1010}
               height={339}
+              // fit={"crop"}
               className={styles.image}
             />
+            {/* WIP Images are not respecting the hotspot of Sanity, at gallery under projects they do, check it out at valentine-dev, similar at the gallery bellow, next section */}
         </div>
         <div className={styles.textContainer}>
           <p>{text1}</p>
@@ -42,6 +44,7 @@ export default function AboutHorizontalStack({
                 alt={image2Alt || "About section image"}
                 width={1010}
                 height={339}
+                // fit={"crop"}
                 className={styles.image}
             />
         </div>

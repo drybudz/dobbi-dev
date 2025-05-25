@@ -9,7 +9,7 @@ export default function SingleProductGallery({project}) {
     const smallImages = project?.smallProjectImages || [];
     let mediumImages = project?.mediumProjectImages || [];
     const stats = project?.stats;
-    console.log("@PP------Project Page @ component :", project);
+    // console.log("@PP------Project Page @ component :", project);
 
   // Mop esta validacion que es? Cuando le meti 4 imagenes a medium funciono jaja
   if (mediumImages.length === 0 || mediumImages.length < 3) {
