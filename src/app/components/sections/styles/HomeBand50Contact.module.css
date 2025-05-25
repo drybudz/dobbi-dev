@@ -1,0 +1,62 @@
+/* components/sections/styles/HomeBand50Contact.module.css */
+.bandContainer {
+    grid-template-columns: 50% 50%;
+    align-items: center;
+    max-width: 1350px;
+    margin: 0 auto;
+    padding: 80px 0px;
+    display: grid;
+}
+
+.leftColumn {
+  display: flex;
+  align-items: center;
+}
+
+.title {
+    letter-spacing: -.96px;
+    margin: 0;
+    font-size: 54px;
+    line-height: 87%;
+    text-align: left;
+    font-weight: 700;
+}
+
+.rightColumn {
+  display: flex;
+  align-items: center;
+  height: 100%;
+}
+
+.contactInfo {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding-left: 30px;
+}
+
+.name {
+    letter-spacing: -.64px;
+    text-align: left;
+    margin: 0 0 20px;
+    font-size: 48px;
+    font-weight: 500;
+    line-height: 110%;
+}
+
+.email {
+    letter-spacing: -.64px;
+    color: #8D8D8D;
+    font-size: 20px;
+    line-height: 99%;
+    text-align: left;
+    font-weight: 400;
+
+    a{
+        text-decoration: none;
+        transition: color 0.5s ease;
+    }
+    a:hover{
+        color:#fff;
+    }
+}

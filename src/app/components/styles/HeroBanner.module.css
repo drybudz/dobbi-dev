@@ -4,7 +4,7 @@
     height: 100vh;
 
     h2 {
-        position: absolute;
+        position: relative;
         margin: 0 auto;
         top: 50%;
         left: 50%;
@@ -27,6 +27,11 @@
 .title {
     font-size: 48px;
     width: 100%;
+    word-wrap: break-word;
+    white-space: normal;
+    letter-spacing: -1.12px;
+    line-height: 87%;
+    font-weight: 700;
 }
 
 @media (min-width: 768px) {
@@ -34,6 +39,7 @@
     /* Styles for large screens go here */
     .title {
         font-size: 56px;
+        
     }
 }
 

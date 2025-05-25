@@ -136,28 +136,28 @@ const project = {
       name: 'aboutProject1',
       title: 'Title About Project 1',
       type: 'string',
-      description: 'Title for 1st block About Project Info',
+      description: 'Title for 1st block @ Work Selected',
       group: 'about',
     },
     {
       name: 'aboutProjectText1',
       title: 'Description About Project 1',
       type: 'text',
-      description: 'Description for 1st block About Project Info',
+      description: 'Description for 1st block  @ Work Selected',
       group: 'about',
     },
     {
       name: 'aboutProject2',
       title: 'Title About Project 2',
       type: 'string',
-      description: 'Title for 2nd block About Project Info',
+      description: 'Title for 2nd block @ Work Selected',
       group: 'about',
     },
     {
       name: 'aboutProjectText2',
       title: 'Description About Project 2',
       type: 'text',
-      description: 'Description for 2nd block About Project Info',
+      description: 'Description for 2nd block @ Work Selected',
       group: 'about',
     },
     {
@@ -170,12 +170,12 @@ const project = {
           fields: [
             {
               name: 'statTitle',
-              title: 'Stat Title',
+              title: 'Stat Title (Large Number)',
               type: 'string',
             },
             {
               name: 'statDescription',
-              title: 'Stat Description',
+              title: 'Stat Description (What it means)',
               type: 'text',
             },
           ],

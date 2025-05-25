@@ -1,0 +1,92 @@
+/* components/sections/styles/HomeSolutionGrid.module.css */
+.solutions {
+  max-width: 1350px;
+  margin: 0 auto;
+  padding: 70px 0px;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-template-rows: auto auto;
+  column-gap: 30px;
+  row-gap: 40px;
+}
+
+.titleColumn {
+  grid-column: 1;
+  grid-row: 1 / span 2;
+  align-self: start;
+}
+
+.title {
+  margin: 0;
+  font-size: 54px;
+  line-height: 87%;
+  letter-spacing: -0.96px;
+  text-align: left;
+  color: #fff;
+}
+
+.solutionItem {
+  text-align: left;
+}
+
+.solutionTitle {
+  letter-spacing: -0.64px;
+  margin: 0px 30px 15px 0px;
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 108%;
+  color: white;
+  border-top: 1px solid #8D8D8D;
+  padding-top: 10px;
+}
+
+.solutionTextA {
+  font-size: 20px;
+  line-height: 108%;
+  margin: 0 0 15px 0;
+  color: #8D8D8D;
+  font-weight: 500;
+  letter-spacing: -0.48px;
+}
+
+.solutionTextB {
+  font-size: 12px;
+  line-height: 108%;
+  margin: 0 0 15px 0;
+  color: #8D8D8D;
+  font-weight: 500;
+  letter-spacing: -0.48px;
+
+}
+
+.emptyColumn {
+  grid-column: 4;
+  grid-row: 2;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .grid {
+    grid-template-columns: 1fr;
+    gap: 30px;
+  }
+  
+  .titleColumn,
+  .solutionItem,
+  .emptyColumn {
+    grid-column: 1 !important;
+    grid-row: auto !important;
+  }
+  
+  .title {
+    font-size: 36px;
+    margin-bottom: 20px;
+  }
+  
+  .solutionItem {
+    padding-top: 0;
+  }
+}

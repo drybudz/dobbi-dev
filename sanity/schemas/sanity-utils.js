@@ -341,16 +341,6 @@ export async function getProject(slug) {
             alt
           },
           slogan,
-          heroBannerBackground {
-            asset->{
-              url,
-              metadata {
-                dimensions,
-                lqip
-              }
-            },
-            alt
-          },
 
           // Banner Section
           bannerProjects[]->{
@@ -385,20 +375,15 @@ export async function getProject(slug) {
             slug,
             clientName,
             projectYear,
-            largeProjectImages[0]{
-              asset->{
-                url,
-                metadata {
-                  dimensions
-                }
-              },
+            largeProjectImages[]{
+              asset->{url},
               alt
             }
           },
           homeAfterProjectDescription,
-          homeGroupTitle,
-
+          
           // Solutions Section
+          homeGroupTitle,
           solutions[]{
             solutionTitle,
             solutionTextA,

@@ -1,0 +1,56 @@
+/* components/sections/styles/HomeBandOneThird.module.css */
+.bandContainer {
+  display: grid;
+  grid-template-columns: 25% 75%;
+  align-items: flex-start;
+  max-width: 1350px;
+  margin: 0 auto;
+  padding: 80px 0;
+  gap: 40px;
+}
+
+.leftColumn {
+  display: flex;
+  align-items: flex-start;
+}
+
+.title {
+  letter-spacing: -0.96px;
+  margin: 0;
+  font-size: 54px;
+  line-height: 87%;
+  text-align: left;
+  font-weight: 700;
+  color: #fff; /* Added for consistency */
+}
+
+.rightColumn {
+  display: flex;
+  align-items: center;
+}
+
+.description {
+  letter-spacing: -0.96px;
+  color: #8D8D8D; /* Using your color scheme */
+  margin: 0;
+  font-size: 25px;
+  line-height: 108%;
+  text-align: left;
+  white-space: pre-wrap; 
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .bandContainer {
+    grid-template-columns: 1fr;
+    gap: 30px;
+  }
+  
+  .title {
+    font-size: 42px;
+  }
+  
+  .description {
+    font-size: 20px;
+  }
+}
