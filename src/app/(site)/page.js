@@ -10,6 +10,7 @@ import DivsAnimator from "../components/DivsAnimator";
 import { useAppContext } from "../components/AppContext";
 import BackgroundImage from "../components/BackgroundImage";
 import HeroBanner from "../components/HeroBanner";
+import TwoLinks50s from "../components/sections/TwoLinks50s";
 
 // export const revalidate = 300; // Revalidate every 5 minutes
 
@@ -26,6 +27,16 @@ export default function Home() {
   return (
     <div className="homePage">
       <HeroBanner title={homePageData?.slogan} imageSrc={homePageData?.heroBannerBackground.asset.url}/>
+      <TwoLinks50s
+        leftLink={{
+          title: "Explore Our Services", 
+          slug: "/services"
+        }}
+        rightLink={{
+          title: "See Our Work", 
+          slug: "/work"
+        }}
+      />
     </div>
   );
 }

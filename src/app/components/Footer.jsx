@@ -3,6 +3,7 @@
 import styles from './styles/Footer.module.css';
 import { useAppContext } from './AppContext';
 import Image from 'next/image';
+import Link from 'next/link';
 
 export default function Footer() {
 
@@ -43,14 +44,17 @@ const FooterLogo = allData?.homePage || [];
       {/* Right side: Logo */}
       <div className={styles.right}>
         {/* <img src="https://placehold.co/110x30 " alt="Logo" className={styles.logo} /> */}
+        
+        {/* //Weird issue with Link @ Footer, I think it was the relative it had */}
+        <Link href="/" className={styles.logoLink}>
         <Image
             src={FooterLogo?.companyLogoWhite.url || "/glove.svg"}
             alt={FooterLogo?.companyLogoWhite.alt || "Dobbi Logo"} 
             width={110}
             height={30}
-            priority
             className={styles.logo}
         />
+        </Link> 
       </div>
     </footer>
   );

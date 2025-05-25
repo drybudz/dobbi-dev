@@ -405,10 +405,22 @@ export async function getProject(slug) {
           workDescription,
           featuredProjects[]->{
             _id,
-            title,
-            client,
-            year,
+            name,
+            slug,
+            clientName,
+            projectYear,
+            // All image sets
             largeProjectImages[]{
+              asset->{
+                url,
+                metadata {
+                  dimensions,
+                  lqip // Low-quality image placeholder
+                }
+              },
+              alt
+            },
+            mediumProjectImages[]{
               asset->{
                 url,
                 metadata {
@@ -425,7 +437,18 @@ export async function getProject(slug) {
                 }
               },
               alt
-            }
+            },
+            // About project fields
+            aboutProject1,
+            aboutProjectText1,
+            aboutProject2,
+            aboutProjectText2,
+            stats[]{
+              statTitle,
+              statDescription
+            },
+            // Final project note
+            projectFPO
           }
         },
         "pageFooter": *[_type == "pageFooter"][0]{

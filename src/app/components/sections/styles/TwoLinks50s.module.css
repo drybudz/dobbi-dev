@@ -1,0 +1,57 @@
+/* components/sections/styles/TwoLinks50s.module.css */
+.twoLinksSection {
+  width: 100%;
+  padding: 40px 0;
+}
+
+.linksContainer {
+  display: grid;
+  grid-template-columns: 1fr 1fr; /* Two equal columns */
+  max-width: 1350px;
+  margin: 0 auto;
+  gap: 20px; /* Space between links */
+}
+
+.link {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  text-decoration: none;
+  color: #8D8D8D;
+  transition: all 0.3s ease;
+  padding: 15px 0;
+}
+
+.link:hover {
+  color: #fff;
+}
+
+.arrow {
+  display: inline-block;
+  width: 17px;
+  height: 17px;
+  background-image: url('/arrow-link-dobbi.png');
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  transition: background-image 0.3s ease;
+  margin-left: 10px;
+}
+
+.link:hover .arrow {
+  background-image: url('/arrow-link-dobbi-w.png');
+}
+
+.linkText {
+    letter-spacing: -.32px;
+    font-size: 20px;
+    line-height: 121%;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .linksContainer {
+    grid-template-columns: 1fr;
+    gap: 10px;
+  }
+}

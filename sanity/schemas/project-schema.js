@@ -1,5 +1,3 @@
-import stat from './stat';
-
 const project = {
   name: 'project',
   title: 'Projects',
@@ -164,11 +162,33 @@ const project = {
     },
     {
       name: 'stats',
-      title: 'Stats',
+      title: 'Project Stats (Max 3)',
       type: 'array',
-      of: [{ type: 'stat' }],
-      description: 'List of stats for the project',
-      group: 'stats',
+      of: [
+        {
+          type: 'object',
+          fields: [
+            {
+              name: 'statTitle',
+              title: 'Stat Title',
+              type: 'string',
+            },
+            {
+              name: 'statDescription',
+              title: 'Stat Description',
+              type: 'text',
+            },
+          ],
+          preview: {
+            select: {
+              title: 'statTitle',
+              subtitle: 'statDescription',
+            },
+          },
+        },
+      ],
+      validation: Rule => Rule.max(3),
+      group: 'about',
     },
     {
       name: 'projectFPO',
