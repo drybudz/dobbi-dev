@@ -8,7 +8,7 @@ export default function Work() {
 
   const { allData } = useAppContext();
   const workPageData = allData?.workPage || null;
-  console.log("@WK------Work Page Data:", workPageData.featuredProjects);
+  // console.log("@WK------Work Page Data:", workPageData.featuredProjects);
 
   return (
     

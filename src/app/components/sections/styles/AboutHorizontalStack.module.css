@@ -20,6 +20,9 @@
   width: 100%;
   height: auto;
   display: block;
+  max-width: 1010px;
+  max-height: 339px;
+  object-fit: cover;
 }
 
 .textContainer {
