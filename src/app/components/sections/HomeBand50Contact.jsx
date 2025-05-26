@@ -3,7 +3,7 @@ import styles from './styles/HomeBand50Contact.module.css';
 
 export default function HomeBand50Contact({ title, name, email }) {
   return (
-    <section className={styles.bandContainer}>
+    <section id="contact" className={styles.bandContainer}>
       <div className={styles.leftColumn}>
         <h3 className={styles.title}>{title}</h3>
       </div>

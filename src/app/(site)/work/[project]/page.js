@@ -18,7 +18,7 @@ export default function Project({ params }) {
   const slug = pathname.split('/').pop();
 
   const { allData } = useAppContext();
-  console.log("@PP------All Data :", allData);
+  // console.log("@PP------All Data :", allData);
 
   // Find project that matches this slug in Home or Work Featured Projects from Context
   const project =
@@ -29,7 +29,7 @@ export default function Project({ params }) {
     (proj) => proj.slug?.current === slug
   ) || // If not found, try homePage.featuredProjects
   null; // If still not found, set to null
-   console.log("@PP------Project Page :", project);
+  //  console.log("@PP------Project Page :", project);
 
   if (!project) {
     return <div>Project not found</div>; // Or a more user-friendly error message

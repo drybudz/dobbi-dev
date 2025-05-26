@@ -2,13 +2,14 @@
 import { useAppContext } from "@/app/components/AppContext";
 import TitleInfo from "@/app/components/sections/TitleInfo";
 import Link from "next/link";
+import WorkGrid from "@/app/components/sections/WorkGrid";
 
 
 export default function Work() {
 
   const { allData } = useAppContext();
   const workPageData = allData?.workPage || null;
-  // console.log("@WK------Work Page Data:", workPageData.featuredProjects);
+  // console.log("@WK------Work Page Data:", workPageData.featuredProjects); //works
 
   return (
     
@@ -18,9 +19,11 @@ export default function Work() {
           description={workPageData.workDescription}
         />
 
+      <WorkGrid featuredProjects={workPageData.featuredProjects} />
 
 
-        {workPageData.featuredProjects.map((project) => (
+
+        {/* {workPageData.featuredProjects.map((project) => (
         <Link 
           href={`/work/${project.slug.current}`} 
           className="project-card"
@@ -39,7 +42,7 @@ export default function Work() {
           )}
           <h3 className="project-title">{project.name}</h3>
         </Link>
-      ))}
+      ))} */}
 
       </div>
     // 
@@ -47,12 +50,3 @@ export default function Work() {
 
   );
 }
-
-//.:('-') WIP
-
-{/* <div className="HomePage">
-      <h1>We make work that works.</h1>
-      <span>Dobbi leads digital communications programs that help brands grow, adapt, and perform. We work across industries and markets with a commitment to thoughtful strategy and measurable results.</span>
-      {console.log("projectsData", workPageData)}
-      
-    </div> */}

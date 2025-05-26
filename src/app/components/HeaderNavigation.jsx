@@ -2,7 +2,7 @@
 
 import "./../globals.css";
 import Link from 'next/link';
-import { usePathname } from 'next/navigation';
+import { usePathname, useRouter } from 'next/navigation';
 import Image from 'next/image';
 import { useState, useEffect } from 'react';
 import MenuAnimation from './MenuAnimation';
@@ -11,7 +11,8 @@ import styles from './styles/HeaderNavigation.module.css'
 
 export default function HeaderNavigation() { // Default empty array
     const pathname = usePathname();
-    
+    const router = useRouter();
+
     const [menuOpen, setMenuOpen] = useState(false);
     const { allData } = useAppContext();
 
@@ -19,6 +20,39 @@ export default function HeaderNavigation() { // Default empty array
     const homePage = allData?.homePage || []; // Access the 'pages' array
     const pages = allData?.pages || []; // Access the 'pages' array
     // console.log("K------NAV WORKS Page Data:", pages); // Is working
+
+    // Handle scroll to contact on route change
+    useEffect(() => {
+        // Only run on client side after component mounts
+        if (typeof window !== 'undefined') {
+            const hash = window.location.hash;
+            if (hash === '#contact') {
+                setTimeout(() => {
+                    const contactSection = document.getElementById('contact');
+                    if (contactSection) {
+                        contactSection.scrollIntoView({ behavior: 'smooth' });
+                        // Remove hash after scroll completes
+                        setTimeout(() => {
+                            window.history.replaceState(null, null, ' ');
+                        }, 1000);
+                    }
+                }, 100);
+            }
+        }
+    }, [pathname]); // Removed searchParams dependency
+
+    const handleContactClick = (e) => {
+        if (pathname === "/") {
+            e.preventDefault();
+            const contactSection = document.getElementById('contact');
+            if (contactSection) {
+                contactSection.scrollIntoView({ behavior: 'smooth' });
+                setTimeout(() => {
+                    window.history.replaceState(null, null, ' ');
+                }, 1000);
+            }
+        }
+    };
 
     return (
         <nav className={styles.nav}>
@@ -52,8 +86,15 @@ export default function HeaderNavigation() { // Default empty array
                     About
                 </Link>
                 <Link 
-                    href="#" 
-                    className={`${styles.navLink} ${pathname === "#" ? styles.active : ""}`}
+                    href="/#contact"  // Changed to homepage with #contact fragment
+                    className={`${styles.navLink} ${pathname === "/#contact" ? styles.active : ""}`}
+                    scroll={false}  // Prevents default scroll behavior
+                    onClick={(e) => {
+                        if (pathname === "/") {
+                            e.preventDefault();
+                            document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' });
+                        }
+                    }}
                 >
                     Contact
                 </Link>

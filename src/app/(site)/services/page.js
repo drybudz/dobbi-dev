@@ -9,7 +9,7 @@ export default function Services() {
 
     const { allData } = useAppContext();
     const servicesPageData = allData?.servicesPage || null;
-    console.log("@Ss------Services Page Data:", servicesPageData);
+    // console.log("@Ss------Services Page Data:", servicesPageData);
 
     if (!servicesPageData) {
         return <div>Services Page Not Found</div>
