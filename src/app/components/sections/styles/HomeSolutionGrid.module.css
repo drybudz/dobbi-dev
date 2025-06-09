@@ -51,6 +51,9 @@
   font-weight: 500;
   letter-spacing: -0.48px;
 }
+.solutionTextA:hover {
+  color: #fff;
+}
 
 .solutionTextB {
   font-size: 12px;

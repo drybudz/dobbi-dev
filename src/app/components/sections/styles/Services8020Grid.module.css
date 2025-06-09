@@ -1,12 +1,12 @@
 /* components/sections/styles/Services8020Grid.module.css */
 .gridContainer {
-    grid-template-columns: 75% 25%;
+    grid-template-columns: 77% 23%;
     align-items: flex-start;
     max-width: 1350px;
     margin: 0 auto;
     padding: 150px 0 30px 0;
     display: grid;
-    gap: 40px;
+    /* gap: 40px; */
 }
 
 .leftColumn {
@@ -37,58 +37,136 @@
 .rightColumn {
   display: flex;
   flex-direction: column;
-  gap: 30px;
+  gap: 30px; /* This gap will now apply between service items */
 }
 
-.sideSection {
+/* --- Services List Styling --- */
+.servicesList {
   display: flex;
   flex-direction: column;
+  /* We'll control gap on .serviceItem.active directly */
 }
 
-.topListItem,
-.bottomListItem {
-    color: #8D8D8D;
-    text-align: left;
-    margin: 0 0 0px;
-    font-size: 20px;
-    line-height: 112%;
-    letter-spacing: -1.5px;
+.serviceItem {
+  cursor: pointer; /* Indicate it's clickable/hoverable */
+  transition:
+    color 0.3s ease,
+    padding 0.3s ease; /* Add padding to transition */
+  /* Remove default margins/padding that might interfere */
+  margin: 0;
+  padding: 0; /* Ensure no initial padding */
 }
 
-.sideTitle {
-    letter-spacing: -.96px;
-    text-align: left;
-    font-size: 25px;
-    font-weight: 700;
-    line-height: 87%;
+/* Add space above and below when active */
+.serviceItem.active {
+  padding-top: 40px; /* Adjust as needed for space above */
+  padding-bottom: 40px; /* Adjust as needed for space below */
 }
 
-.sideDescription {
-    letter-spacing: -.96px;
-    text-align: left;
-    margin-top: -20px;
-    font-size: 25px;
-    line-height: 108%;
-    font-weight: 500;
-    white-space: pre-wrap;
+
+.serviceTitle {
+  font-size: 20px; /* Adjust as per your design */
+  line-height: 112%;
+  letter-spacing: -0,96px; 
+  font-weight: 500; /* Default gray color */
+  color: #8D8D8D;
+  margin: 0; 
+  transition:
+    color 0.3s ease,
+    font-weight 0.3s ease; /* Smooth transition for font-weight */
 }
 
-.horizontalList {
+/* When the serviceItem is active */
+/* -----------HOVERED----------- */
+
+.serviceItem.active .serviceTitle {
+  font-size: 25px;
+  color: #fff; /* Title turns white on hover */
+  font-weight: 700; /* Title turns bold on hover */
+  margin-bottom: 7px;
+  line-height: 87%;
+  letter-spacing: -0,96px; 
+}
+
+/* Description and Options */
+.serviceDescription {
+  font-size: 25px; /* Adjust as per your design */
+  line-height: 87%;
+  letter-spacing: -0,96px; 
+  color: #fff; /* Description is white when active */
+  white-space: pre-wrap; /* Maintains line breaks from Sanity text field */ 
+  margin-bottom: 25px;
+}
+
+.serviceOptionsList {
+  list-style: none; /* Removes default bullet points */
+  padding: 0;
+  margin: 0;
+  display: flex; /* To make options horizontal */
+  flex-wrap: wrap; /* Wrap options if they get too long */
+  gap: 2px; /* Space between options and dots */
+  align-items: center;
+  text-transform: capitalize;
+}
+
+.serviceOptionItem {
+  font-size: 12px; /* Adjust as per your design */
+  line-height: 1;
+  color: #fff; /* Options are white when active */
   display: flex;
   align-items: center;
-  flex-wrap: wrap;
-  gap: 5px;
 }
 
-.horizontalListItem {
-  display: flex;
-  align-items: center;
-  font-size: 12px;
-  letter-spacing: -0.64px;
-  line-height: 108%;
+/* Add dots between options */
+.serviceOptionItem:not(:last-child)::after {
+  content: '•';
+  color: #fff; /* Dot color */
+  margin: 0 5px; /* Space around the dot */
 }
 
-.dot {
-  margin-left: 5px;
-  color: white;
+
+/* Responsive */
+@media (max-width: 768px) {
+  .gridContainer {
+    grid-template-columns: 1fr; /* Stack columns */
+    padding: 80px 0 30px 0; /* Adjust padding for mobile */
+  }
+
+  .leftColumn {
+    gap: 50px; /* Smaller gap for mobile */
+  }
+
+  .title {
+    font-size: 48px; /* Smaller title on mobile */
+    letter-spacing: -2px;
+  }
+
+  .description {
+    font-size: 18px; /* Smaller description on mobile */
+  }
+
+  .rightColumn {
+    gap: 20px; /* Adjust gap between service items */
+  }
+
+  .serviceTitle {
+    font-size: 24px; /* Adjust service title size on mobile */
+  }
+
+  .serviceDescription {
+    font-size: 16px; /* Adjust description size on mobile */
+  }
+
+  .serviceOptionsList {
+    gap: 3px;
+  }
+
+  .serviceOptionItem {
+    font-size: 14px; /* Adjust option size on mobile */
+  }
+
+  .serviceItem.active {
+    padding-top: 20px; /* Adjust for mobile */
+    padding-bottom: 20px; /* Adjust for mobile */
+  }
 }

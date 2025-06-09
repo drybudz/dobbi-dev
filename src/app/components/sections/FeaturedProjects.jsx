@@ -39,13 +39,15 @@ export default function FeaturedProjects({
           {/* Left column (image) */}
           <div className={styles.imageColumn}>
             {featuredProject.largeProjectImages?.[0]?.asset?.url && (
-              <Image
-                src={featuredProject.largeProjectImages[0].asset.url}
-                alt={featuredProject.largeProjectImages[0].alt || featuredProject.name}
-                fill
-                className={styles.projectImage}
-                style={{ objectFit: 'cover' }}
-              />
+              <Link href={`/work/${featuredProject.slug?.current || '#'}`}>
+                <Image
+                  src={featuredProject.largeProjectImages[0].asset.url}
+                  alt={featuredProject.largeProjectImages[0].alt || featuredProject.name}
+                  fill
+                  className={styles.projectImage}
+                  style={{ objectFit: 'cover' }}
+                />
+              </Link>
             )}
           </div>
 
@@ -62,12 +64,22 @@ export default function FeaturedProjects({
             </div>
             {/* Client Name & Year */}
               <div className={styles.projectMeta}>
+                
                 {featuredProject.clientName && (
-                  <span>{featuredProject.clientName},</span>
+                  <span><Link href={`/work/${featuredProject.slug?.current || '#'}`}>
+                    {featuredProject.clientName}</Link>,
+                  </span>
                 )}
                 {featuredProject.projectYear && (
-                  <span>{featuredProject.projectYear}</span>
+                  <span>
+                    <Link href={`/work/${featuredProject.slug?.current || '#'}`}>
+                      {featuredProject.projectYear}
+                      <span className={styles.arrow} aria-hidden="true" />
+                    </Link>
+                  </span>
                 )}
+                
+                
               </div>
           </div>
         </div>

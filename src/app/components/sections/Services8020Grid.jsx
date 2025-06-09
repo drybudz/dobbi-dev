@@ -1,15 +1,22 @@
+'use client';
 // components/sections/Services8020Grid.js
+import { useState } from 'react';
 import styles from './styles/Services8020Grid.module.css';
 
 export default function Services8020Grid({
   servicesTitle,
   servicesDescription,
-  servicesSideListTop,
-  servicesSideTitle,
-  servicesSideDescription,
-  servicesSideList,
-  servicesSideListBottom
+  servicesList
 }) {
+
+  const [hoveredServiceIndex, setHoveredServiceIndex] = useState(null);
+  const handleMouseEnter = (index) => {
+    setHoveredServiceIndex(index);
+  };
+  const handleMouseLeave = () => {
+    setHoveredServiceIndex(null); // Reset to null when no service is hovered
+  };
+
   return (
     <section className={styles.gridContainer}>
       <div className={styles.leftColumn}>
@@ -17,39 +24,37 @@ export default function Services8020Grid({
         <p className={styles.description}>{servicesDescription}</p>
       </div>
       <div className={styles.rightColumn}>
-        {/* Top List */}
-        <div className={styles.sideSection}>
-          {servicesSideListTop?.map((item, index) => (
-            <p key={index} className={styles.topListItem}>{item}</p>
-          ))}
-        </div>
 
-        {/* Middle Title */}
-        <div className={styles.sideSection}>
-          <h4 className={styles.sideTitle}>{servicesSideTitle}</h4>
-        </div>
+        {/* Services List v2 */}
+        <div className={styles.servicesList}>
+          {servicesList?.map((service, index) => (
+            <div
+              key={index}
+              className={`${styles.serviceItem} ${hoveredServiceIndex === index ? styles.active : ''}`}
+              onMouseEnter={() => handleMouseEnter(index)}
+              onMouseLeave={handleMouseLeave}
+            >
+              <h3 className={styles.serviceTitle}>
+                {service.serviceTitle}
+              </h3>
+              {/* Description and Options only show when hovered */}
+              {hoveredServiceIndex === index && (
+                <>
+                  <p className={styles.serviceDescription}>{service.serviceDescription}</p>
 
-        {/* Middle Description */}
-        <div className={styles.sideSection}>
-          <p className={styles.sideDescription}>{servicesSideDescription}</p>
-        </div>
-
-        {/* Horizontal List */}
-        <div className={styles.sideSection}>
-          <div className={styles.horizontalList}>
-            {servicesSideList?.map(({item}, index) => (
-              <span key={index} className={styles.horizontalListItem}>
-                {item}
-                {index < servicesSideList.length - 1 && <span className={styles.dot}>•</span>}
-              </span>
-            ))}
-          </div>
-        </div>
-
-        {/* Bottom List */}
-        <div className={styles.sideSection}>
-          {servicesSideListBottom?.map((item, index) => (
-            <p key={index} className={styles.bottomListItem}>{item}</p>
+                  {/* Render Service Options */}
+                  {service.serviceOptions && service.serviceOptions.length > 0 && (
+                    <ul className={styles.serviceOptionsList}>
+                      {service.serviceOptions.map((option, optionIndex) => (
+                        <li key={optionIndex} className={styles.serviceOptionItem}>
+                          {option}
+                        </li>
+                      ))}
+                    </ul>
+                  )}
+                </>
+              )}
+            </div>
           ))}
         </div>
       </div>

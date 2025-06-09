@@ -62,11 +62,19 @@
 .projectMeta {
   display: flex;
   gap: 20px;
-  color: #fff;
+  color: #8D8D8D;
   font-size: 25px;
   font-weight: 500;
   letter-spacing: -0.32px;
   line-height: 108%; 
+  
+}
+.projectMeta a {
+  text-decoration: none;
+}
+
+.projectMeta:hover {
+  color: #fff;
 }
 
 .projectDescription {
@@ -75,6 +83,22 @@
   letter-spacing: -0.32px;
   color: #8D8D8D;
   margin: 0;
+}
+
+.arrow {
+  display: inline-block;
+  width: 17px;
+  height: 17px;
+  background-image: url('/arrow-link-dobbi.png');
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  transition: background-image 0.3s ease;
+  margin-left: 10px;
+}
+
+.projectMeta:hover .arrow {
+  background-image: url('/arrow-link-dobbi-w.png');
 }
 
 /* Responsive */

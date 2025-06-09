@@ -469,6 +469,13 @@ export async function getProject(slug) {
           // Main Content
           servicesTitle,
           servicesDescription,
+
+          // New Services List
+          servicesList[]{
+            serviceTitle,
+            serviceDescription,
+            serviceOptions[] // This will bring in all options (strings) for each service
+          },
           
           // Side Content
           servicesSideListTop,

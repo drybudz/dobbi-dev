@@ -16,14 +16,16 @@
     line-height: 87%;
     white-space: pre-wrap;
     letter-spacing: -1.12px;
+    text-align: center;
 }
 
 .description {
-      max-width: 800px;
+    max-width: 800px;
     margin: 0;
     font-size: 25px;
     line-height: 108%;
     font-weight: 500;
     letter-spacing: -0.96px;
     white-space: pre-wrap;
+    text-align: center;
 }

@@ -95,19 +95,29 @@
 
 .gridContainer .image2 {
   margin-top: 60px;
+  margin-bottom: -30px;
 }
-
+/* 
 .image2 {
   margin-top: 0px;
   margin-bottom: -30px;
   transition: margin-top 0.3s ease, margin-bottom 0.3s ease;
-} 
+}  */
+
+.gridCell {
+  position: relative; /* Establish positioning context */
+  overflow: hidden; /* THIS IS THE MOST IMPORTANT CHANGE FOR CLIPPING */
+  /* Remove width/height/object-fit from here if they were here */
+}
 
 /* All images fit grid with no gaps */
 .gridCell img {
   width: 100%;
   height: 100%;
   object-fit: cover;
+  transition: transform 0.5s ease;
+  transform-origin: center;
+  will-change: transform;
 }
 
 /* Assign grid areas */
@@ -152,20 +162,7 @@
   margin-left: 332px;
 }
 
-
-/* Hover Animation */
-/* Image hover animation */
-.gridCell img {
-  transition: transform 0.5s ease, opacity 0.3s ease 0.5s; /* Added transitions */
-  transform-origin: center; /* Zooms from center */
-}
-
+/* Corrected Hover Animation Rule */
 .gridCell:hover img {
   transform: scale(1.07); /* Subtle 3% zoom */
-  overflow: hidden;
-}
-
-/* Optional: Add a slight fade effect when returning to normal */
-.gridCell img {
-  will-change: transform; /* Optimizes animation performance */
 }
