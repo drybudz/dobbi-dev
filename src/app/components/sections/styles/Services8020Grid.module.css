@@ -2,7 +2,7 @@
 .gridContainer {
     grid-template-columns: 77% 23%;
     align-items: flex-start;
-    max-width: 1350px;
+    max-width: 1440px;
     margin: 0 auto;
     padding: 150px 20px 30px;
     display: grid;

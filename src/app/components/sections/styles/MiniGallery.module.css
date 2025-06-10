@@ -8,7 +8,7 @@
   display: grid;
   grid-template-columns: repeat(12, 1fr);
   gap: 1px; /* Minimal gap between images */
-  max-width: 1350px;
+  max-width: 1440px;
   margin: 0 auto;
 }
 
