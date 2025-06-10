@@ -26,7 +26,7 @@ const project = {
     {
       name: 'name',
       title: 'Project Name',
-      type: 'string',
+      type: 'text',
       description: 'The name of the project (used to generate the URL slug).',
       group: 'general',
       validation: Rule => Rule.required().error('Project name is required'),

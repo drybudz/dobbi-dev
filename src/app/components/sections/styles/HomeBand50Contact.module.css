@@ -2,9 +2,9 @@
 .bandContainer {
     grid-template-columns: 50% 50%;
     align-items: center;
-    max-width: 1350px;
+    max-width: 1440px;
     margin: 0 auto;
-    padding: 80px 0px;
+    padding: 80px 20px;
     display: grid;
 }
 
@@ -51,12 +51,63 @@
     line-height: 99%;
     text-align: left;
     font-weight: 400;
+}
 
-    a{
-        text-decoration: none;
-        transition: color 0.5s ease;
+/* Ensure the anchor styles are specifically applied to the link */
+.emailLink {
+    text-decoration: none;
+    transition: color 0.5s ease;
+    color: inherit; /* Inherit color from .email by default */
+}
+
+.emailLink:hover {
+    color:#fff;
+}
+
+
+/* Responsive adjustments for mobile */
+@media (max-width: 768px) { /* Using 768px as a common breakpoint for mobile */
+    .bandContainer {
+        grid-template-columns: 1fr; /* Stack columns into a single column */
+        padding: 40px 20px; /* Adjust padding for mobile screens */
+        /* You might want to adjust alignment if needed for stacking */
+        align-items: flex-start; /* Align stacked items to the start */
     }
-    a:hover{
-        color:#fff;
+
+    .leftColumn {
+        /* Add margin to create space between the title and contact info when stacked */
+        margin-bottom: 30px;
+        /* Adjust alignment if needed for mobile */
+        align-items: flex-start; /* Keep left-aligned if desired */
+    }
+
+    .title {
+        font-size: 48px; /* Adjust font size for mobile readability */
+        letter-spacing: -3px; /* Adjust letter spacing for mobile */
+        text-align: left; /* Center the title on mobile if preferred */
+        width: 100%; /* Ensure title takes full width of column */
+    }
+
+    .rightColumn {
+        /* No specific changes to display needed here, as it's already flex */
+        height: auto; /* Allow height to adjust to content */
+        padding-left: 0; /* Remove padding if not needed when stacked */
+        align-items: flex-start; /* Align contact info to the left */
+    }
+
+    .contactInfo {
+        padding-left: 0; /* Remove left padding from contactInfo as well */
+        align-items: flex-start; /* Ensure contact info is left-aligned within its column */
+        width: 100%; /* Ensure contactInfo takes full width */
+    }
+
+    .name {
+        font-size: 42px; /* Adjust font size for mobile */
+        text-align: left; /* Keep name left-aligned */
+    }
+
+    .email {
+        font-size: 18px; /* Adjust font size for mobile */
+        text-align: left; /* Keep email left-aligned */
     }
 }

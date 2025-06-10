@@ -1,3 +1,5 @@
+'use client';
+
 // components/sections/HomeBand50Contact.js
 import styles from './styles/HomeBand50Contact.module.css';
 

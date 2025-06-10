@@ -1,14 +1,6 @@
 'use client';
 
-// import { PortableText } from "next-sanity"; //test with the next-sanity
-import { PortableText } from "@portabletext/react";
-// import { getHomePage } from "../../../sanity/schemas/sanity-utils";
-import H2Animation from "../components/H2Animator";
-import HomeVideo from "../components/HomeVideo";
-import LocationsAndEmailAnimator from "../components/LocationsAndEmailAnimator";
-import DivsAnimator from "../components/DivsAnimator";
 import { useAppContext } from "../components/AppContext";
-import BackgroundImage from "../components/BackgroundImage";
 import HeroBanner from "../components/HeroBanner";
 import TwoLinks50s from "../components/sections/TwoLinks50s";
 import HomeBandOneThird from "../components/sections/HomeBandOneThird";

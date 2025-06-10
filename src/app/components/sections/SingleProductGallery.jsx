@@ -11,7 +11,7 @@ export default function SingleProductGallery({project}) {
     const stats = project?.stats;
     // console.log("@PP------Project Page @ component :", project);
 
-  // Mop esta validacion que es? Cuando le meti 4 imagenes a medium funciono jaja
+  //Double check on this validation
   if (mediumImages.length === 0 || mediumImages.length < 3) {
     mediumImages = Array.from([0,1,2]).map((number, index) =>
       mediumImages?.[index]?.url ? mediumImages[index] : ({ url: "https://placehold.co/600" })

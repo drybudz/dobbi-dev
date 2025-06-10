@@ -1,27 +1,28 @@
 .Container {
     margin: 0 auto;
-    padding: 110px 0 25px 0;
+    padding: 110px 20px 25px;
     max-width: 1350px;
 }
 
 .HeaderSection {
     display: flex;
     justify-content: space-between;
-    align-items: flex-end;
+    align-items: flex-start;
     margin-bottom: 28px;
 
     h1 {
         font-size: 80px;
         font-weight: 700;
         line-height: 87%;
-        letter-spacing: -1.12px;
+        letter-spacing: -3.12px;
+        white-space: pre-wrap;
     }
 
     p {
         font-size: 25px;
         font-weight: 500;
         line-height: 108%;
-        letter-spacing: -0.32px;
+        letter-spacing: -0.80px;
     }
 }
 
@@ -95,7 +96,7 @@
         line-height: 87%;
         margin: 21px 0 0;
         padding: 0;
-        letter-spacing: -0.96px;
+        letter-spacing: -1.88px;
     }
 }
 
@@ -131,7 +132,7 @@
             font-size: 171px;
             margin: 0;
             line-height: 141%;
-            letter-spacing: -1.44px;
+            letter-spacing: -10.44px;
         }
 
         p {

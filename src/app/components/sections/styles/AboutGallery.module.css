@@ -3,11 +3,16 @@
   grid-template-columns: 521fr 260fr 260fr 308fr; /* Using your exact pixel widths as ratios */
   grid-template-rows: 331fr 331fr; /* Small image height × 2 */
   width: 100%;
-  max-width: 1350px; /* 521 + 260 + 260 + 308 = 1349 ≈ 1350 */
+  max-width: 1440px; /* 521 + 260 + 260 + 308 = 1349 ≈ 1350 */
   margin: 0 auto;
-  padding: 40px 0px;
+  padding: 40px 20px;
   gap: 0; /* No gaps between images */
   height: 662px;
+}
+
+.gallery > div { /* This targets .large, .medium, .small1, etc. */
+  position: relative; /* Needed for consistent behavior and potential future absolute positioning */
+  overflow: hidden; /* THIS IS THE KEY FOR CLIPPING THE SCALED IMAGE */
 }
 
 /* Large Image (Spans first column and both rows) */
@@ -37,4 +42,10 @@
   height: 100%;
   object-fit: cover;
   display: block;
+  transition: transform 0.3s ease; /* Match MiniGallery's transition */
+  transform-origin: center center; /* Ensure scaling is from the center */
+}
+
+.gallery > div:hover .image {
+  transform: scale(1.05); /* Match MiniGallery's scale factor */
 }

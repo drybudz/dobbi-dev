@@ -4,7 +4,7 @@
     align-items: flex-start;
     max-width: 1350px;
     margin: 0 auto;
-    padding: 80px 0px;
+    padding: 80px 20px;
     display: grid;
 }
 
@@ -14,7 +14,7 @@
 }
 
 .title {
-    letter-spacing: -.96px;
+    letter-spacing: -1.96px;
     margin: 0;
     font-size: 54px;
     line-height: 87%;
@@ -36,4 +36,38 @@
     line-height: 108%;
     text-align: left;
     font-weight: 500;
+}
+
+@media (max-width: 768px) {
+  .bandContainer {
+        grid-template-columns: 1fr; /* Stacks columns into a single column */
+        padding: 40px 20px; /* Adjust padding for smaller screens if needed */
+        /* You might want to adjust margin for mobile as well if necessary */
+    }
+
+    .leftColumn {
+        margin-bottom: 20px; /* Add space between the stacked title and text */
+        /* Reset align-items if needed for mobile, but flex-start usually works fine */
+        align-items: center; /* Center title on mobile if preferred */
+        text-align: center; /* Center text within the title column */
+    }
+
+    .title {
+        font-size: 36px; /* Adjust font size for mobile */
+        letter-spacing: -1.96px; /* Adjust letter spacing for mobile */
+        text-align: center;
+        margin: 0 auto;
+    }
+
+    .rightColumn {
+        /* No specific changes needed here if you just want it to fill the 1fr column */
+        /* If you had specific height constraints from desktop, you might want to reset them */
+        height: auto; /* Allow height to adjust to content on mobile */
+    }
+
+    .text {
+        font-size: 18px; /* Adjust font size for mobile */
+        letter-spacing: -0.5px; /* Adjust letter spacing for mobile */
+        text-align: center; /* Center text on mobile if preferred */
+    }
 }

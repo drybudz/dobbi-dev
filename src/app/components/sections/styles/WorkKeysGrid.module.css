@@ -1,8 +1,8 @@
 /* components/sections/styles/WorkKeysGrid.module.css */
 .workKeys {
-  max-width: 1350px;
+  max-width: 1440px;
   margin: 0 auto;
-  padding: 60px 0 40px 0;
+  padding: 60px 20px 40px;
 }
 
 .grid {
@@ -10,7 +10,6 @@
   grid-template-columns: repeat(4, 1fr); /* 4 equal columns */
   grid-template-rows: auto auto; /* 2 rows */
   column-gap: 30px;
-  /* gap: 30px; */
 }
 
 .titleColumn {
@@ -23,8 +22,8 @@
     margin: 0;
     font-size: 54px;
     line-height: 87%;
-    letter-spacing: -0.96px;
-    text-align: left;
+    letter-spacing: -1.96px;
+    align-self: start;
 }
 
 .keyItem {
@@ -39,11 +38,17 @@
     font-size: 12px;
     font-weight: 500;
     line-height: 108%;
-    color: white;
+    color: #fff;
     border-top-color: #8D8D8D;
     border-top-style: solid;
     padding: 10px 0 20px;
     border-width: 1px;
+    transition: color 0.3s ease, border-top-color 0.3s ease, border-width 0.3s ease; /* Added transitions */
+}
+
+/* Hover effect for keyTitle when its parent (.keyItem) is hovered */
+.keyItem:hover .keyTitle {
+  border-top-color: #fff; /* Border color to white on hover */
 }
 
 .keyDescription {
@@ -55,7 +60,14 @@
   /* -0.48px was taking the word scale to another linebreak */
   letter-spacing: -.6px;
   white-space: pre-wrap;
+  transition: color 0.3s ease;
+  
 }
+
+.keyItem:hover .keyDescription {
+  color: #fff; /* Text color to white on hover */
+}
+
 
 .subtitleColumn {
   grid-column: 4;
@@ -75,18 +87,52 @@
 
 /* Responsive */
 @media (max-width: 768px) {
+
+  .workKeys {
+  padding: 45px 20px 30px 20px;
+}
+
+  .title {
+    font-size: 40px;
+    padding: 0 20px;
+}
+
+.subtitle {
+    margin: 0;
+    line-height: 108%;
+    text-align: right;
+    font-size: 25px;
+    white-space: pre-wrap;
+    letter-spacing: -0.80px;
+    font-weight: 500;
+}
+
+.keyItem {
+    /* padding: 20px 20px 0px; */
+    text-align: left;
+    margin: 0px 0px 20px 0px;
+}
+
   .grid {
     grid-template-columns: 1fr;
   }
-  
+
   .titleColumn,
   .subtitleColumn,
   .keyItem {
     grid-column: 1 !important;
     grid-row: auto !important;
   }
-  
+
   .titleColumn {
     margin-bottom: 30px;
+  }
+  /* On mobile, remove hover effects if they interfere */
+  .keyItem:hover .keyTitle,
+  .keyItem:hover .keyDescription {
+      /* Reset to default mobile styles or initial styles */
+      border-top-color: #8D8D8D; /* Or whatever default color is for mobile */
+      border-width: 1px;
+      color: #fff; /* Or whatever default color is for mobile */
   }
 }

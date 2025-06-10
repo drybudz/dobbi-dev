@@ -1,8 +1,8 @@
 /* components/sections/styles/FeaturedProjects.module.css */
 .container {
-  max-width: 1350px;
+  max-width: 1440px;
   margin: 0 auto;
-  padding: 80px 0px 0px 0px;
+  padding: 80px 20px 0px;
 }
 
 .fullWidthText {

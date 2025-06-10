@@ -1,37 +1,59 @@
 /* components/sections/styles/AboutHorizontalStack.module.css */
 .horizontalStack {
-  max-width: 1350px;
+  max-width: 1440px;
   margin: 0 auto 30px auto;
-  /* padding: 0 20px 160px; */
 }
 
 .row {
   display: grid;
   grid-template-columns: 75% 25%;
-  /* gap: 15px; */
-  /* margin-bottom: 80px; */
+  grid-template-rows: 339px; /* Initial height for the row */
+  gap: 0;
+  transition: all 0.5s ease;
+  cursor: pointer;
 }
 
 .row:last-child {
   margin-bottom: 0;
 }
 
-.imageContainer img {
-  width: 100%;
-  height: 100%;
-  display: block;
-  /* max-width: 1010px;
-  max-height: 339px; */
-  aspect-ratio: 1010/339; /* Maintain your desired aspect ratio */
-  object-fit: cover;
+/* When the row is active (hovered) */
+.row.rowActive {
+  grid-template-rows: 648px; 
 }
 
+/* Image Container */
+.imageContainer {
+  position: relative; 
+  overflow: hidden; 
+  width: 100%; 
+  height: 100%; 
+  
+}
+
+.imageContainer .image { 
+  object-fit: cover;
+  object-position: center center;
+  transition: object-position 0.5s ease, transform 0.5s ease; 
+}
+
+/* Optional: to reveal more of the top/bottom on hover */
+/* You could change object-position on hover to reveal more of the top or bottom
+.row.rowActive .imageContainer img {
+  object-position: top center; // Reveals more of the top of the image
+}
+*/
+
 .textContainer {
-  padding: 20px 0 0 20px;
+  padding: 20px 20px 0 20px;
   border-top: solid;
   border-width: 1px;
   color: #8D8D8D;
-  
+  transition: all 0.5s ease;
+}
+
+.row.rowActive .textContainer {
+  color: #fff; 
 }
 
 .textContainer p {
@@ -42,5 +64,66 @@
   white-space: normal;
   word-wrap: break-word;
   text-align: left;
-  color: #8D8D8D;
+  /* color: #8D8D8D; */
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .row {
+    display: flex; /* Use flexbox for simpler stacking */
+    flex-direction: column; /* Stack image on top, then text */
+    gap: 20px; /* Space between image and text */
+    margin-bottom: 40px; /* Space between rows */
+    transition: none; /* No transition */
+    cursor: default; /* No pointer cursor */
+  }
+
+  .row:last-child {
+    margin-bottom: 0;
+  }
+
+  /* Deactivate hover-related styles for mobile */
+  .row.rowActive {
+    /* Ensure no visual change on mobile "hover" */
+    margin-bottom: 40px; /* Keeps consistent spacing */
+  }
+
+  /* Image Container (Mobile) */
+  .imageContainer {
+    position: relative; /* Keep relative for Next.js Image 'fill' to work for base image sizing */
+    width: 100%;
+    height: auto; 
+    max-height: 339px; 
+    /* No explicit height here, let the image's max-height control it */
+    overflow: hidden; /* Crucial to clip if image is naturally taller than max-height */
+  }
+
+  /* Next.js Image (Mobile) - Crucial for original ratio */
+  .imageContainer .image {
+    position: static !important; /* Forces it into normal document flow */
+    width: 100%; /* Take full width of its parent */
+    height: auto; /* Maintain aspect ratio */
+    max-height: 339px; /* **Apply max-height directly to the image** */
+    object-fit: cover; /* **Use cover to ensure it fills the space up to max-height** */
+    object-position: center center;
+    transition: none; /* No animation */
+  }
+
+  /* Text Container (Mobile) */
+  .textContainer {
+    padding: 0; /* Adjust padding as needed for mobile */
+    border-top: none; /* No border top when stacked */
+    border-left: none; /* No border left */
+    color: #8D8D8D; /* Text remains gray on mobile */
+    transition: none; /* No transition */
+  }
+
+  /* Ensure text color does not change on mobile "hover" */
+  .row.rowActive .textContainer {
+    color: #8D8D8D;
+  }
+
+  .textContainer p {
+    padding: 20px;
+  }
 }

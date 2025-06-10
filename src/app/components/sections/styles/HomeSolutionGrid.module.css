@@ -1,8 +1,8 @@
 /* components/sections/styles/HomeSolutionGrid.module.css */
 .solutions {
-  max-width: 1350px;
+  max-width: 1440px;
   margin: 0 auto;
-  padding: 70px 0px;
+  padding: 70px 20px;
 }
 
 .grid {

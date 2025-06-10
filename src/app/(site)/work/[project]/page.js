@@ -1,10 +1,5 @@
 'use client'
 
-import { getProject } from "../../../../../sanity/schemas/sanity-utils";
-import { PortableText } from "@portabletext/react";
-// for this one above it looks like next-sanity also works instead of @portabletext/react, probably Sanity has created its own component
-import Image from "next/image";
-import styles from "./project.module.css";
 import { useAppContext } from "@/app/components/AppContext";
 import { usePathname } from 'next/navigation';
 import SingleProductGallery from "@/app/components/sections/SingleProductGallery";

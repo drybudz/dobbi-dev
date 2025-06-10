@@ -15,7 +15,7 @@
     font-weight: 700;
     line-height: 87%;
     white-space: pre-wrap;
-    letter-spacing: -1.12px;
+    letter-spacing: -3.44px;
     text-align: center;
 }
 
@@ -28,4 +28,10 @@
     letter-spacing: -0.96px;
     white-space: pre-wrap;
     text-align: center;
+}
+
+@media (max-width: 768px) {
+  .title {
+    font-size: 48px;
+  }
 }

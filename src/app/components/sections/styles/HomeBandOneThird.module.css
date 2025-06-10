@@ -3,9 +3,9 @@
   display: grid;
   grid-template-columns: 25% 75%;
   align-items: flex-start;
-  max-width: 1350px;
+  max-width: 1440px;
   margin: 0 auto;
-  padding: 120px 0 30px 0;
+  padding: 120px 20px 30px;
   gap: 40px;
 }
 
@@ -37,6 +37,7 @@
   font-weight: 500;
   text-align: left;
   white-space: pre-wrap; 
+  padding-right: 30px;
 }
 
 /* Responsive adjustments */
