@@ -120,7 +120,7 @@ export default function WorkGrid4x4({ featuredProjects }) {
 
         ScrollTrigger.create({
           trigger: item,
-          start: 'bottom bottom-=150px', // Overlay appears when element bottom is 150px from viewport bottom
+          start: 'bottom bottom-=10px', // Overlay appears when element bottom is 150px from viewport bottom
           end: 'top top+=150px',         // Overlay disappears when element top is 150px from viewport top
           onEnter: () => { // Entering from bottom
             gsap.to(item, { marginBottom: 50, duration: 0.5, ease: 'power2.out' }); // Increase gap
