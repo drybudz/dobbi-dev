@@ -3,6 +3,7 @@ import { useAppContext } from "@/app/components/AppContext";
 import TitleInfo from "@/app/components/sections/TitleInfo";
 import Link from "next/link";
 import WorkGrid from "@/app/components/sections/WorkGrid";
+import WorkGrid4x4 from "@/app/components/sections/WorkGrid4x4";
 
 
 export default function Work() {
@@ -19,30 +20,8 @@ export default function Work() {
           description={workPageData.workDescription}
         />
 
-      <WorkGrid featuredProjects={workPageData.featuredProjects} />
-
-
-
-        {/* {workPageData.featuredProjects.map((project) => (
-        <Link 
-          href={`/work/${project.slug.current}`} 
-          className="project-card"
-          key={project._id}
-        >
-          {project.image && (
-            <div className="image-wrapper">
-              <Image
-                src={project.image}
-                alt={project.name}
-                width={250}
-                height={100}
-                className="project-image"
-              />
-            </div>
-          )}
-          <h3 className="project-title">{project.name}</h3>
-        </Link>
-      ))} */}
+      {/* <WorkGrid featuredProjects={workPageData.featuredProjects} /> */}
+      <WorkGrid4x4 featuredProjects={workPageData.featuredProjects} />
 
       </div>
     // 

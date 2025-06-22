@@ -30,7 +30,7 @@ const workPage = {
             type: 'reference', 
             to: { type: 'project' } 
         }],
-        description: 'Select projects to display (will show their name, client, year, and images)',
+        description: 'Select projects to display (will show their name, client, year, and images). Do not repeat projects.',
       },
     ],
     preview: {

@@ -2,6 +2,7 @@
 import styles from './styles/WorkGrid.module.css';
 
 export default function WorkGrid({ featuredProjects }) {
+  // console.log("Featured Projects for WorkGrid:", featuredProjects);
   return (
     <section>
       <div className="workProject">

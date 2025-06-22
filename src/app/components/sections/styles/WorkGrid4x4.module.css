@@ -1,0 +1,180 @@
+/* Base styles for the section containing the grid */
+.workGridSection {
+  padding: 20px; /* Or whatever padding you need around the grid */
+}
+
+/* 4x4 Grid Container (Larger than Mobile Portrait >= 575px) */
+.gridContainer {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr); /* 4 equal columns */
+  grid-auto-rows: 1fr; /* Rows will automatically size */
+  gap: 0px; /* Default no gap for desktop */
+  width: 100%; /* Occupy full width */
+  max-width: 1440px; /* Example max width, adjust as needed */
+  margin: 0 auto; /* Center the grid */
+}
+
+/* Make sure grid cells maintain aspect ratio (e.g., square) */
+.gridContainer::before {
+  content: '';
+  width: 0;
+  padding-bottom: 100%; /* This makes the height equal to the width */
+  grid-row: 1 / 1;
+  grid-column: 1 / 1;
+}
+
+.gridContainer > *:first-child {
+  grid-row: 1 / 1;
+  grid-column: 1 / 1;
+}
+
+.gridCell {
+  position: relative;
+  overflow: hidden; /* Crucial for clipping scaling images */
+  /* Ensures all cells have similar sizing, adjusting automatically */
+  padding-bottom: 100%; /* For responsive square cells, height = width */
+  height: 0; /* Important for padding-bottom trick */
+  /* Remove any default margin-bottom here, GSAP manages it on mobile */
+}
+
+/* Image inside the cell */
+.gridCell img {
+  position: absolute; /* Position relative to the cell */
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* Ensures image covers the cell area */
+  transition: transform 0.5s ease-out, top 0.5s ease-out; /* Smooth scale and position transitions */
+  transform-origin: center center;
+  will-change: transform, top, opacity; /* Optimize for animation including cycling opacity */
+}
+
+/* Hover Effects (Larger than Mobile Portrait) */
+.gridCell:hover img {
+  transform: scale(1.07); /* Scale up */
+  top: 20px; /* Move image down slightly to reveal overlay */
+}
+
+/* Project Info Overlay */
+.projectOverlayLink {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: auto; /* It will cover the top portion */
+  z-index: 10; /* Ensure it's above the image */
+  overflow: hidden; /* Hide content that's 'above' the visible part */
+  text-decoration: none;
+  pointer-events: none; /* Initially pointer events are off on desktop */
+}
+
+.projectOverlay {
+  background-color: black;
+  color: white;
+  padding: 20px; /* Adjust padding as needed */
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  transform: translateY(-100%); /* Start completely hidden above the cell */
+  transition: transform 0.3s ease-out; /* Smooth transition for appearance */
+  width: 100%;
+  box-sizing: border-box; /* Include padding in width */
+  opacity: 0; /* GSAP will manage this for mobile, CSS for desktop hover */
+}
+
+.projectOverlayText h3 {
+  font-size: 1.2rem; /* Adjust font size for client name */
+  margin: 0;
+  font-weight: 500;
+  line-height: 1.2;
+}
+
+.projectOverlayText h3 span {
+  font-weight: 400;
+  display: inline-block; /* Keep year on same line as client name */
+  margin-left: 5px; /* Small space between name and year */
+}
+
+.overlayArrow {
+  width: 20px;
+  height: 20px;
+  background-image: url('/arrow-link-dobbi-w.png'); /* Ensure this path is correct */
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+/* Show overlay on hover (Desktop only) */
+.gridCell:hover .projectOverlayLink {
+  pointer-events: all; /* Enable pointer events on hover */
+}
+
+.gridCell:hover .projectOverlay {
+  transform: translateY(0); /* Slide down into view */
+  opacity: 1; /* Ensure opacity is 1 on hover for desktop */
+}
+
+
+/* ------------------------------------------------------------------------------------------------------------------ */
+/* Mobile Portrait Considerations (< 575px) */
+/* ------------------------------------------------------------------------------------------------------------------ */
+@media (max-width: 574px) {
+  .gridContainer {
+    grid-template-columns: 1fr; /* Single column layout */
+    grid-auto-rows: auto; /* Let content determine height */
+    gap: 0px; /* GSAP will manage margin-bottom for gaps */
+    padding: 10px; /* Small padding around the grid for mobile */
+  }
+
+  .gridCell {
+    /* Example: 4:3 aspect ratio for mobile images */
+    /* padding-bottom: 75%;  */
+    height: 0;
+    margin-bottom: 10px; /* Default gap for individual project image in column, GSAP will animate from/to this */
+    transition: none; /* Crucial: Let GSAP control margin-bottom, prevent CSS transition conflicts */
+  }
+
+  .gridCell:last-child {
+    margin-bottom: 50px; /* Adjust for last item if needed */
+  }
+
+  /* Reset hover effects for mobile (GSAP will handle visibility) */
+  .gridCell:hover img {
+    transform: none; /* No scale on mobile hover */
+    top: 0; /* No vertical movement on mobile hover */
+  }
+
+  /* Mobile Overlay (GSAP will control visibility and position) */
+  .projectOverlayLink {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: auto;
+    pointer-events: all; /* Always allow interaction on mobile */
+  }
+
+  .projectOverlay {
+    background-color: black;
+    color: white;
+    padding: 15px; /* Adjust padding for mobile */
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    box-sizing: border-box;
+    /* GSAP will set initial opacity and y position, and animate them */
+    transition: none; /* Let GSAP control transform and opacity */
+  }
+
+  /* No explicit hover states for overlay on mobile */
+  .gridCell:hover .projectOverlay {
+    transform: none; /* GSAP handles this on mobile */
+    opacity: unset; /* GSAP handles this on mobile */
+  }
+
+  .projectOverlayText h3 {
+    font-size: 1rem; /* Smaller font for mobile */
+  }
+}
