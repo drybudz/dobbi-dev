@@ -75,6 +75,7 @@
     z-index: 1001;
 }
 
+/* Mobile styles */
 @media (max-width: 574px) {
     .nav {
         padding: 20px 25px;
@@ -85,7 +86,7 @@
     }
 
     .linksContainer {
-        display: none;
+        display: none; /* Start hidden on mobile */
         flex-direction: column;
         position: fixed;
         top: 0;
@@ -99,6 +100,12 @@
         opacity: 0;
     }
 
+    /* When menu is open on mobile */
+    .linksContainer.menuOpen {
+        display: flex;
+        opacity: 1;
+    }
+
     .navLink {
         font-size: 24px;
         margin: 15px 0;
@@ -108,5 +115,22 @@
     .active::after,
     .navLink:hover::after {
         display: none;
+    }
+}
+
+/* Reset mobile styles when back to desktop */
+@media (min-width: 575px) {
+    .linksContainer {
+        display: flex !important;
+        opacity: 1 !important;
+        position: relative !important;
+        background-color: transparent !important;
+        height: auto !important;
+        width: auto !important;
+        flex-direction: row !important;
+    }
+    
+    .menuToggle {
+        display: none !important;
     }
 }

@@ -203,6 +203,7 @@ const aboutPage = {
     {
       name: 'chatLinkTitle',
       title: 'Chat Link Title',
+      description: 'Any break of line will only display in mobile under 757px',
       type: 'text',
       group: 'chatLink',
     },

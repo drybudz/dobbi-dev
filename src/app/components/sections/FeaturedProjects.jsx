@@ -1,41 +1,43 @@
-// components/sections/FeaturedProjects.jsx
 'use client';
+
 import Link from 'next/link';
 import Image from 'next/image';
 import styles from './styles/FeaturedProjects.module.css';
-import { useState, useEffect } from 'react'; // Import useState and useEffect
+import { useState, useEffect } from 'react';
 
 export default function FeaturedProjects({
   beforeText,
   projects = [],
   afterText
 }) {
-    // State to hold the selected featured project
-    const [featuredProject, setFeaturedProject] = useState(null);
+  const [featuredProject, setFeaturedProject] = useState(null);
 
-    useEffect(() => {
-        // This code only runs on the client-side after initial render
-        if (projects.length > 0) {
-            const randomIndex = Math.floor(Math.random() * projects.length);
-            setFeaturedProject(projects[randomIndex]);
-        }
-    }, [projects]); // Re-run if projects array changes
-
-    // Optional: Render nothing or a loading state if no project is selected yet
-    if (!featuredProject) {
-        return null; // Or a skeleton loader
+  useEffect(() => {
+    if (projects.length > 0) {
+      const randomIndex = Math.floor(Math.random() * projects.length);
+      setFeaturedProject(projects[randomIndex]);
     }
+  }, [projects]);
 
-    return (
+  if (!featuredProject) {
+    return null;
+  }
+
+  return (
     <section className={styles.container}>
-      {/* Full-width top text */}
       {beforeText && (
         <p className={styles.fullWidthText}>{beforeText}</p>
       )}
 
-      {/* 50/50 columns */}
-      {featuredProject && ( // Now featuredProject is guaranteed to be set if not null
+      {featuredProject && (
         <div className={styles.projectContainer}>
+          {/* Mobile-only project name (hidden on desktop) */}
+          <h3 className={styles.mobileProjectName}>
+            <Link href={`/work/${featuredProject.slug?.current || '#'}`}>
+              {featuredProject.name}
+            </Link>
+          </h3>
+
           {/* Left column (image) */}
           <div className={styles.imageColumn}>
             {featuredProject.largeProjectImages?.[0]?.asset?.url && (
@@ -53,39 +55,33 @@ export default function FeaturedProjects({
 
           {/* Right column (text) */}
           <div className={styles.textColumn}>
-            <div className={styles.textContent}>
-              
-              {/* Project Name */}
-              <h3 className={styles.projectName}>
-                <Link href={`/work/${featuredProject.slug?.current || '#'}`}>
-                  {featuredProject.name}
-                </Link>
-              </h3>
+            <h3 className={styles.projectName}>
+              <Link href={`/work/${featuredProject.slug?.current || '#'}`}>
+                {featuredProject.name}
+              </Link>
+            </h3>
+
+            <div className={styles.projectMeta}>
+              {featuredProject.clientName && (
+                <span>
+                  <Link href={`/work/${featuredProject.slug?.current || '#'}`}>
+                    {featuredProject.clientName}
+                  </Link>,
+                </span>
+              )}
+              {featuredProject.projectYear && (
+                <span>
+                  <Link href={`/work/${featuredProject.slug?.current || '#'}`}>
+                    {featuredProject.projectYear}
+                    <span className={styles.arrow} aria-hidden="true" />
+                  </Link>
+                </span>
+              )}
             </div>
-            {/* Client Name & Year */}
-              <div className={styles.projectMeta}>
-                
-                {featuredProject.clientName && (
-                  <span><Link href={`/work/${featuredProject.slug?.current || '#'}`}>
-                    {featuredProject.clientName}</Link>,
-                  </span>
-                )}
-                {featuredProject.projectYear && (
-                  <span>
-                    <Link href={`/work/${featuredProject.slug?.current || '#'}`}>
-                      {featuredProject.projectYear}
-                      <span className={styles.arrow} aria-hidden="true" />
-                    </Link>
-                  </span>
-                )}
-                
-                
-              </div>
           </div>
         </div>
       )}
 
-      {/* Full-width bottom text */}
       {afterText && (
         <p className={styles.fullWidthText}>{afterText}</p>
       )}

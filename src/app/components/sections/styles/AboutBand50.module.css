@@ -18,7 +18,7 @@
     margin: 0;
     font-size: 54px;
     line-height: 87%;
-    text-align: left;
+    text-align: left; /* Default left align for desktop */
     font-weight: 700;
 }
 
@@ -34,40 +34,61 @@
     margin: 0;
     font-size: 25px;
     line-height: 108%;
-    text-align: left;
+    text-align: left; /* Default left align for desktop */
     font-weight: 500;
 }
 
 @media (max-width: 768px) {
   .bandContainer {
         grid-template-columns: 1fr; /* Stacks columns into a single column */
-        padding: 40px 20px; /* Adjust padding for smaller screens if needed */
-        /* You might want to adjust margin for mobile as well if necessary */
+        padding: 20px; /* Adjust padding for smaller screens if needed */
     }
 
     .leftColumn {
         margin-bottom: 20px; /* Add space between the stacked title and text */
-        /* Reset align-items if needed for mobile, but flex-start usually works fine */
-        align-items: center; /* Center title on mobile if preferred */
-        text-align: center; /* Center text within the title column */
+        align-items: center; /* Still centering flex items for 768px breakpoint */
+        text-align: center; /* Center text within the title column for 768px breakpoint */
     }
 
     .title {
         font-size: 36px; /* Adjust font size for mobile */
         letter-spacing: -1.96px; /* Adjust letter spacing for mobile */
-        text-align: center;
-        margin: 0 auto;
+        text-align: center; /* Center text for 768px breakpoint */
+        margin: 0 auto; /* Ensure centering works by setting margin auto */
     }
 
     .rightColumn {
-        /* No specific changes needed here if you just want it to fill the 1fr column */
-        /* If you had specific height constraints from desktop, you might want to reset them */
         height: auto; /* Allow height to adjust to content on mobile */
     }
 
     .text {
-        font-size: 18px; /* Adjust font size for mobile */
-        letter-spacing: -0.5px; /* Adjust letter spacing for mobile */
-        text-align: center; /* Center text on mobile if preferred */
+        font-size: 16px; /* Adjust font size for mobile */
+        letter-spacing: -1.5px; /* Adjust letter spacing for mobile */
+        text-align: center; /* Center text for 768px breakpoint */
+        margin-top: 20px;
+    }
+}
+
+/* New breakpoint for "under 575px" (using max-width: 574px) */
+@media (max-width: 574px) {
+    .leftColumn {
+        align-items: flex-start; /* Revert to top alignment for flex items */
+        text-align: left; /* Left align text within the title column */
+        margin: 0; /* Remove margin auto to prevent centering */
+    }
+
+    .title {
+        font-size: 32px; /* Slightly smaller font for very small screens */
+        text-align: left; /* Explicitly left align title */
+        margin: 0; /* Remove margin auto to prevent centering */
+    }
+
+    .rightColumn {
+        /* No need to change align-items here if text-align is applied to .text */
+    }
+
+    .text {
+        font-size: 18px; /* Keep font size */
+        text-align: left; /* Explicitly left align text */
     }
 }

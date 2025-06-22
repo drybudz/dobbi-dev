@@ -131,7 +131,8 @@
     /* Example: 4:3 aspect ratio for mobile images */
     /* padding-bottom: 75%;  */
     height: 0;
-    margin-bottom: 10px; /* Default gap for individual project image in column, GSAP will animate from/to this */
+    margin-bottom: 0px !important;
+    /* Default gap for individual project image in column, GSAP will animate from/to this */
     transition: none; /* Crucial: Let GSAP control margin-bottom, prevent CSS transition conflicts */
   }
 

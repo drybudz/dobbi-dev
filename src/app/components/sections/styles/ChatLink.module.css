@@ -46,7 +46,6 @@
   font-size: 18px;
   letter-spacing: -0.32px;
   font-weight: 500;
-  white-space: pre-wrap;
 }
 
 /* Responsive adjustments */
@@ -54,5 +53,16 @@
   .chatLink {
     width: 100%; /* Full width on mobile */
     min-width: auto;
+  }
+
+  .linkText {
+    white-space: pre-wrap;
+  }
+}
+
+@media (max-width: 420px) {
+
+  .linkText {
+    white-space: pre-wrap;
   }
 }

@@ -17,12 +17,30 @@ export default function HeaderNavigation() {
 
     const toggleMenu = () => setIsMenuOpen(!isMenuOpen);
 
-    // Mobile detection
+    // Mobile detection and responsive behavior
     useEffect(() => {
-        const checkMobile = () => setIsMobile(window.innerWidth <= 574);
-        checkMobile();
-        window.addEventListener('resize', checkMobile);
-        return () => window.removeEventListener('resize', checkMobile);
+        const handleResize = () => {
+            const mobile = window.innerWidth <= 574;
+            setIsMobile(mobile);
+            
+            // When resizing to desktop, ensure menu is visible
+            if (!mobile) {
+                setIsMenuOpen(false);
+                if (menuRef.current) {
+                    // Reset all GSAP and inline styles
+                    gsap.killTweensOf(menuRef.current);
+                    menuRef.current.style.display = '';
+                    menuRef.current.style.opacity = '';
+                    menuRef.current.style.transform = '';
+                    document.body.style.overflow = '';
+                }
+            }
+        };
+        
+        // Initial check
+        handleResize();
+        window.addEventListener('resize', handleResize);
+        return () => window.removeEventListener('resize', handleResize);
     }, []);
 
     // Menu animation with GSAP

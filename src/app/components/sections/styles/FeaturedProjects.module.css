@@ -17,19 +17,19 @@
 }
 
 .fullWidthText:first-child {
-  margin: 0 0 100px 0; 
+  margin: 0 0 100px 0;
 }
 
 .projectContainer {
   display: grid;
-  grid-template-columns: 50% 50%;
+  grid-template-columns: 1fr 1fr;
   gap: 20px;
   margin-bottom: 110px;
 }
 
 .imageColumn {
   position: relative;
-  aspect-ratio: 1/1; /* Adjust as needed */
+  aspect-ratio: 1/1;
   overflow: hidden;
 }
 
@@ -54,7 +54,8 @@
   width: 70%;
 }
 
-.projectName a {
+.projectName a,
+.mobileProjectName a {
   color: #fff;
   text-decoration: none;
 }
@@ -66,23 +67,16 @@
   font-size: 25px;
   font-weight: 500;
   letter-spacing: -0.32px;
-  line-height: 108%; 
-  
+  line-height: 108%;
 }
+
 .projectMeta a {
   text-decoration: none;
+  color: inherit;
 }
 
-.projectMeta:hover {
+.projectMeta a:hover {
   color: #fff;
-}
-
-.projectDescription {
-  font-size: 20px;
-  line-height: 108%;
-  letter-spacing: -0.32px;
-  color: #8D8D8D;
-  margin: 0;
 }
 
 .arrow {
@@ -97,23 +91,69 @@
   margin-left: 10px;
 }
 
-.projectMeta:hover .arrow {
+.projectMeta a:hover .arrow {
   background-image: url('/arrow-link-dobbi-w.png');
+}
+
+/* Mobile-only project name - hidden by default */
+.mobileProjectName {
+  display: none;
 }
 
 /* Responsive */
 @media (max-width: 768px) {
   .projectContainer {
-    grid-template-columns: 1fr;
+    display: flex;
+    flex-direction: column;
     gap: 30px;
   }
-  
-  .fullWidthText,
-  .projectDescription {
-    font-size: 18px;
+
+  .fullWidthText {
+    font-size: 35px;
   }
-  
-  .projectName {
+
+  /* Show mobile project name and hide desktop one */
+  .mobileProjectName {
+    display: block;
     font-size: 36px;
+    line-height: 87%;
+    letter-spacing: -2.96px;
+    font-weight: 700;
+    margin: 0 0 20px 0;
+    width: 100%;
+    order: 1;
+  }
+
+  .projectName {
+    display: none;
+  }
+
+  .imageColumn {
+    order: 2;
+  }
+
+  .textColumn {
+    order: 3;
+  }
+}
+
+/* Further Mobile Portrait adjustments */
+@media (max-width: 574px) {
+  .mobileProjectName {
+    font-size: 32px;
+  }
+
+  .projectMeta {
+    font-size: 20px;
+    gap: 15px;
+  }
+
+  .arrow {
+    width: 15px;
+    height: 15px;
+  }
+
+  .container {
+    padding: 30px 20px 0px;
   }
 }
