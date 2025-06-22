@@ -7,48 +7,42 @@
 
 .grid {
   display: grid;
-  grid-template-columns: repeat(4, 1fr); /* 4 equal columns */
-  grid-template-rows: auto auto; /* 2 rows */
+  grid-template-columns: repeat(4, 1fr);
+  grid-template-rows: auto auto;
   column-gap: 30px;
 }
 
 .titleColumn {
   grid-column: 1;
   grid-row: 1 / span 2;
-  align-self: start; /* Aligns to top */
+  align-self: start;
 }
 
 .title {
-    margin: 0;
-    font-size: 54px;
-    line-height: 87%;
-    letter-spacing: -1.96px;
-    align-self: start;
+  margin: 0;
+  font-size: 54px;
+  line-height: 87%;
+  letter-spacing: -1.96px;
+  align-self: start;
 }
 
 .keyItem {
-    padding: 20px 0px 0px;
-    text-align: left;
-    margin: 0px 0px 20px 0px;
+  padding: 20px 0px 0px;
+  text-align: left;
+  margin: 0px 0px 20px 0px;
+  transition: none; /* Let JavaScript handle all transitions */
 }
 
 .keyTitle {
-    letter-spacing: -.64px;
-    margin: 0px 30px 0px 0px;
-    font-size: 12px;
-    font-weight: 500;
-    line-height: 108%;
-    color: #fff;
-    border-top-color: #8D8D8D;
-    border-top-style: solid;
-    padding: 10px 0 20px;
-    border-width: 1px;
-    transition: color 0.3s ease, border-top-color 0.3s ease, border-width 0.3s ease; /* Added transitions */
-}
-
-/* Hover effect for keyTitle when its parent (.keyItem) is hovered */
-.keyItem:hover .keyTitle {
-  border-top-color: #fff; /* Border color to white on hover */
+  letter-spacing: -0.64px;
+  margin: 0px 30px 0px 0px;
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 108%;
+  color: #fff;
+  border-top: 1px solid #8D8D8D;
+  padding: 10px 0 20px;
+  transition: border-top-color 0.3s ease, border-width 0.3s ease;
 }
 
 .keyDescription {
@@ -57,17 +51,23 @@
   margin: 0;
   color: #8D8D8D;
   font-weight: 500;
-  /* -0.48px was taking the word scale to another linebreak */
-  letter-spacing: -.6px;
+  letter-spacing: -0.6px;
   white-space: pre-wrap;
-  transition: color 0.3s ease;
+  transition: color 0.3s ease, font-weight 0.3s ease;
+}
+
+/* Desktop hover effects */
+@media (hover: hover) and (pointer: fine) {
+  .keyItem:hover .keyTitle {
+    border-top-color: #fff;
+    border-top-width: 2px;
+  }
   
+  .keyItem:hover .keyDescription {
+    color: #fff;
+    font-weight: 700;
+  }
 }
-
-.keyItem:hover .keyDescription {
-  color: #fff; /* Text color to white on hover */
-}
-
 
 .subtitleColumn {
   grid-column: 4;
@@ -76,42 +76,29 @@
 }
 
 .subtitle {
-    margin: 0;
-    line-height: 108%;
-    text-align: left;
-    font-size: 25px;
-    white-space: pre-wrap;
-    letter-spacing: -0.80px;
-    font-weight: 500;
+  margin: 0;
+  line-height: 108%;
+  text-align: left;
+  font-size: 25px;
+  white-space: pre-wrap;
+  letter-spacing: -0.80px;
+  font-weight: 500;
 }
 
-/* Responsive */
+/* Mobile styles */
 @media (max-width: 768px) {
-
   .workKeys {
-  padding: 45px 20px 30px 20px;
-}
+    padding: 45px 20px 30px;
+  }
 
   .title {
     font-size: 40px;
     padding: 0 20px;
-}
+  }
 
-.subtitle {
-    margin: 0;
-    line-height: 108%;
+  .subtitle {
     text-align: right;
-    font-size: 25px;
-    white-space: pre-wrap;
-    letter-spacing: -0.80px;
-    font-weight: 500;
-}
-
-.keyItem {
-    /* padding: 20px 20px 0px; */
-    text-align: left;
-    margin: 0px 0px 20px 0px;
-}
+  }
 
   .grid {
     grid-template-columns: 1fr;
@@ -127,12 +114,20 @@
   .titleColumn {
     margin-bottom: 30px;
   }
-  /* On mobile, remove hover effects if they interfere */
-  .keyItem:hover .keyTitle,
-  .keyItem:hover .keyDescription {
-      /* Reset to default mobile styles or initial styles */
-      border-top-color: #8D8D8D; /* Or whatever default color is for mobile */
-      border-width: 1px;
-      color: #fff; /* Or whatever default color is for mobile */
+  
+  /* Mobile-specific active state (handled by IntersectionObserver) */
+  .keyItem.active .keyTitle {
+    border-top-color: #fff;
+    border-top-width: 2px;
+  }
+  
+  .keyItem.active .keyDescription {
+    color: #fff;
+    font-weight: 700;
+  }
+
+  .keyTitle,
+  .keyDescription {
+    transition: all 0.3s ease !important;
   }
 }

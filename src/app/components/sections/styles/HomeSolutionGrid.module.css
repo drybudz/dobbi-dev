@@ -1,4 +1,4 @@
-/* components/sections/styles/HomeSolutionGrid.module.css */
+/* HomeSolutionGrid.module.css */
 .solutions {
   max-width: 1440px;
   margin: 0 auto;
@@ -30,6 +30,7 @@
 
 .solutionItem {
   text-align: left;
+  cursor: default; /* Indicates these are interactive on desktop */
 }
 
 .solutionTitle {
@@ -50,9 +51,7 @@
   color: #8D8D8D;
   font-weight: 500;
   letter-spacing: -0.48px;
-}
-.solutionTextA:hover {
-  color: #fff;
+  transition: none; /* GSAP handles all animations */
 }
 
 .solutionTextB {
@@ -62,7 +61,7 @@
   color: #8D8D8D;
   font-weight: 500;
   letter-spacing: -0.48px;
-
+  transition: none;
 }
 
 .emptyColumn {
@@ -70,26 +69,53 @@
   grid-row: 2;
 }
 
-/* Responsive */
+/* Responsive Breakpoints */
 @media (max-width: 768px) {
   .grid {
     grid-template-columns: 1fr;
     gap: 30px;
   }
-  
+
   .titleColumn,
   .solutionItem,
   .emptyColumn {
     grid-column: 1 !important;
     grid-row: auto !important;
   }
-  
+
   .title {
     font-size: 36px;
     margin-bottom: 20px;
   }
-  
-  .solutionItem {
-    padding-top: 0;
+}
+
+@media (max-width: 574px) {
+  .solutions {
+    padding: 50px 15px;
+  }
+
+  .grid {
+    column-gap: 20px;
+    row-gap: 30px;
+  }
+
+  .title {
+    font-size: 32px;
+    margin-bottom: 15px;
+  }
+
+  .solutionTitle {
+    font-size: 11px;
+    margin: 0px 20px 10px 0px;
+  }
+
+  .solutionTextA {
+    font-size: 18px;
+    margin: 0 0 10px 0;
+  }
+
+  .solutionTextB {
+    font-size: 11px;
+    margin: 0 0 10px 0;
   }
 }

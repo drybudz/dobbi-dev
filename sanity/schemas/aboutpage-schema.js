@@ -203,7 +203,7 @@ const aboutPage = {
     {
       name: 'chatLinkTitle',
       title: 'Chat Link Title',
-      type: 'string',
+      type: 'text',
       group: 'chatLink',
     },
     {

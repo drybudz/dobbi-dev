@@ -46,6 +46,7 @@
   font-size: 18px;
   letter-spacing: -0.32px;
   font-weight: 500;
+  white-space: pre-wrap;
 }
 
 /* Responsive adjustments */
