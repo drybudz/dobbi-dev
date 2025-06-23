@@ -6,7 +6,7 @@
 
 .linksContainer {
   display: grid;
-  grid-template-columns: 1fr 1fr; /* Two equal columns */
+  grid-template-columns: 1fr 1fr; /* Desktop default: Two equal columns (50/50) */
   max-width: 1350px;
   margin: 0 auto;
   gap: 20px; /* Space between links */
@@ -15,12 +15,22 @@
 .link {
   display: flex;
   align-items: center;
-  justify-content: flex-start;
   text-decoration: none;
   color: #8D8D8D;
   transition: all 0.3s ease;
   padding: 15px 0;
+  /* justify-content will be set by .leftLink and .rightLink classes */
 }
+
+/* Specific alignment for each link (Desktop default) */
+.leftLink {
+  justify-content: flex-start; /* Aligns content to the left within its grid cell */
+}
+
+.rightLink {
+  justify-content: flex-end; /* Aligns content to the right within its grid cell */
+}
+
 
 .link:hover {
   color: #fff;
@@ -28,8 +38,8 @@
 
 .arrow {
   display: inline-block;
-  width: 17px;
-  height: 17px;
+  width: 17px; /* Desktop arrow size */
+  height: 17px; /* Desktop arrow size */
   background-image: url('/arrow-link-dobbi.png');
   background-size: contain;
   background-repeat: no-repeat;
@@ -44,15 +54,65 @@
 
 .linkText {
     letter-spacing: -.32px;
-    font-size: 20px;
+    font-size: 20px; /* Desktop font size */
     line-height: 121%;
     font-weight: 500;
 }
 
-/* Responsive adjustments */
-@media (max-width: 767px) {
+/* ------------------------------------------- */
+/* Responsive Adjustments */
+/* ------------------------------------------- */
+
+/* General mobile adjustments for font size and arrow size (under 768px) */
+@media (max-width: 768px) {
+  .linkText {
+    font-size: 17px; /* Mobile font size for title */
+  }
+
+  .arrow {
+    width: 14px; /* Mobile arrow size */
+    height: 14px; /* Mobile arrow size */
+  }
+}
+
+/* Mobile Layout: Between 575px and 394px */
+/* (This media query covers max-width: 574px down to 394px) */
+@media (max-width: 574px) {
   .linksContainer {
-    grid-template-columns: 1fr;
-    gap: 10px;
+    display: flex; /* Switch to Flexbox */
+    flex-wrap: wrap; /* Allow links to wrap to the next line if space is limited */
+    justify-content: space-between; /* Push left link to left, right link to right */
+    grid-template-columns: unset; /* Remove grid columns inherited from desktop */
+    gap: 10px; /* Smaller gap between items */
+  }
+
+  .link {
+    flex: 0 0 auto; /* Allow links to shrink-wrap their content, but don't allow them to grow */
+    width: auto; /* Ensure width is determined by content, not 50% */
+    /* The .leftLink and .rightLink justify-content properties defined above
+       will continue to apply here, ensuring internal text alignment. */
+  }
+}
+
+/* Smallest Mobile Layout: 393px and below */
+@media (max-width: 393px) {
+  .linksContainer {
+    flex-direction: column; /* Stack links vertically (2 rows, 1 column) */
+    align-items: flex-start; /* Align the entire link item to the left of the container */
+    gap: 20px; /* Adjust gap for stacked items */
+  }
+
+  .link {
+    width: 100%; /* Make each link take full width when stacked */
+    /* Reset flex properties that might interfere with full width */
+    flex: none;
+    /* Ensure content within the link is left-aligned */
+    justify-content: flex-start;
+  }
+
+  /* Explicitly ensure both left and right links are left-aligned when stacked */
+  .leftLink,
+  .rightLink {
+    justify-content: flex-start;
   }
 }

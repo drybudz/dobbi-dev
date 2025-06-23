@@ -1,21 +1,23 @@
+/* components/sections/styles/AboutGallery.module.css */
+
+/* --- DESKTOP GALLERY STYLES (EXACTLY AS PROVIDED) --- */
 .gallery {
   display: grid;
-  grid-template-columns: 521fr 260fr 260fr 308fr; /* Using your exact pixel widths as ratios */
-  grid-template-rows: 331fr 331fr; /* Small image height × 2 */
+  grid-template-columns: 521fr 260fr 260fr 308fr; 
+  grid-template-rows: 331fr 331fr; 
   width: 100%;
-  max-width: 1440px; /* 521 + 260 + 260 + 308 = 1349 ≈ 1350 */
+  max-width: 1440px; 
   margin: 0 auto;
   padding: 40px 20px;
-  gap: 0; /* No gaps between images */
-  height: 662px;
+  gap: 0; 
+  height: 662px; 
 }
 
-.gallery > div { /* This targets .large, .medium, .small1, etc. */
-  position: relative; /* Needed for consistent behavior and potential future absolute positioning */
-  overflow: hidden; /* THIS IS THE KEY FOR CLIPPING THE SCALED IMAGE */
+.gallery > div { 
+  position: relative; 
+  overflow: hidden; 
 }
 
-/* Large Image (Spans first column and both rows) */
 .large {
   grid-column: 1;
   grid-row: 1 / span 2;
@@ -23,7 +25,6 @@
   height: 100%;
 }
 
-/* Medium Image (Spans last column and both rows) */
 .medium {
   grid-column: 4;
   grid-row: 1 / span 2;
@@ -31,7 +32,6 @@
   height: 100%;
 }
 
-/* Small Images */
 .small1 { grid-column: 2; grid-row: 1; position: relative; }
 .small2 { grid-column: 3; grid-row: 1; position: relative; }
 .small3 { grid-column: 2; grid-row: 2; position: relative; }
@@ -42,10 +42,108 @@
   height: 100%;
   object-fit: cover;
   display: block;
-  transition: transform 0.3s ease; /* Match MiniGallery's transition */
-  transform-origin: center center; /* Ensure scaling is from the center */
+  transition: transform 0.3s ease; 
+  transform-origin: center center; 
 }
 
 .gallery > div:hover .image {
-  transform: scale(1.05); /* Match MiniGallery's scale factor */
+  transform: scale(1.05); 
+}
+
+/* --- MOBILE GALLERY STYLES (Applies at 575px and below) --- */
+@media (max-width: 575px) {
+  /* HIDE THE DESKTOP GALLERY ON MOBILE */
+  .gallery {
+    display: none; 
+  }
+
+  /* Container for the mobile Swiper */
+  .galleryMobile {
+    width: 100%;
+    max-width: 100vw;
+    margin: 0 auto; /* Center the gallery on smaller screens if it doesn't take full width */
+    padding: 0;
+    /* IMPORTANT: Increase padding-bottom to create enough space BELOW the image for pagination */
+    padding-bottom: 40px; /* This padding creates the space */
+    position: relative; /* Crucial for absolute positioning of the Swiper pagination within it */
+    overflow: hidden; /* Keep this to prevent image overflow */
+  }
+
+  /* Swiper container itself */
+  .mySwiper {
+    width: 100%;
+    /* No explicit height here. It will be determined by its content (swiperImageWrapper) */
+    /* This allows the Swiper container to only encompass the images */
+  }
+
+  /* Wrapper for each image within the Swiper slide to control aspect ratio */
+  .swiperImageWrapper {
+    position: relative;
+    width: 100%;
+    padding-bottom: 125.66%; /* Maintains aspect ratio 565x710 */
+    height: 0; /* Required when using padding-bottom for aspect ratio */
+    overflow: hidden; /* Ensures image doesn't overflow this wrapper */
+  }
+
+  /* Styles for the Next/Image component within the Swiper slide */
+  .imageMobile {
+    object-fit: cover; 
+  }
+
+  /* Swiper pagination dots */
+  /* This targets the main container for the dots */
+  .swiper-pagination {
+    position: absolute; /* Position relative to .galleryMobile */
+    /* Position exactly at the start of the padding-bottom space */
+    top:20;
+    bottom: 0; 
+    left: 0; /* Ensure it spans the full width of .galleryMobile */
+    width: 100%;
+    
+    display: flex;
+    justify-content: center; /* Center the dots horizontally */
+    list-style: none; /* Remove default list bullets */
+    padding: 10px 0; /* Add vertical padding around the dots for better spacing */
+    margin: 0;
+    z-index: 10; /* Ensure dots are clearly above everything else */
+
+    /* IMPORTANT: Override Swiper's default bottom positioning if it conflicts */
+    transform: none !important; /* Prevent Swiper's default transform that might shift it */
+  }
+
+  /* Style for all dots (both active and inactive) */
+  .swiper-pagination-bullet { /* Swiper's default class for a bullet */
+    width: 4px; /* Size of the dot */
+    height: 4px; /* Size of the dot */
+    border-radius: 50%; /* Make them circular */
+    margin: 0 5px; /* Spacing between dots */
+    cursor: pointer;
+    transition: background-color 0.3s ease; 
+    opacity: 1; /* Ensure they are not transparent by default from Swiper */
+
+    /* Override Swiper's default background color for inactive dots */
+    background: #505050 !important; /* Grey color for unselected */
+  }
+
+  /* Style for the currently selected dot (white) */
+  .swiper-pagination-bullet-active { /* Swiper's default class for an active bullet */
+    background: #ffffff !important; /* White color for selected */
+  }
+
+  /* Our custom classes, used by renderBullet, primarily for semantic clarity */
+  .dot {
+    background-color: #fff; 
+  }
+
+  .dotSelected {
+    background-color: #ffffff; 
+  }
+
+  .swiper-pagination-fraction,
+  .swiper-pagination-custom,
+  .swiper-horizontal > .swiper-pagination-bullets,
+  .swiper-pagination-bullets.swiper-pagination-horizontal {
+    position: static !important;
+    padding-top: 20px !important;
+  }
 }

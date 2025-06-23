@@ -16,7 +16,9 @@
     "next-sanity": "^9.10.2",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
+    "react-swiper": "^0.1.5",
     "react-use": "^17.6.0",
-    "sanity": "^3.86.0"
+    "sanity": "^3.86.0",
+    "swiper": "^11.2.8"
   }
 }

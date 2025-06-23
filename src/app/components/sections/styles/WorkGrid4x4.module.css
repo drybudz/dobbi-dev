@@ -1,7 +1,3 @@
-/* Base styles for the section containing the grid */
-.workGridSection {
-  padding: 20px; /* Or whatever padding you need around the grid */
-}
 
 /* 4x4 Grid Container (Larger than Mobile Portrait >= 575px) */
 .gridContainer {
@@ -131,7 +127,7 @@
     /* Example: 4:3 aspect ratio for mobile images */
     /* padding-bottom: 75%;  */
     height: 0;
-    margin-bottom: 0px !important;
+    margin-bottom: 10px !important;
     /* Default gap for individual project image in column, GSAP will animate from/to this */
     transition: none; /* Crucial: Let GSAP control margin-bottom, prevent CSS transition conflicts */
   }

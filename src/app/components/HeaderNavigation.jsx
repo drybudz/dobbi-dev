@@ -1,4 +1,6 @@
+// components/sections/HeaderNavigation.jsx
 'use client';
+
 import { usePathname } from 'next/navigation';
 import Link from 'next/link';
 import Image from 'next/image';
@@ -13,7 +15,10 @@ export default function HeaderNavigation() {
     const homePage = allData?.homePage || [];
     const menuRef = useRef(null);
     const [isMenuOpen, setIsMenuOpen] = useState(false);
-    const [isMobile, setIsMobile] = useState(false);
+    
+    // Initialize isMobile to false for SSR, then set client-side.
+    // This allows the server to render a consistent structure.
+    const [isMobile, setIsMobile] = useState(false); 
 
     const toggleMenu = () => setIsMenuOpen(!isMenuOpen);
 
@@ -37,11 +42,12 @@ export default function HeaderNavigation() {
             }
         };
         
-        // Initial check
+        // Initial check (only runs on client after hydration)
+        // Ensure this effect runs after the initial render.
         handleResize();
         window.addEventListener('resize', handleResize);
         return () => window.removeEventListener('resize', handleResize);
-    }, []);
+    }, []); // Empty dependency array means this runs once after initial render on client
 
     // Menu animation with GSAP
     useEffect(() => {
@@ -49,44 +55,55 @@ export default function HeaderNavigation() {
 
         const menuEl = menuRef.current;
         
-        if (isMenuOpen && isMobile) {
-            // Open animation
-            gsap.fromTo(menuEl,
-                { opacity: 0, y: -100 },
-                { 
-                    opacity: 1, 
-                    y: 0, 
-                    duration: 0.5,
-                    ease: "power2.out",
-                    onStart: () => {
-                        menuEl.style.display = 'flex';
-                        document.body.style.overflow = 'hidden';
+        // Only apply GSAP animations if actually on mobile and menu state changes
+        if (isMobile) { // Only animate if we are in mobile view
+            if (isMenuOpen) {
+                // Open animation
+                gsap.fromTo(menuEl,
+                    { opacity: 0, y: -100, display: 'none' }, // Start from display: none
+                    { 
+                        opacity: 1, 
+                        y: 0, 
+                        duration: 0.5,
+                        ease: "power2.out",
+                        onStart: () => {
+                            menuEl.style.display = 'flex'; // Make it visible before animating
+                            document.body.style.overflow = 'hidden';
+                        }
                     }
-                }
-            );
-        } else if (!isMenuOpen && isMobile) {
-            // Close animation
-            gsap.to(menuEl, {
-                opacity: 0,
-                y: -100,
-                duration: 0.5,
-                ease: "power2.in",
-                onComplete: () => {
-                    menuEl.style.display = 'none';
-                    document.body.style.overflow = '';
-                }
-            });
+                );
+            } else {
+                // Close animation
+                gsap.to(menuEl, {
+                    opacity: 0,
+                    y: -100,
+                    duration: 0.5,
+                    ease: "power2.in",
+                    onComplete: () => {
+                        menuEl.style.display = 'none'; // Hide after animation
+                        document.body.style.overflow = '';
+                    }
+                });
+            }
+        } else {
+            // If not mobile, ensure menu is reset to desktop state immediately
+            gsap.killTweensOf(menuEl); // Stop any ongoing animations
+            menuEl.style.display = ''; // Reset display (usually flex from CSS)
+            menuEl.style.opacity = ''; // Reset opacity
+            menuEl.style.transform = ''; // Reset transform
+            document.body.style.overflow = ''; // Reset body overflow
         }
+
 
         return () => {
             gsap.killTweensOf(menuEl);
         };
-    }, [isMenuOpen, isMobile]);
+    }, [isMenuOpen, isMobile]); // Dependency on isMobile is important
 
     // Close menu on route change
-    useEffect(() => {
+    const handleNavLinkClick = () => {
         setIsMenuOpen(false);
-    }, [pathname]);
+    };
 
     return (
         <nav className={styles.nav}>
@@ -101,31 +118,46 @@ export default function HeaderNavigation() {
                 />
             </Link>
 
+            {/* ALWAYS render menuToggle. CSS will handle its display on desktop. */}
             <div className={styles.menuToggle} onClick={toggleMenu}>
                 <Image
                     src={isMenuOpen ? "/eMenu.png" : "/hMenu.png"}
                     alt={isMenuOpen ? "Close Menu" : "Open Menu"}
                     width={24}
-                    height={24}
+                    height={19}
                 />
             </div>
 
+            {/* Conditionally apply menuOpen class only when truly open AND on mobile */}
             <div 
                 ref={menuRef}
-                className={styles.linksContainer}
+                className={`${styles.linksContainer} ${isMenuOpen && isMobile ? styles.menuOpen : ''}`}
             >
-                <Link href="/services" className={`${styles.navLink} ${pathname === "/services" ? styles.active : ""}`}>
+                <Link 
+                    href="/services" 
+                    className={`${styles.navLink} ${pathname === "/services" ? styles.active : ""}`}
+                    onClick={handleNavLinkClick}
+                >
                     Services
                 </Link>
-                <Link href="/work" className={`${styles.navLink} ${pathname.includes("/work") ? styles.active : ""}`}>
+                <Link 
+                    href="/work" 
+                    className={`${styles.navLink} ${pathname.includes("/work") ? styles.active : ""}`}
+                    onClick={handleNavLinkClick}
+                >
                     Work
                 </Link>
-                <Link href="/about" className={`${styles.navLink} ${pathname === "/about" ? styles.active : ""}`}>
+                <Link 
+                    href="/about" 
+                    className={`${styles.navLink} ${pathname === "/about" ? styles.active : ""}`}
+                    onClick={handleNavLinkClick}
+                >
                     About
                 </Link>
                 <Link 
                     href={`mailto:${homePage?.connectEmail || "kawika@dobbiagency.com"}`} 
                     className={styles.navLink}
+                    onClick={handleNavLinkClick}
                 >
                     Contact
                 </Link>

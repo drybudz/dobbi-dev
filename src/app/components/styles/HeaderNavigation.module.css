@@ -1,3 +1,5 @@
+/* components/sections/styles/HeaderNavigation.module.css */
+
 .nav {
     display: flex;
     justify-content: space-between;
@@ -44,6 +46,7 @@
     color: #fff;
 }
 
+/* Desktop active and hover dot */
 .active::after {
     content: "";
     position: absolute;
@@ -97,22 +100,38 @@
         justify-content: center;
         align-items: center;
         z-index: 999;
-        opacity: 0;
+        /* opacity controlled by GSAP */
     }
 
     /* When menu is open on mobile */
     .linksContainer.menuOpen {
-        display: flex;
-        opacity: 1;
+        /* GSAP handles display and opacity on start/complete */
     }
 
     .navLink {
         font-size: 24px;
         margin: 15px 0;
         color: #fff;
+        /* Re-enable padding-bottom for the dot on mobile */
+        padding-bottom: 8px; 
     }
 
-    .active::after,
+    /* Mobile active dot - re-introduced */
+    .navLink.active::after { /* Target .navLink.active specifically */
+        content: "";
+        position: absolute;
+        bottom: 0; /* Position at the bottom of the link */
+        left: 50%;
+        transform: translateX(-50%);
+        width: 4px;
+        height: 4px;
+        background: #fff;
+        border-radius: 50%;
+        opacity: 0.8;
+        display: block; /* Ensure it's displayed */
+    }
+
+    /* Ensure hover dot is NOT displayed on mobile */
     .navLink:hover::after {
         display: none;
     }
@@ -132,5 +151,10 @@
     
     .menuToggle {
         display: none !important;
+    }
+
+    /* Ensure desktop hover dot is active on desktop again if needed */
+    .navLink:hover::after {
+        display: block; /* Ensure it's active again */
     }
 }

@@ -14,7 +14,7 @@
   display: flex;
   align-items: center;
   justify-content: start;
-  width: 40%; /* 40% width */
+  width: 100%; /* 40% width */
   min-width: 300px; /* Prevent becoming too narrow */
   text-decoration: none;
   color: #8D8D8D;
@@ -43,26 +43,30 @@
 }
 
 .linkText {
-  font-size: 18px;
+  
   letter-spacing: -0.32px;
   font-weight: 500;
 }
 
 /* Responsive adjustments */
-@media (max-width: 768px) {
-  .chatLink {
-    width: 100%; /* Full width on mobile */
-    min-width: auto;
+@media (max-width: 575px) {
+  .linkText {
+    font-size: 15.43px;
+    letter-spacing: -0.32px;
+    font-weight: 500;
   }
 
-  .linkText {
-    white-space: pre-wrap;
-  }
+
+.arrow {
+  width: 14px;
+}
+  
 }
 
-@media (max-width: 420px) {
+@media (max-width: 319px) {
 
   .linkText {
+    font-size: 17px;
     white-space: pre-wrap;
   }
 }

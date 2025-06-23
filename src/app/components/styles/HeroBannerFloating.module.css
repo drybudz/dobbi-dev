@@ -1,0 +1,95 @@
+/* components/styles/HeroBannerFloating.module.css */
+
+.HeroBannerContainer {
+    position: relative;
+    width: 100vw; /* Always touching sides */
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    background-color: #000;
+    color: #fff;
+}
+
+.title {
+    font-size: 80px; /* Desktop font size */
+    line-height: 100%;
+    letter-spacing: -6.4px;
+    font-weight: 700;
+    text-align: center;
+    z-index: 5; /* Ensure title is on top of all images */
+    position: relative;
+    text-wrap: balance;
+    margin: 0;
+}
+
+.floatingImagesGrid {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%; /* Spans full width */
+    height: 100%; /* Spans full height */
+    display: grid;
+    /* Desktop: 6 rows, 7 columns */
+    grid-template-columns: repeat(7, 52px); /* 7 columns, each 52px wide */
+    grid-template-rows: repeat(6, 92px);   /* 6 rows, each 92px high */
+    gap: 60px 150px; /* row-gap 60px, column-gap 150px */
+    justify-content: space-around; /* Distribute items horizontally */
+    align-content: space-around; /* Distribute items vertically */
+    opacity: 0.7; /* Default opacity */
+    pointer-events: none;
+    /* Removed padding to ensure it touches sides */
+}
+
+.floatingImageWrapper {
+    position: relative; /* Needed for z-index on image itself if desired */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* z-index is set inline via JS for random layering */
+}
+
+.floatingImage {
+    /* Next.js Image's width and height props will define its intrinsic size. */
+    /* object-fit: cover will make it fill its assigned grid cell area while maintaining aspect ratio */
+    object-fit: cover;
+    /* No need for width/height here as they are set via props in JSX and handled by Next/Image */
+}
+
+/* Responsive Adjustments */
+
+/* Tablet and Smaller Desktop */
+@media (max-width: 1024px) {
+    .title {
+        font-size: 70px; /* Adjust as needed for tablets */
+        letter-spacing: -3.5px;
+    }
+    .floatingImagesGrid {
+        /* Adjust for tablet if different from desktop, otherwise keep desktop values */
+        grid-template-columns: repeat(6, 52px); /* Slightly fewer columns */
+        grid-template-rows: repeat(5, 92px); /* Slightly fewer rows */
+        gap: 50px 100px; /* Slightly smaller gaps */
+    }
+}
+
+/* Mobile (<= 576px breakpoint) */
+@media (max-width: 576px) {
+    .HeroBannerContainer {
+        height: 80vh; /* Shorter height on mobile */
+    }
+    .title {
+        font-size: 40px; /* Font size 4px as per request - assuming typo and meant 40px */
+        letter-spacing: -1.5px;
+    }
+    .floatingImagesGrid {
+        /* Mobile: 5 columns, auto rows */
+        grid-template-columns: repeat(5, 52px); /* 5 columns, each 52px wide */
+        grid-template-rows: repeat(auto-fit, 92px); /* Auto-fit rows, each 92px high */
+        gap: 30px 60px; /* Smaller gaps for mobile */
+    }
+}
+
+/* Ensure the grid takes full width even if content doesn't perfectly fill it */
+/* This can be achieved by `justify-content: space-between` or `space-around` on the grid container */
+/* We're using `space-around` to distribute the gaps somewhat evenly. */

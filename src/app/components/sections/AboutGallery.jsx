@@ -1,4 +1,19 @@
+// components/sections/AboutGallery.jsx
+'use client'; 
+
+import { useState, useEffect } from 'react';
 import Image from 'next/image';
+
+// Import Swiper React components
+import { Swiper, SwiperSlide } from 'swiper/react';
+
+// Import Swiper styles
+import 'swiper/css';
+import 'swiper/css/pagination'; // For pagination dots
+
+// Import required modules
+import { Pagination } from 'swiper/modules';
+
 import styles from './styles/AboutGallery.module.css';
 
 export default function AboutGallery({
@@ -6,6 +21,64 @@ export default function AboutGallery({
   mediumImage,
   smallImages = []
 }) {
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const checkScreenSize = () => {
+      setIsMobile(window.innerWidth <= 575); // Still checking for 575px breakpoint
+    };
+
+    checkScreenSize();
+    window.addEventListener('resize', checkScreenSize);
+
+    return () => window.removeEventListener('resize', checkScreenSize);
+  }, []);
+
+  // Consolidate all available images for the Swiper
+  const allGalleryImages = [
+    largeImage,
+    mediumImage,
+    ...smallImages
+  ].filter(img => img?.asset?.url); // Filter out any undefined or null images
+
+  if (isMobile) {
+    return (
+      <section className={styles.galleryMobile}>
+        <Swiper
+          modules={[Pagination]} // Enable Pagination module for dots
+          spaceBetween={0} // No space between slides
+          slidesPerView={1} // Show one slide at a time
+          pagination={{ 
+            clickable: true, // Dots are clickable for navigation
+            // Custom render function for pagination dots (matching your desired styles)
+            renderBullet: function (index, className) {
+              // className is provided by Swiper (e.g., 'swiper-pagination-bullet', 'swiper-pagination-bullet-active')
+              // We'll use our custom classes from AboutGallery.module.css for styling
+              return `<li class="${className} ${index === this.realIndex ? styles.dotSelected : styles.dot}" role="button" aria-label="Go to slide ${index + 1}"></li>`;
+            },
+          }}
+          loop={true} // Infinite loop
+          className={styles.mySwiper} // Apply a class for custom Swiper styling
+        >
+          {allGalleryImages.map((img, index) => (
+            <SwiperSlide key={img.asset.url + index}>
+              <div className={styles.swiperImageWrapper}>
+                <Image
+                  src={img.asset.url}
+                  alt={img.alt || `Gallery image ${index + 1}`}
+                  fill
+                  sizes="(max-width: 575px) 100vw" // Take full width on mobile
+                  className={styles.imageMobile}
+                />
+              </div>
+            </SwiperSlide>
+          ))}
+        </Swiper>
+      </section>
+    );
+  }
+
+  // Desktop layout (your existing code, unchanged)
   return (
     <section className={styles.gallery}>
       {/* 1. Large Image */}

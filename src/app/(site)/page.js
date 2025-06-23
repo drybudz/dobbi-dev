@@ -2,6 +2,7 @@
 
 import { useAppContext } from "../components/AppContext";
 import HeroBanner from "../components/HeroBanner";
+import HeroBannerFloating from "../components/HeroBannerFloating";
 import TwoLinks50s from "../components/sections/TwoLinks50s";
 import HomeBandOneThird from "../components/sections/HomeBandOneThird";
 import FeaturedProjects from "../components/sections/FeaturedProjects";
@@ -25,7 +26,8 @@ export default function Home() {
   return (
     <div className="homePage">
       {/* <HeroBanner title={homePageData?.slogan} imageSrc={homePageData?.heroBannerBackground.asset.url}/> */}
-      <HeroBanner title={homePageData?.slogan} projects={homePageData}/>
+      {/* <HeroBanner title={homePageData?.slogan} projects={homePageData}/> */}
+      <HeroBannerFloating title={homePageData?.slogan} projects={homePageData}/>
       <HomeBandOneThird 
         title={homePageData.whatTitle} 
         description={homePageData.whatDescription} 
