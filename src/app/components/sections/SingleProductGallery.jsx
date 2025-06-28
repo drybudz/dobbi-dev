@@ -35,7 +35,7 @@ export default function SingleProductGallery({project}) {
           </div>
           <div className={styles.Col}>
             <div className={styles.TopRightMainImage}>
-              <img src={mediumImages[1]?.asset?.url} alt="Top Right Main //M 668x446.:" />
+              <img src={mediumImages[1]?.asset?.url} alt="Top Right Main //M 325x827.:" />
             </div>
             <div className={styles.TopRightSmallImages}>
               <div className={styles.SmallImage}>

@@ -1,7 +1,7 @@
 .footer {
   display: flex;
   justify-content: space-between;
-  padding: 50px 20px 20px 20px;
+  padding: 50px 30px 20px;
   height: 250px;
   flex-shrink: 0;
   width: 100%;
@@ -59,4 +59,18 @@
 .logo {
   height: 30px;
   width: auto;
+}
+
+/* Mobile styles */
+@media (max-width: 575px) { 
+  .footer {
+    padding: 50px 20px 20px;
+    
+  }
+
+  .leftCopyRight {
+    white-space: pre-wrap;
+    /* like Valentine */
+    font-size: 10px; 
+  }
 }

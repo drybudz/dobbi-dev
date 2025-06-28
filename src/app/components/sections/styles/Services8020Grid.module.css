@@ -2,9 +2,9 @@
 .gridContainer {
     grid-template-columns: 77% 23%;
     align-items: flex-start;
-    max-width: 1440px;
+    max-width: 1820px;
     margin: 0 auto;
-    padding: 150px 20px 30px;
+    padding: 150px 30px 30px;
     display: grid;
     /* gap: 40px; */
 }
@@ -127,7 +127,7 @@
 
 
 /* Responsive */
-@media (max-width: 768px) {
+@media (max-width: 575px) {
 
   .gridContainer {
     grid-template-columns: 1fr; /* Stack columns */
@@ -140,12 +140,12 @@
   }
 
   .title {
-    font-size: 48px; /* Smaller title on mobile */
+    font-size: 45px; /* Smaller title on mobile */
     letter-spacing: -2px;
   }
 
   .description {
-    font-size: 18px; /* Smaller description on mobile */
+    font-size: 20px; /* Smaller description on mobile */
   }
 
   .rightColumn {
@@ -153,11 +153,11 @@
   }
 
   .serviceTitle {
-    font-size: 24px; /* Adjust service title size on mobile */
+    font-size: 20px; /* Adjust service title size on mobile */
   }
 
   .serviceDescription {
-    font-size: 16px; /* Adjust description size on mobile */
+    font-size: 25px; /* Adjust description size on mobile */
   }
 
   .serviceOptionsList {
@@ -172,4 +172,10 @@
     padding-top: 20px; /* Adjust for mobile */
     padding-bottom: 20px; /* Adjust for mobile */
   }
+
+  .title {
+    white-space: normal;
+  }
+
+      
 }

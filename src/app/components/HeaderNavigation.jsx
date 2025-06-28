@@ -107,7 +107,11 @@ export default function HeaderNavigation() {
 
     return (
         <nav className={styles.nav}>
-            <Link href="/" className={styles.logoLink}>
+            <Link 
+                href="/" 
+                className={styles.logoLink}
+                onClick={handleNavLinkClick}
+            >
                 <Image
                     src={homePage?.companyLogoWhite?.url || "/dobbiLogo330x90.png"}
                     alt={homePage?.companyLogoWhite?.alt || "Dobbi Logo"}

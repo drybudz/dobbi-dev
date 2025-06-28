@@ -79,7 +79,7 @@
         height: 80vh; /* Shorter height on mobile */
     }
     .title {
-        font-size: 40px; /* Font size 4px as per request - assuming typo and meant 40px */
+        font-size: 45px; /* Font size 4px as per request - assuming typo and meant 40px */
         letter-spacing: -1.5px;
     }
     .floatingImagesGrid {

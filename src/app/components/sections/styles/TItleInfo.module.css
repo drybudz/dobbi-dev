@@ -30,8 +30,22 @@
     text-align: center;
 }
 
-@media (max-width: 768px) {
+@media (max-width: 575px) {
   .title {
-    font-size: 48px;
+    font-size: 45px;
+    text-align: left;
   }
+
+  .description {
+      font-size: 20px;
+      letter-spacing: -0.96px;
+      white-space: normal;
+      text-align: left;
+  }
+
+  .titleInfo {
+  padding: 90px 20px 30px 20px;
+  align-items: center;
+  gap: 30px;
+}
 }

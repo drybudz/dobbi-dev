@@ -1,7 +1,7 @@
 /* components/sections/styles/AboutHorizontalStack.module.css */
 .horizontalStack {
   max-width: 1440px;
-  margin: 0 auto 30px auto;
+  margin: 20px auto 30px auto;
 }
 
 .row {

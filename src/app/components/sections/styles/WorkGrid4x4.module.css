@@ -1,4 +1,5 @@
 
+
 /* 4x4 Grid Container (Larger than Mobile Portrait >= 575px) */
 .gridContainer {
   display: grid;
@@ -8,6 +9,7 @@
   width: 100%; /* Occupy full width */
   max-width: 1440px; /* Example max width, adjust as needed */
   margin: 0 auto; /* Center the grid */
+  padding: 00px 30px; /* Padding around the grid */
 }
 
 /* Make sure grid cells maintain aspect ratio (e.g., square) */

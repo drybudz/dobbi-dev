@@ -5,7 +5,7 @@
   align-items: flex-start;
   max-width: 1440px;
   margin: 0 auto;
-  padding: 120px 20px 30px;
+  padding: 120px 30px 30px;
   gap: 40px;
 }
 
@@ -41,10 +41,11 @@
 }
 
 /* Responsive adjustments */
-@media (max-width: 768px) {
+@media (max-width: 575px) {
   .bandContainer {
     grid-template-columns: 1fr;
     gap: 30px;
+    padding: 120px 20px 30px;
   }
   
   .title {

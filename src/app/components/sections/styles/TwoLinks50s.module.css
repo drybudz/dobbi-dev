@@ -1,15 +1,18 @@
 /* components/sections/styles/TwoLinks50s.module.css */
 .twoLinksSection {
-  width: 100%;
-  padding: 40px 20px;
+  /* width: 100%; */
+  max-width: 1440px;
+  margin: 0 auto;
+  padding: 40px 30px;
 }
 
 .linksContainer {
   display: grid;
   grid-template-columns: 1fr 1fr; /* Desktop default: Two equal columns (50/50) */
-  max-width: 1350px;
+  max-width: 1440px;
   margin: 0 auto;
   gap: 20px; /* Space between links */
+  /* padding: 0 30px; */
 }
 
 .link {
@@ -77,7 +80,12 @@
 
 /* Mobile Layout: Between 575px and 394px */
 /* (This media query covers max-width: 574px down to 394px) */
-@media (max-width: 574px) {
+@media (max-width: 575px) {
+
+  .twoLinksSection {
+    padding: 40px 20px;
+  }
+
   .linksContainer {
     display: flex; /* Switch to Flexbox */
     flex-wrap: wrap; /* Allow links to wrap to the next line if space is limited */
@@ -92,6 +100,8 @@
     /* The .leftLink and .rightLink justify-content properties defined above
        will continue to apply here, ensuring internal text alignment. */
   }
+
+  
 }
 
 /* Smallest Mobile Layout: 393px and below */

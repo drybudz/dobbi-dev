@@ -81,12 +81,12 @@
   text-align: left;
   font-size: 25px;
   white-space: pre-wrap;
-  letter-spacing: -0.80px;
+  letter-spacing: -0.6px;
   font-weight: 500;
 }
 
 /* Mobile styles */
-@media (max-width: 768px) {
+@media (max-width: 575px) {
   .workKeys {
     padding: 45px 20px 30px;
   }
@@ -97,7 +97,8 @@
   }
 
   .subtitle {
-    text-align: right;
+    white-space: normal;
+    font-size: 24px;
   }
 
   .grid {
