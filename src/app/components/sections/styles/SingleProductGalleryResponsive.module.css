@@ -369,10 +369,44 @@
     .mobileDotSelected { /* Keeping for consistency if JSX uses it, though Swiper classes are preferred */
         background-color: #ffffff; /* Matches swiper-pagination-bullet-active */
     }
+
+    /* Additional styles for mobile */
+    .mobileSwiperContainer {
+    position: relative;
+    margin: 20px 0;
+    padding-bottom: 10px; /* Space for pagination */
+  }
+
+  .swiperWrapper {
+    position: relative;
+  }
+
+  /* Remove any conflicting styles */
+  .mobileContainer .swiper-pagination {
+    all: unset !important;
+    display: flex !important;
+    justify-content: center !important;
+    width: 100% !important;
+    margin-top: 10px !important;
+  }
+
+  .mobileContainer .swiper-pagination-bullet {
+    width: 4px !important;
+    height: 4px !important;
+    margin: 0 4px !important;
+    background: #505050 !important;
+    opacity: 1 !important;
+  }
+
+  .mobileContainer .swiper-pagination-bullet-active {
+    background: #ffffff !important;
+  }
+
+    
 }
 
 /* Responsive Typography for Desktop (adjust for screens between mobile and full desktop) */
-@media (min-width: 576px) and (max-width: 1200px) {
+@media (min-width: 576px) and (max-width: 1440px) {
     .HeaderSection h1 {
         font-size: calc(40px + 2vw);
     }

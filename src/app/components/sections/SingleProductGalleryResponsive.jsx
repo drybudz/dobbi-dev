@@ -46,6 +46,43 @@ export default function SingleProductGalleryResponsive({project}) {
         mobileSecondCarouselImages.push({ url: LOCAL_PLACEHOLDER_IMAGE, alt: "Mobile Placeholder" });
     }
 
+    // --- Navigation position update... 
+    useEffect(() => {
+  if (!isMobile) return;
+
+  const fixPaginationPosition = () => {
+    // Select all swiper containers on the page
+    const swiperContainers = document.querySelectorAll(`.${styles.mobileSwiperContainer}`);
+    
+    swiperContainers.forEach(container => {
+      const pagination = container.querySelector('.swiper-pagination');
+      if (!pagination) return;
+
+      // Reset all positioning
+      pagination.style.position = 'static';
+      pagination.style.bottom = 'auto';
+      pagination.style.left = 'auto';
+      pagination.style.top = 'auto';
+      pagination.style.transform = 'none';
+      pagination.style.marginTop = '10px';
+      pagination.style.padding = '0';
+      
+      // Ensure proper display
+      pagination.style.display = 'flex';
+      pagination.style.justifyContent = 'center';
+      pagination.style.width = '100%';
+    });
+  };
+
+  // Run immediately
+  fixPaginationPosition();
+
+  // Also run after a short delay to catch any Swiper initialization
+  const timer = setTimeout(fixPaginationPosition, 300);
+
+  return () => clearTimeout(timer);
+}, [isMobile, styles.mobileSwiperContainer]);
+
 
     // Check for mobile view
     useEffect(() => {
@@ -112,6 +149,7 @@ export default function SingleProductGalleryResponsive({project}) {
 
                 {/* First Swiper Gallery */}
                 <div className={styles.mobileSwiperContainer}>
+                    <div className={styles.swiperWrapper}>
                     <Swiper
                         modules={[Pagination]}
                         spaceBetween={0}
@@ -139,6 +177,7 @@ export default function SingleProductGalleryResponsive({project}) {
                             </SwiperSlide>
                         ))}
                     </Swiper>
+                    </div>
                 </div>
 
                 {/* About Sections */}
@@ -155,6 +194,7 @@ export default function SingleProductGalleryResponsive({project}) {
 
                 {/* Second Swiper Gallery */}
                 <div className={styles.mobileSwiperContainer}>
+                    <div className={styles.swiperWrapper}>
                     <Swiper
                         modules={[Pagination]}
                         spaceBetween={0}
@@ -182,6 +222,7 @@ export default function SingleProductGalleryResponsive({project}) {
                             </SwiperSlide>
                         ))}
                     </Swiper>
+                    </div>
                 </div>
 
                 {/* Stats Section */}
