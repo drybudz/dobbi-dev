@@ -11,7 +11,8 @@ import 'swiper/css/pagination';
 import styles from './styles/SingleProductGalleryResponsive.module.css';
 
 // Define your local placeholder image path
-const LOCAL_PLACEHOLDER_IMAGE = "/images/dobbi-empty-pic.jpg"; 
+// const LOCAL_PLACEHOLDER_IMAGE = "/images/dobbi-empty-pic.jpg"; 
+const LOCAL_PLACEHOLDER_IMAGE = "/images/dobbi-sample-empty.jpg"; 
 
 export default function SingleProductGalleryResponsive({project}) {
     const [isMobile, setIsMobile] = useState(false);

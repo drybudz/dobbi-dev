@@ -2,6 +2,7 @@
 .horizontalStack {
   max-width: 1440px;
   margin: 20px auto 30px auto;
+  padding: 0 30px;
 }
 
 .row {
@@ -68,7 +69,11 @@
 }
 
 /* Responsive adjustments */
-@media (max-width: 768px) {
+@media (max-width: 575px) {
+
+  .horizontalStack {
+    padding: 0 20px;
+  }
   .row {
     display: flex; /* Use flexbox for simpler stacking */
     flex-direction: column; /* Stack image on top, then text */
