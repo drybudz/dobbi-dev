@@ -170,7 +170,7 @@ const project = {
           fields: [
             {
               name: 'statTitle',
-              title: 'Stat Title (Large Number)',
+              title: 'Stat Title (Keep it short)',
               type: 'string',
             },
             {
@@ -192,7 +192,7 @@ const project = {
     },
     {
       name: 'projectFPO',
-      title: 'Project FPO',
+      title: 'Project Outro',
       type: 'text',
       description: 'Description of the project located at the end of the page.',
       group: 'about',
