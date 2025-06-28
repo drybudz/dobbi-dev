@@ -64,7 +64,7 @@ export default function SingleProductGalleryResponsive({project}) {
       pagination.style.left = 'auto';
       pagination.style.top = 'auto';
       pagination.style.transform = 'none';
-      pagination.style.marginTop = '10px';
+      pagination.style.marginTop = '20px';
       pagination.style.padding = '0';
       
       // Ensure proper display

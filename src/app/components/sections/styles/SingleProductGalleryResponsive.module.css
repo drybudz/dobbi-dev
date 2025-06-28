@@ -296,7 +296,7 @@
     }
 
     .mobileStatsSection {
-        margin: 40px 0;
+        margin: 20px 0 40px 0;
     }
 
     .mobileStatContainer h3 {
@@ -374,7 +374,7 @@
     .mobileSwiperContainer {
     position: relative;
     margin: 20px 0;
-    padding-bottom: 10px; /* Space for pagination */
+    padding-bottom: 20px; /* Space for pagination */
   }
 
   .swiperWrapper {

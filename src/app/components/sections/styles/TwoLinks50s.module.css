@@ -105,7 +105,7 @@
 }
 
 /* Smallest Mobile Layout: 393px and below */
-@media (max-width: 393px) {
+@media (max-width: 320px) {
   .linksContainer {
     flex-direction: column; /* Stack links vertically (2 rows, 1 column) */
     align-items: flex-start; /* Align the entire link item to the left of the container */
