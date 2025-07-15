@@ -49,11 +49,13 @@
 }
 
 .serviceItem {
-  cursor: pointer; /* Indicate it's clickable/hoverable */
+  cursor: ns-resize; /* Indicate it's clickable/hoverable */
   transition:
-    color 0.3s ease,
-    padding 0.3s ease; /* Add padding to transition */
+    color 0.7s ease,
+    padding 0.7s ease;
+    height: 0.7s ease; /* Add padding to transition */
   /* Remove default margins/padding that might interfere */
+   overflow: hidden;
   margin: 0;
   padding: 0; /* Ensure no initial padding */
 }
@@ -62,6 +64,7 @@
 .serviceItem.active {
   padding-top: 40px; /* Adjust as needed for space above */
   padding-bottom: 40px; /* Adjust as needed for space below */
+  height: auto;
 }
 
 

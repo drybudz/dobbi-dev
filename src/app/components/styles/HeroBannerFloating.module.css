@@ -15,7 +15,7 @@
 .title {
     font-size: 80px; /* Desktop font size */
     line-height: 100%;
-    letter-spacing: -6.4px;
+    letter-spacing: -3.44px;
     font-weight: 700;
     text-align: center;
     z-index: 5; /* Ensure title is on top of all images */
@@ -34,7 +34,7 @@
     /* Desktop: 6 rows, 7 columns */
     grid-template-columns: repeat(7, 52px); /* 7 columns, each 52px wide */
     grid-template-rows: repeat(6, 92px);   /* 6 rows, each 92px high */
-    gap: 60px 150px; /* row-gap 60px, column-gap 150px */
+    gap: 60px 110px; /* row-gap 60px, column-gap 150px */
     justify-content: space-around; /* Distribute items horizontally */
     align-content: space-around; /* Distribute items vertically */
     opacity: 0.7; /* Default opacity */
@@ -80,7 +80,7 @@
     }
     .title {
         font-size: 45px; /* Font size 4px as per request - assuming typo and meant 40px */
-        letter-spacing: -1.5px;
+        letter-spacing: -2.44px;
     }
     .floatingImagesGrid {
         /* Mobile: 5 columns, auto rows */

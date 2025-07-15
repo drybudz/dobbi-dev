@@ -7,7 +7,7 @@
   grid-auto-rows: 1fr; /* Rows will automatically size */
   gap: 0px; /* Default no gap for desktop */
   width: 100%; /* Occupy full width */
-  max-width: 1440px; /* Example max width, adjust as needed */
+  max-width: 1820px; /* Example max width, adjust as needed */
   margin: 0 auto; /* Center the grid */
   padding: 00px 30px; /* Padding around the grid */
 }

@@ -131,7 +131,8 @@
   }
 
   .fullWidthText {
-    font-size: 35px;
+    font-size: 32px;
+    white-space: unset;
     margin: 0;
   }
 

@@ -40,7 +40,7 @@
 }
 
 .DesktopGridLeftCol {
-    display: flex;
+    display: grid;
     flex-direction: column;
 }
 
