@@ -1,0 +1,100 @@
+.gridContainer {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 0;
+  width: 100%;
+  max-width: 1820px;
+  margin: 0 auto;
+  padding: 0 30px;
+}
+
+@media (max-width: 575px) {
+  .gridContainer {
+    grid-template-columns: 1fr;
+    padding: 10px;
+  }
+}
+
+.gridCell {
+  position: relative;
+  overflow: hidden;
+  padding-bottom: 100%;
+  height: 0;
+}
+
+.swiperContainer {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.imageWrapper {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+.image {
+  object-fit: cover;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  transition: transform 0.3s ease;
+}
+
+/* Custom Arrows */
+.customArrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background-image: url('/arrow-link-dobbi-w.png');
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  opacity: 0.8;
+  width: 20px;
+  height: 32px;
+  cursor: pointer;
+  z-index: 10;
+}
+
+.customPrev {
+  left: 10px;
+  transform: translateY(-50%) rotate(180deg);
+}
+
+.customNext {
+  right: 10px;
+  transform: translateY(-50%);
+}
+
+/* Pagination bullets */
+.customPagination {
+  position: absolute;
+  bottom: 10px;
+  left: 50% !important;
+  transform: translateX(-50%);
+  z-index: 5;
+}
+
+.swiper-pagination-bullet {
+  width: 6px;
+  height: 6px;
+  background-color: #505050;
+  opacity: 1;
+  margin: 0 4px;
+  border-radius: 50%;
+}
+
+.swiper-pagination-bullet-active {
+  background-color: #ffffff !important;
+}
+
+.swiper-pagination-bullet-active {
+    opacity: var(--swiper-pagination-bullet-opacity, 1);
+    background: #ffffff !important;
+}

@@ -134,7 +134,7 @@
 
   .gridContainer {
     grid-template-columns: 1fr; /* Stack columns */
-    padding: 80px 20px 30px; /* Adjust padding for mobile */
+    padding: 50px 20px 40px; /* Adjust padding for mobile */
   }
 
   .leftColumn {
@@ -143,8 +143,8 @@
   }
 
   .title {
-    font-size: 45px; /* Smaller title on mobile */
-    letter-spacing: -2px;
+    font-size: 35px; /* Smaller title on mobile */
+    letter-spacing: -2.5px;
   }
 
   .description {
