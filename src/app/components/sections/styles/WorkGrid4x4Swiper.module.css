@@ -72,29 +72,49 @@
   transform: translateY(-50%);
 }
 
-/* Pagination bullets */
+/* Pagination styles - IMPORTANT: These override Swiper's defaults */
 .customPagination {
   position: absolute;
   bottom: 10px;
   left: 50% !important;
   transform: translateX(-50%);
-  z-index: 5;
+  z-index: 10;
+  display: flex;
+  justify-content: center;
+  width: auto !important;
 }
 
-.swiper-pagination-bullet {
+/* Override Swiper's default bullet styles */
+.swiperContainer :global(.swiper-pagination-bullet) {
+  width: 6px !important;
+  height: 6px !important;
+  background-color: #505050 !important;
+  opacity: 1 !important;
+  margin: 0 4px !important;
+  border-radius: 50% !important;
+  transition: all 0.3s ease !important;
+}
+
+/* Override Swiper's active bullet style */
+.swiperContainer :global(.swiper-pagination-bullet-active) {
+  background-color: #ffffff !important;
+  transform: scale(1.2) !important;
+  opacity: 1 !important;
+}
+
+/* Specific class for bullets */
+.bullet {
   width: 6px;
   height: 6px;
   background-color: #505050;
   opacity: 1;
-  margin: 0 4px;
+  margin: 0 2px;
   border-radius: 50%;
+  transition: all 0.3s ease;
 }
 
-.swiper-pagination-bullet-active {
+/* Specific class for active bullet */
+.bulletActive {
   background-color: #ffffff !important;
-}
-
-.swiper-pagination-bullet-active {
-    opacity: var(--swiper-pagination-bullet-opacity, 1);
-    background: #ffffff !important;
+  transform: scale(1.2);
 }

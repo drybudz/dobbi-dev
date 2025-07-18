@@ -5,6 +5,7 @@ import Image from 'next/image';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Pagination, Navigation } from 'swiper/modules';
 
+// Import Swiper styles with custom overrides
 import 'swiper/css';
 import 'swiper/css/pagination';
 import 'swiper/css/navigation';
@@ -72,7 +73,14 @@ export default function WorkGrid4x4Swiper({ featuredProjects }) {
         <div key={project._id} className={styles.gridCell}>
           <Swiper
             modules={[Pagination, Navigation]}
-            pagination={{ clickable: true }}
+            pagination={{
+              clickable: true,
+              bulletClass: styles.bullet,
+              bulletActiveClass: styles.bulletActive,
+              renderBullet: (index, className) => {
+                return `<span class="${className}"></span>`;
+              },
+            }}
             navigation
             loop={true}
             className={styles.swiperContainer}
