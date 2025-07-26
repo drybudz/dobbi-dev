@@ -34,7 +34,7 @@
   .title {
     font-size: 36px;
     text-align: center;
-    white-space: unset;
+    white-space: pre-wrap;
     letter-spacing: -2.187px;
   }
 
