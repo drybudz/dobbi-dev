@@ -137,7 +137,8 @@ const HeroBannerFloating = ({ title, projects }) => {
     const splitTitle = title.split(" ");
 
     return (
-        <div className={styles.HeroBannerContainer} id="hero-banner-floating" ref={heroRef}>
+        <section>
+            <div className={styles.HeroBannerContainer} id="hero-banner-floating" ref={heroRef}>
             <h2 className={styles.title}>
                 {splitTitle.map((word, i) => (
                     <span
@@ -164,6 +165,7 @@ const HeroBannerFloating = ({ title, projects }) => {
                 ))}
             </div>
         </div>
+        </section>
     );
 };
 

@@ -30,7 +30,7 @@
 }
 
 .description {
-  letter-spacing: -0.96px;
+  letter-spacing: -1.44px;
   margin: 0;
   font-size: 25px;
   line-height: 108%;
@@ -45,7 +45,7 @@
   .bandContainer {
     grid-template-columns: 1fr;
     gap: 30px;
-    padding: 120px 20px 30px;
+    padding: 120px 17px 30px;
   }
   
   .title {
@@ -54,5 +54,6 @@
   
   .description {
     font-size: 20px;
+    letter-spacing: -1.81px;
   }
 }

@@ -95,7 +95,10 @@ a {
 
 
 
-
+/* General Sections Padding */
+.aboutPage section, .servicesPage section, .homePage section, .projectPage section{
+  margin: 50px auto;
+}
 
 
 /* ----- Pages Styles */

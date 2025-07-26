@@ -16,7 +16,7 @@ export default function Services() {
     }
     return (
         
-        <div className="aboutPage">
+        <div className="servicesPage">
             {/* <h2 className="aboutTitle">{servicesPageData.servicesTitle}</h2>
             <p className="aboutText">{servicesPageData.servicesDescription}</p> */}
 

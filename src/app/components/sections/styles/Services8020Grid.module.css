@@ -134,7 +134,7 @@
 
   .gridContainer {
     grid-template-columns: 1fr; /* Stack columns */
-    padding: 50px 20px 40px; /* Adjust padding for mobile */
+    padding: 50px 17px 40px; /* Adjust padding for mobile */
   }
 
   .leftColumn {
@@ -172,8 +172,8 @@
   }
 
   .serviceItem.active {
-    padding-top: 20px; /* Adjust for mobile */
-    padding-bottom: 20px; /* Adjust for mobile */
+    padding-top: 30px; /* Adjust for mobile */
+    padding-bottom: 30px; /* Adjust for mobile */
   }
 
   .title {

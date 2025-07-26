@@ -16,7 +16,7 @@ export default function Work() {
 
   return (
     
-      <div className="aboutPage">
+      <div className="workPage">
         <TitleInfo 
           title={workPageData.workPageTitle}
           description={workPageData.workDescription}

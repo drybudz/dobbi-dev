@@ -131,7 +131,7 @@
   }
 
   .fullWidthText {
-    font-size: 32px;
+    font-size: 35px;
     white-space: unset;
     margin: 0;
   }
@@ -145,6 +145,7 @@
     font-weight: 700;
     width: 100%;
     order: 1;
+    margin-left: 4px;
   }
 
   .projectName {
@@ -163,6 +164,15 @@
 
 /* Further Mobile Portrait adjustments */
 @media (max-width: 575px) {
+
+  .fullWidthText {
+    letter-spacing: -1.44px;
+  }
+
+  .fullWidthText:first-child {
+    padding: 0 4px;
+  }
+
   .mobileProjectName {
     font-size: 41px;
   }
@@ -170,6 +180,7 @@
   .projectMeta {
     font-size: 20px;
     gap: 15px;
+    margin-left: 4px;
   }
 
   .arrow {
@@ -178,7 +189,7 @@
   }
 
   .container {
-    padding: 30px 20px 0px;
+    padding: 30px 13px 0px;
   }
 
   .projectContainer {

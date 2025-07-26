@@ -81,7 +81,7 @@
 /* Mobile styles */
 @media (max-width: 575px) {
     .nav {
-        padding: 20px 25px;
+        padding: 17px 17px;
     }
 
     .menuToggle {

@@ -41,7 +41,7 @@
 @media (max-width: 768px) {
   .bandContainer {
         grid-template-columns: 1fr; /* Stacks columns into a single column */
-        padding: 20px; /* Adjust padding for smaller screens if needed */
+        padding: 17px; /* Adjust padding for smaller screens if needed */
     }
 
     .leftColumn {

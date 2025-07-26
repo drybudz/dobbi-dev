@@ -32,9 +32,10 @@
 
 @media (max-width: 575px) {
   .title {
-    font-size: 38px;
+    font-size: 36px;
     text-align: center;
     white-space: unset;
+    letter-spacing: -2.187px;
   }
 
   .description {
@@ -45,7 +46,7 @@
   }
 
   .titleInfo {
-    padding: 90px 20px 30px 20px;
+    padding: 90px 17px 30px 17px;
     align-items: center;
     gap: 30px;
   }

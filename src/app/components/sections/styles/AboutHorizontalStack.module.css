@@ -72,7 +72,7 @@
 @media (max-width: 575px) {
 
   .horizontalStack {
-    padding: 0 20px;
+    padding: 0 13px;
   }
   .row {
     display: flex; /* Use flexbox for simpler stacking */
@@ -101,6 +101,7 @@
     max-height: 339px; 
     /* No explicit height here, let the image's max-height control it */
     overflow: hidden; /* Crucial to clip if image is naturally taller than max-height */
+    padding: 0 4px;
   }
 
   /* Next.js Image (Mobile) - Crucial for original ratio */
@@ -126,9 +127,5 @@
   /* Ensure text color does not change on mobile "hover" */
   .row.rowActive .textContainer {
     color: #8D8D8D;
-  }
-
-  .textContainer p {
-    padding: 20px;
   }
 }
