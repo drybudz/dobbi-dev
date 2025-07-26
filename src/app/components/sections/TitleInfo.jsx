@@ -20,9 +20,10 @@ const handleResize = () => {
       } else {
         titleElement.innerHTML = title; // Revert to original
       }
-    } else {
-      titleElement.innerHTML = title; // Revert for larger screens
-    }
+    } 
+    // else {
+    //   titleElement.innerHTML = title; // Revert for larger screens
+    // }
   }
 };
 
