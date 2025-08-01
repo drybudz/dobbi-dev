@@ -92,6 +92,7 @@
 @media (max-width: 575px) {
   .solutions {
     padding: 17px;
+    margin-bottom: 0px !important;
   }
 
   .grid {

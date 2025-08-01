@@ -64,9 +64,9 @@
     width: 100%;
     max-width: 100vw;
     margin: 0 auto; /* Center the gallery on smaller screens if it doesn't take full width */
-    padding: 0px 17px 40px;
+    padding: 0px 17px;
     /* IMPORTANT: Increase padding-bottom to create enough space BELOW the image for pagination */
-    padding-bottom: 40px; /* This padding creates the space */
+    
     position: relative; /* Crucial for absolute positioning of the Swiper pagination within it */
     overflow: hidden; /* Keep this to prevent image overflow */
   }

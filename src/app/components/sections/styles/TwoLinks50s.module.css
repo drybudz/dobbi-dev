@@ -83,7 +83,7 @@
 @media (max-width: 575px) {
 
   .twoLinksSection {
-    padding: 40px 17px;
+    padding: 0px 17px 40px 17px;
   }
 
   .linksContainer {

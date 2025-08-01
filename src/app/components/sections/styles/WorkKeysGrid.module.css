@@ -88,7 +88,8 @@
 /* Mobile styles */
 @media (max-width: 575px) {
   .workKeys {
-    padding: 45px 17px 30px;
+    padding: 25px 17px 0px;
+    margin-bottom: 10px !important;
   }
 
   .title {

@@ -69,20 +69,21 @@
 @media (max-width: 768px) { /* Using 768px as a common breakpoint for mobile */
     .bandContainer {
         grid-template-columns: 1fr; /* Stack columns into a single column */
-        padding: 40px 20px; /* Adjust padding for mobile screens */
+        padding: 0px 20px; /* Adjust padding for mobile screens */
         /* You might want to adjust alignment if needed for stacking */
         align-items: flex-start; /* Align stacked items to the start */
+        display: inline-block;
     }
 
     .leftColumn {
         /* Add margin to create space between the title and contact info when stacked */
-        margin-bottom: 30px;
+        margin-bottom: 20px;
         /* Adjust alignment if needed for mobile */
         align-items: flex-start; /* Keep left-aligned if desired */
     }
 
     .title {
-        font-size: 48px; /* Adjust font size for mobile readability */
+        font-size: 38px; /* Adjust font size for mobile readability */
         letter-spacing: -3px; /* Adjust letter spacing for mobile */
         text-align: left; /* Center the title on mobile if preferred */
         width: 100%; /* Ensure title takes full width of column */
@@ -102,12 +103,13 @@
     }
 
     .name {
-        font-size: 42px; /* Adjust font size for mobile */
+        font-size: 20px; /* Adjust font size for mobile */
         text-align: left; /* Keep name left-aligned */
+        margin: 0 0 12px;
     }
 
     .email {
-        font-size: 18px; /* Adjust font size for mobile */
+        font-size: 12px; /* Adjust font size for mobile */
         text-align: left; /* Keep email left-aligned */
     }
 }
