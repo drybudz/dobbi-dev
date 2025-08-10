@@ -61,9 +61,9 @@ export default function FeaturedProjects({
     };
   }, []);
 
-  if (!featuredProject) {
-    return null;
-  }
+  // if (!featuredProject) {
+  //   return null;
+  // }
 
   return (
     <section className={styles.container}>
@@ -71,6 +71,7 @@ export default function FeaturedProjects({
         <p className={styles.fullWidthText}>{beforeText}</p>
       )}
 
+      {/* Conditionally render the projectContainer only if a featuredProject exists. */}
       {featuredProject && (
         <div className={styles.projectContainer}>
           {/* Mobile-only project name (hidden on desktop) */}
@@ -84,7 +85,6 @@ export default function FeaturedProjects({
           <div className={styles.imageColumn} ref={imageColumnRef}>
             {featuredProject.largeProjectImages?.[0]?.asset?.url && (
               <Link href={`/work/${featuredProject.slug?.current || '#'}`} className={styles.imageLink}>
-                {/* NEW INNER DIV FOR PARALLAX EFFECT */}
                 <div
                   className={styles.parallaxWrapper}
                   style={{ transform: `translateY(${parallaxOffset}px)` }}
@@ -92,9 +92,9 @@ export default function FeaturedProjects({
                   <Image
                     src={featuredProject.largeProjectImages[0].asset.url}
                     alt={featuredProject.largeProjectImages[0].alt || featuredProject.name}
-                    fill // Image fills the new parallaxWrapper div
+                    fill
                     className={styles.projectImage}
-                    style={{ objectFit: 'cover' }} // objectFit remains on Image
+                    style={{ objectFit: 'cover' }}
                   />
                 </div>
               </Link>

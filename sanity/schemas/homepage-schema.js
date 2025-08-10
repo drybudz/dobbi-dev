@@ -85,6 +85,24 @@ const homePage = {
       description: 'The main slogan for the home page.',
       group: 'general',
     },
+    // Banner Section Group
+{
+  name: 'imageDisplayOption',
+  title: 'Image Display Option',
+  type: 'string',
+  options: {
+    list: [
+      { title: 'Use all images', value: 'useAll' },
+      { title: 'Repeat 1st Image', value: 'repeatFirst' },
+      { title: 'Display no images', value: 'noImages' },
+    ],
+    layout: 'radio', // Optional: Use 'radio' for buttons instead of a dropdown
+  },
+  initialValue: 'useAll',
+  description: 'Controls how images are displayed in the hero banner. Repeat is based on the first medium image of the first project.',
+  group: 'banner',
+},
+
 
     // Banner Section Group
     {

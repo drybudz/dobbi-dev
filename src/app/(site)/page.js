@@ -27,10 +27,13 @@ export default function Home() {
     <div className="homePage">
       {/* <HeroBanner title={homePageData?.slogan} imageSrc={homePageData?.heroBannerBackground.asset.url}/> */}
       {/* <HeroBanner title={homePageData?.slogan} projects={homePageData}/> */}
-      <HeroBannerFloating title={homePageData?.slogan} projects={homePageData}/>
-      <HomeBandOneThird 
-        title={homePageData.whatTitle} 
-        description={homePageData.whatDescription} 
+      <HeroBannerFloating
+        title={homePageData?.slogan}
+        projects={homePageData}
+        imageDisplayOption={homePageData?.imageDisplayOption} />
+      <HomeBandOneThird
+        title={homePageData.whatTitle}
+        description={homePageData.whatDescription}
       />
       <FeaturedProjects
         beforeText={homePageData.homeBeforeProjectDescription}
@@ -39,19 +42,19 @@ export default function Home() {
       />
       <TwoLinks50s
         leftLink={{
-          title: "Explore Our Services", 
+          title: "Explore Our Services",
           slug: "/services"
         }}
         rightLink={{
-          title: "See Our Work", 
+          title: "See Our Work",
           slug: "/work"
         }}
       />
-      <HomeSolutionGrid 
+      <HomeSolutionGrid
         title={homePageData.homeGroupTitle}
         solutions={homePageData.solutions || []}
       />
-      <HomeBand50Contact 
+      <HomeBand50Contact
         title={homePageData.connectTitle}
         name={homePageData.connectName}
         email={homePageData.connectEmail}

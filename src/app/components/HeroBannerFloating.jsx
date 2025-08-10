@@ -7,7 +7,6 @@ import styles from './styles/HeroBannerFloating.module.css';
 // Component to handle individual floating images
 const FloatingImage = ({ src, alt, index, imageWidth, imageHeight }) => {
     const imgRef = useRef(null);
-    // State to hold random values that will cause hydration mismatch if not handled client-side
     const [animationProps, setAnimationProps] = useState({
         delay: 0,
         duration: 0,
@@ -16,57 +15,69 @@ const FloatingImage = ({ src, alt, index, imageWidth, imageHeight }) => {
         opacity: 1,
     });
 
+    if (!src) {
+        return null;
+    }
+
     useEffect(() => {
-        // This effect runs only on the client after initial mount/hydration
+        const zIndexChoice = Math.floor(Math.random() * 3);
+
+        let newZIndex;
+        let newOpacity;
+
+        if (zIndexChoice === 2) {
+            newZIndex = 6; 
+            newOpacity = 1; 
+        } else {
+            newZIndex = 4;
+            newOpacity = 0.5 + Math.random() * 0.2; 
+        }
+
         setAnimationProps({
-            delay: Math.random() * 2, // 0-2 seconds delay
-            duration: 2 + Math.random() * 2, // 2-4 seconds animation duration
-            yoyoAmount: 10 + Math.random() * 10, // 10-20px vertical movement
-            zIndex: Math.floor(Math.random() * 2) === 0 ? 0 : 2, // 0 or 2
-            opacity: Math.random() > 0.5 ? 1 : 0.5, // 50% chance for full or half opacity
+            delay: Math.random() * 2,
+            duration: 2 + Math.random() * 2,
+            yoyoAmount: 10 + Math.random() * 10,
+            zIndex: newZIndex,
+            opacity: newOpacity,
         });
-    }, []); // Empty dependency array means this runs once on mount
+    }, []);
 
     useEffect(() => {
         const { delay, duration, yoyoAmount } = animationProps;
-
-        if (imgRef.current && duration > 0) { // Ensure duration is set (meaning animationProps are ready)
+        if (imgRef.current && duration > 0) {
             gsap.to(imgRef.current, {
-                y: -yoyoAmount, // Move up
+                y: -yoyoAmount,
                 duration: duration,
                 ease: "sine.inOut",
-                repeat: -1, // Infinite repeat
-                yoyo: true, // Go back down
-                delay: delay, // Staggered start
-                overwrite: "auto", // Handle potential overlapping animations
+                repeat: -1,
+                yoyo: true,
+                delay: delay,
+                overwrite: "auto",
             });
         }
-    }, [animationProps]); // Re-run animation if animationProps change
+    }, [animationProps]);
 
     return (
-        <div
-            className={styles.floatingImageWrapper}
-            style={{ zIndex: animationProps.zIndex }}
-        >
-            <Image
-                ref={imgRef}
-                src={src}
-                alt={alt || `Floating image ${index}`}
-                width={imageWidth} // Set fixed width
-                height={imageHeight} // Set fixed height
-                quality={75}
-                className={styles.floatingImage}
-                style={{
-                    objectFit: 'cover', // Changed to cover as per specific size. Adjust if 'contain' is better for your assets
-                    opacity: animationProps.opacity, // Apply opacity randomly
-                }}
-            />
-        </div>
+        <Image
+            ref={imgRef}
+            src={src}
+            alt={alt || `Floating image ${index}`}
+            width={imageWidth}
+            height={imageHeight}
+            quality={75}
+            className={styles.floatingImage}
+            style={{
+                objectFit: 'cover',
+                opacity: animationProps.opacity,
+                // Apply zIndex directly to the Image component
+                zIndex: animationProps.zIndex, 
+            }}
+        />
     );
 };
 
 // Main HeroBannerFloating Component
-const HeroBannerFloating = ({ title, projects }) => {
+const HeroBannerFloating = ({ title, projects, imageDisplayOption }) => {
     const heroRef = useRef(null);
     const [offsetHeight, setOffsetHeight] = useState(0);
     const [offsetWidth, setOffsetWidth] = useState(0);
@@ -99,18 +110,21 @@ const HeroBannerFloating = ({ title, projects }) => {
         
         // Repeat images if not enough
         let tempFinalImageUrls = [];
-        if (shuffledImageUrls.length > 0) {
+        //Changes
+        if (imageDisplayOption === 'noImages' || rawImageUrls.length === 0) {
+            tempFinalImageUrls = Array(totalImagesNeeded).fill(null);
+        } else if (imageDisplayOption === 'repeatFirst' && rawImageUrls.length > 0) {
+            const firstImageUrl = rawImageUrls[0];
+            tempFinalImageUrls = Array(totalImagesNeeded).fill(firstImageUrl);
+        } else { // Handles 'useAll' and other fallbacks
+            let shuffledImageUrls = [...rawImageUrls].sort(() => Math.random() - 0.5);
             for (let i = 0; i < totalImagesNeeded; i++) {
                 tempFinalImageUrls.push(shuffledImageUrls[i % shuffledImageUrls.length]);
             }
-        } else {
-            // Fallback if no images are provided
-            for (let i = 0; i < totalImagesNeeded; i++) {
-                tempFinalImageUrls.push("https://via.placeholder.com/52x92?text=No+Image");
-            }
         }
+
         setFinalImageUrls(tempFinalImageUrls);
-    }, [projects, totalImagesNeeded]); // Re-run if projects or totalImagesNeeded change (though totalImagesNeeded is static)
+    }, [projects, totalImagesNeeded, imageDisplayOption]); // Re-run if projects or totalImagesNeeded change (though totalImagesNeeded is static)
 
 
     useLayoutEffect(() => {
@@ -139,32 +153,29 @@ const HeroBannerFloating = ({ title, projects }) => {
     return (
         <section>
             <div className={styles.HeroBannerContainer} id="hero-banner-floating" ref={heroRef}>
-            <h2 className={styles.title}>
-                {splitTitle.map((word, i) => (
-                    <span
-                        // Z-index for title words should always be higher than max image Z-index
-                        style={{ position: 'relative', zIndex: 6 }}
-                        key={word + i}
-                    >
-                        {word + " "}
-                    </span>
-                ))}
-            </h2>
-
-            <div className={styles.floatingImagesGrid}>
-                {/* Render images only after finalImageUrls has been populated on the client */}
-                {finalImageUrls.map((url, index) => (
-                    <FloatingImage
-                        key={url + index} // Key includes index to handle repeating URLs properly
-                        src={url}
-                        alt={`Floating Image ${index}`}
-                        index={index}
-                        imageWidth={imageW}
-                        imageHeight={imageH}
-                    />
-                ))}
+                <h2 className={styles.title}>
+                    {splitTitle.map((word, i) => (
+                        <span
+                            key={word + i}
+                        >
+                            {word + " "}
+                        </span>
+                    ))}
+                </h2>
+                <div className={styles.floatingImagesGrid}>
+                    {/* The FloatingImage component now handles the check internally */}
+                    {finalImageUrls.map((url, index) => (
+                        <FloatingImage
+                            key={url + index}
+                            src={url}
+                            alt={`Floating Image ${index}`}
+                            index={index}
+                            imageWidth={imageW}
+                            imageHeight={imageH}
+                        />
+                    ))}
+                </div>
             </div>
-        </div>
         </section>
     );
 };

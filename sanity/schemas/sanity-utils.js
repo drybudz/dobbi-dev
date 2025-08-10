@@ -1,6 +1,247 @@
 import { createClient, groq } from "next-sanity"
 import clientConfig from "./../config/client-config"
 
+export async function getAllDobbiData() {
+    return createClient(clientConfig).fetch(
+      groq`{
+        "homePage": *[_type == "homePage"][0]{
+          // General Information
+          companyName,
+          companyLogoBlack{
+            asset->{
+              url,
+              metadata {
+                dimensions,
+                lqip
+              }
+            },
+            alt
+          },
+          companyLogoWhite{
+            asset->{
+              url,
+              metadata {
+                dimensions,
+                lqip
+              }
+            },
+            alt
+          },
+          slogan,
+
+          // Banner Section
+          imageDisplayOption,
+          bannerProjects[]->{
+          _id,
+          name,
+          slug,
+          clientName,
+          projectYear,
+          mediumProjectImages[]{
+            asset->{
+              url
+            },
+            alt
+          },
+          smallProjectImages[]{
+            asset->{
+              url
+            },
+            alt
+          }
+        },
+
+          // What We Do Section
+          whatTitle,
+          whatDescription,
+
+          // Projects Section, uses the L image
+          homeBeforeProjectDescription,
+          featuredProjects[]->{
+            _id,
+            name,
+            slug,
+            clientName,
+            projectYear,
+            largeProjectImages[]{
+              asset->{url},
+              alt
+            }
+          },
+          homeAfterProjectDescription,
+          
+          // Solutions Section
+          homeGroupTitle,
+          solutions[]{
+            solutionTitle,
+            solutionTextA,
+            solutionTextB
+          },
+
+          // Connect Section
+          connectTitle,
+          connectName,
+          connectEmail,
+
+          // SEO
+          seoTitle,
+          seoDescription,
+          keywords
+        },
+        "aboutPage": *[_type == "aboutPage"][0]{
+          // General Information
+          title,
+          aboutTitle,
+          aboutDescription,
+          
+          // Horizontal Images Section
+          horizontalImageTopImage{
+            asset->{
+              url
+            },
+            alt
+          },
+          horizontalImageTopText,
+          horizontalImageBottomImage{
+            asset->{
+              url
+            },
+            alt
+          },
+          horizontalImageBottomText,
+          
+          // About Band Section
+          aboutBandTitle,
+          aboutBandText,
+          aboutLargeImage{
+            asset->{
+              url
+            },
+            alt
+          },
+          aboutMediumImage{
+            asset->{
+              url
+            },
+            alt
+          },
+          aboutSmallImages[]{
+            asset->{
+              url
+            },
+            alt
+          },
+          
+          // Work Keys Section
+          workKeysTitle,
+          workKeysSubtitle,
+          workKeysList[]{
+            keyTitle,
+            keyDescription
+          },
+          
+          // Mini Gallery
+          miniGallery[]{
+            asset->{
+              url
+            },
+            alt
+          },
+          
+          // Chat Link
+          chatLinkTitle,
+          chatLinkAction
+        },
+        "servicesPage": *[_type == "servicesPage"][0]{
+          title,
+          // Main Content
+          servicesTitle,
+          servicesDescription,
+
+          // New Services List
+          servicesList[]{
+            serviceTitle,
+            serviceDescription,
+            serviceOptions[] // This will bring in all options (strings) for each service
+          },
+          
+          // Side Content
+          servicesSideListTop,
+          servicesSideTitle,
+          servicesSideDescription,
+          servicesSideList[]{
+            item
+          },
+          servicesSideListBottom
+        },
+        "workPage": *[_type == "workPage"][0]{
+          pageTitle,
+          workPageTitle,
+          workDescription,
+          featuredProjects[]->{
+            _id,
+            name,
+            slug,
+            clientName,
+            projectYear,
+            // All image sets
+            largeProjectImages[]{
+              asset->{
+                url,
+                metadata {
+                  dimensions,
+                  lqip // Low-quality image placeholder
+                }
+              },
+              alt
+            },
+            mediumProjectImages[]{
+              asset->{
+                url,
+                metadata {
+                  dimensions
+                }
+              },
+              alt
+            },
+            smallProjectImages[]{
+              asset->{
+                url,
+                metadata {
+                  dimensions
+                }
+              },
+              alt
+            },
+            // About project fields
+            aboutProject1,
+            aboutProjectText1,
+            aboutProject2,
+            aboutProjectText2,
+            stats[]{
+              statTitle,
+              statDescription
+            },
+            // Final project note
+            projectFPO
+          }
+        },
+        "pageFooter": *[_type == "pageFooter"][0]{
+          copyrightBrandName,
+          copyrightText,
+          copyrightYear,
+          connectLinks[] {
+            linkTitle,
+            linkUrl,
+            openNewTab
+          }
+        }
+      }`
+    );
+  }
+
+  // REVIEW if applies for Dobbi.:
+
 export async function getHomePage() {
   return createClient(clientConfig).fetch(
     groq`*[_type == "homepage"][0]{
@@ -260,240 +501,4 @@ export async function getProject(slug) {
     );
   }
 
-  export async function getAllDobbiData() {
-    return createClient(clientConfig).fetch(
-      groq`{
-        "homePage": *[_type == "homePage"][0]{
-          // General Information
-          companyName,
-          companyLogoBlack{
-            asset->{
-              url,
-              metadata {
-                dimensions,
-                lqip
-              }
-            },
-            alt
-          },
-          companyLogoWhite{
-            asset->{
-              url,
-              metadata {
-                dimensions,
-                lqip
-              }
-            },
-            alt
-          },
-          slogan,
-
-          // Banner Section
-          bannerProjects[]->{
-          _id,
-          name,
-          slug,
-          clientName,
-          projectYear,
-          mediumProjectImages[]{
-            asset->{
-              url
-            },
-            alt
-          },
-          smallProjectImages[]{
-            asset->{
-              url
-            },
-            alt
-          }
-        },
-
-          // What We Do Section
-          whatTitle,
-          whatDescription,
-
-          // Projects Section, uses the L image
-          homeBeforeProjectDescription,
-          featuredProjects[]->{
-            _id,
-            name,
-            slug,
-            clientName,
-            projectYear,
-            largeProjectImages[]{
-              asset->{url},
-              alt
-            }
-          },
-          homeAfterProjectDescription,
-          
-          // Solutions Section
-          homeGroupTitle,
-          solutions[]{
-            solutionTitle,
-            solutionTextA,
-            solutionTextB
-          },
-
-          // Connect Section
-          connectTitle,
-          connectName,
-          connectEmail,
-
-          // SEO
-          seoTitle,
-          seoDescription,
-          keywords
-        },
-        "aboutPage": *[_type == "aboutPage"][0]{
-          // General Information
-          title,
-          aboutTitle,
-          aboutDescription,
-          
-          // Horizontal Images Section
-          horizontalImageTopImage{
-            asset->{
-              url
-            },
-            alt
-          },
-          horizontalImageTopText,
-          horizontalImageBottomImage{
-            asset->{
-              url
-            },
-            alt
-          },
-          horizontalImageBottomText,
-          
-          // About Band Section
-          aboutBandTitle,
-          aboutBandText,
-          aboutLargeImage{
-            asset->{
-              url
-            },
-            alt
-          },
-          aboutMediumImage{
-            asset->{
-              url
-            },
-            alt
-          },
-          aboutSmallImages[]{
-            asset->{
-              url
-            },
-            alt
-          },
-          
-          // Work Keys Section
-          workKeysTitle,
-          workKeysSubtitle,
-          workKeysList[]{
-            keyTitle,
-            keyDescription
-          },
-          
-          // Mini Gallery
-          miniGallery[]{
-            asset->{
-              url
-            },
-            alt
-          },
-          
-          // Chat Link
-          chatLinkTitle,
-          chatLinkAction
-        },
-        "servicesPage": *[_type == "servicesPage"][0]{
-          title,
-          // Main Content
-          servicesTitle,
-          servicesDescription,
-
-          // New Services List
-          servicesList[]{
-            serviceTitle,
-            serviceDescription,
-            serviceOptions[] // This will bring in all options (strings) for each service
-          },
-          
-          // Side Content
-          servicesSideListTop,
-          servicesSideTitle,
-          servicesSideDescription,
-          servicesSideList[]{
-            item
-          },
-          servicesSideListBottom
-        },
-        "workPage": *[_type == "workPage"][0]{
-          pageTitle,
-          workPageTitle,
-          workDescription,
-          featuredProjects[]->{
-            _id,
-            name,
-            slug,
-            clientName,
-            projectYear,
-            // All image sets
-            largeProjectImages[]{
-              asset->{
-                url,
-                metadata {
-                  dimensions,
-                  lqip // Low-quality image placeholder
-                }
-              },
-              alt
-            },
-            mediumProjectImages[]{
-              asset->{
-                url,
-                metadata {
-                  dimensions
-                }
-              },
-              alt
-            },
-            smallProjectImages[]{
-              asset->{
-                url,
-                metadata {
-                  dimensions
-                }
-              },
-              alt
-            },
-            // About project fields
-            aboutProject1,
-            aboutProjectText1,
-            aboutProject2,
-            aboutProjectText2,
-            stats[]{
-              statTitle,
-              statDescription
-            },
-            // Final project note
-            projectFPO
-          }
-        },
-        "pageFooter": *[_type == "pageFooter"][0]{
-          copyrightBrandName,
-          copyrightText,
-          copyrightYear,
-          connectLinks[] {
-            linkTitle,
-            linkUrl,
-            openNewTab
-          }
-        }
-      }`
-    );
-  }
+  
