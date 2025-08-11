@@ -6,17 +6,20 @@
 }
 
 .grid {
-  display: grid;
-  grid-template-columns: repeat(12, 1fr);
-  gap: 1px; /* Minimal gap between images */
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center; /* This is the key change to center the images */
+  gap: 1px;
   max-width: 1440px;
   margin: 0 auto;
 }
 
 .imageContainer {
-  position: relative;
-  aspect-ratio: 1/1; /* Square images */
+  /* Set a fixed size for each image container on desktop. */
+  width: calc(100% / 12 - 1px); /* For 12 columns */
+  aspect-ratio: 1/1;
   overflow: hidden;
+  position: relative;
 }
 
 .image {
@@ -32,19 +35,19 @@
 
 /* Responsive adjustments */
 @media (max-width: 1024px) {
-  .grid {
-    grid-template-columns: repeat(6, 1fr);
+  .imageContainer {
+    width: calc(100% / 6 - 1px); /* For 6 columns */
   }
 }
 
 @media (max-width: 768px) {
-  .grid {
-    grid-template-columns: repeat(4, 1fr);
+  .imageContainer {
+    width: calc(100% / 4 - 1px); /* For 4 columns */
   }
 }
 
 @media (max-width: 480px) {
-  .grid {
-    grid-template-columns: repeat(3, 1fr);
+  .imageContainer {
+    width: calc(100% / 3 - 1px); /* For 3 columns */
   }
 }

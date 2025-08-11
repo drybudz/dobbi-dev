@@ -41,6 +41,11 @@ export default function AboutGallery({
     ...smallImages
   ].filter(img => img?.asset?.url); // Filter out any undefined or null images
 
+  // ADDED VALIDATION: Do not render the section if there are no images
+  if (allGalleryImages.length === 0) {
+    return null;
+  }
+
   if (isMobile) {
     return (
       <section className={styles.galleryMobile}>

@@ -1,0 +1,33 @@
+/* components/sections/styles/AboutBand100.module.css */
+.bandContainer {
+  display: flex; /* Use flexbox to center content */
+  justify-content: center; /* Horizontally center content */
+  align-items: center; /* Vertically center content */
+  max-width: 1350px;
+  margin: 0 auto;
+  padding: 40px 20px;
+}
+
+.text {
+  letter-spacing: -.96px;
+  color: #fff;
+  margin: 0;
+  font-size: 48px;
+  line-height: 108%;
+  text-align: left; /* Center the text within its container */
+  font-weight: 500;
+  width: 100%; /* Ensure the text block takes up full width */
+}
+
+/* Media query for mobile-specific styles */
+@media (max-width: 574px) {
+  .bandContainer {
+    padding: 30px 15px; /* Adjusted padding for a cleaner look on smaller screens */
+  }
+
+  .text {
+    font-size: 35px; /* Adjust font size as requested */
+    letter-spacing: -0.8px;
+    line-height: 120%;
+  }
+}

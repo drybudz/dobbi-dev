@@ -1,8 +1,9 @@
 'use client';
 
 import TitleInfo from '@/app/components/sections/TitleInfo';
-import AboutHorizontalStack from '@/app/components/sections/AboutHorizontalStack';
+// import AboutHorizontalStack from '@/app/components/sections/AboutHorizontalStack';
 import AboutBand50 from '@/app/components/sections/AboutBand50';
+import AboutBand100 from '@/app/components/sections/AboutBand100';
 import AboutGallery from '@/app/components/sections/AboutGallery';
 import WorkKeysGrid from '@/app/components/sections/WorkKeysGrid';
 import ChatLink from '@/app/components/sections/ChatLink';
@@ -23,7 +24,7 @@ export default function About() {
     const { allData } = useAppContext();
     const aboutPageData = allData?.aboutPage || null;
     // console.log("@AB------About Page Data:", aboutPageData);
-    console.log("@AB------About Page Data:", aboutPageData.aboutSmallImages);
+    // console.log("@AB------About Page Data:", aboutPageData.aboutSmallImages);
 
     if (!aboutPageData) {
         return <div>About Page Not Found</div>
@@ -35,17 +36,24 @@ export default function About() {
         title={aboutPageData.aboutTitle}
         description={aboutPageData.aboutDescription}
       />
-      <AboutHorizontalStack 
+      {/* Previous Design of the Stack */}
+      {/* <AboutHorizontalStack 
         image1Url={aboutPageData.horizontalImageTopImage?.asset?.url}
         image1Alt={aboutPageData.horizontalImageTopImage?.alt}
         image2Url={aboutPageData.horizontalImageBottomImage?.asset?.url}
         image2Alt={aboutPageData.horizontalImageBottomImage?.alt}
         text1={aboutPageData.horizontalImageTopText}
         text2={aboutPageData.horizontalImageBottomText}
+      /> */}
+       <AboutBand100 
+        text={aboutPageData.horizontalImageTopText}
       />
       <AboutBand50 
         title={aboutPageData.aboutBandTitle}
         text={aboutPageData.aboutBandText}
+      />
+      <AboutBand100 
+        text={aboutPageData.horizontalImageBottomText}
       />
       <AboutGallery
         largeImage={aboutPageData.aboutLargeImage}
