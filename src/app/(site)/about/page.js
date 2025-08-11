@@ -69,7 +69,7 @@ export default function About() {
         title={aboutPageData.chatLinkTitle} 
         action={aboutPageData.chatLinkAction} 
       />
-      <MiniGallery images={aboutPageData.miniGallery || []} />
+      {/* <MiniGallery images={aboutPageData.miniGallery || []} /> */}
     </div>
         
     );
