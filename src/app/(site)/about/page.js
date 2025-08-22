@@ -4,6 +4,7 @@ import TitleInfo from '@/app/components/sections/TitleInfo';
 // import AboutHorizontalStack from '@/app/components/sections/AboutHorizontalStack';
 import AboutBand50 from '@/app/components/sections/AboutBand50';
 import AboutBand100 from '@/app/components/sections/AboutBand100';
+import AboutBandQuarter from '@/app/components/sections/AboutBandQuarter';
 import AboutGallery from '@/app/components/sections/AboutGallery';
 import WorkKeysGrid from '@/app/components/sections/WorkKeysGrid';
 import ChatLink from '@/app/components/sections/ChatLink';
@@ -48,7 +49,7 @@ export default function About() {
        <AboutBand100 
         text={aboutPageData.horizontalImageTopText}
       />
-      <AboutBand50 
+      <AboutBandQuarter 
         title={aboutPageData.aboutBandTitle}
         text={aboutPageData.aboutBandText}
       />
@@ -65,10 +66,10 @@ export default function About() {
         subtitle={aboutPageData.workKeysSubtitle}
         items={aboutPageData.workKeysList || []}
       />
-      <ChatLink 
+      {/* <ChatLink 
         title={aboutPageData.chatLinkTitle} 
         action={aboutPageData.chatLinkAction} 
-      />
+      /> */}
       {/* <MiniGallery images={aboutPageData.miniGallery || []} /> */}
     </div>
         

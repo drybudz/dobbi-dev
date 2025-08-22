@@ -23,7 +23,12 @@ export default function Work() {
         />
 
       {/* <WorkGrid featuredProjects={workPageData.featuredProjects} /> */}
-      <WorkGrid4x4Swiper featuredProjects={workPageData.featuredProjects} />
+      
+      {/* Thins one below is validated for empty gallery in Sanity, but needs to hidden for the 100vh at global to work 
+      .workPage section {
+    height: 100vh; }
+} */}
+      {/* <WorkGrid4x4Swiper featuredProjects={workPageData.featuredProjects} /> */}
 
       </div>
     // 

@@ -1,11 +1,11 @@
 /* components/sections/styles/HomeBand50Contact.module.css */
 .bandContainer {
-    grid-template-columns: 50% 50%;
-    align-items: center;
-    max-width: 1440px;
-    margin: 0 auto;
-    padding: 80px 20px;
-    display: grid;
+  grid-template-columns: 50% 50%;
+  align-items: center;
+  max-width: 1440px;
+  margin: 0 auto;
+  padding: 80px 20px;
+  display: grid;
 }
 
 .leftColumn {
@@ -14,18 +14,19 @@
 }
 
 .title {
-    letter-spacing: -5.2px;
-    text-align: left;
-    margin: 0;
-    font-size: 80px;
-    font-weight: 700;
-    line-height: 87%;
+  letter-spacing: -5.2px;
+  text-align: left;
+  margin: 0;
+  font-size: 80px;
+  font-weight: 700;
+  line-height: 87%;
 }
 
 .rightColumn {
   display: flex;
   align-items: center;
   height: 100%;
+  position: relative; /* Ensure transform applies correctly */
 }
 
 .contactInfo {
@@ -36,80 +37,75 @@
 }
 
 .name {
-    letter-spacing: -.64px;
-    text-align: left;
-    margin: 0 0 20px;
-    font-size: 48px;
-    font-weight: 500;
-    line-height: 110%;
+  letter-spacing: -0.64px;
+  text-align: left;
+  margin: 0 0 20px;
+  font-size: 48px;
+  font-weight: 500;
+  line-height: 110%;
 }
 
 .email {
-    letter-spacing: -.64px;
-    color: #8D8D8D;
-    font-size: 20px;
-    line-height: 99%;
-    text-align: left;
-    font-weight: 400;
+  letter-spacing: -0.64px;
+  color: #8D8D8D;
+  font-size: 20px;
+  line-height: 99%;
+  text-align: left;
+  font-weight: 400;
 }
 
 /* Ensure the anchor styles are specifically applied to the link */
 .emailLink {
-    text-decoration: none;
-    transition: color 0.5s ease;
-    color: inherit; /* Inherit color from .email by default */
+  text-decoration: none;
+  transition: color 0.5s ease;
+  color: inherit; /* Inherit color from .email by default */
 }
 
 .emailLink:hover {
-    color:#fff;
+  color: #fff;
 }
-
 
 /* Responsive adjustments for mobile */
 @media (max-width: 768px) { /* Using 768px as a common breakpoint for mobile */
-    .bandContainer {
-        grid-template-columns: 1fr; /* Stack columns into a single column */
-        padding: 0px 20px; /* Adjust padding for mobile screens */
-        /* You might want to adjust alignment if needed for stacking */
-        align-items: flex-start; /* Align stacked items to the start */
-        display: inline-block;
-    }
+  .bandContainer {
+    grid-template-columns: 1fr; /* Stack columns into a single column */
+    padding: 0px 20px; /* Adjust padding for mobile screens */
+    align-items: flex-start; /* Align stacked items to the start */
+    display: inline-block;
+  }
 
-    .leftColumn {
-        /* Add margin to create space between the title and contact info when stacked */
-        margin-bottom: 20px;
-        /* Adjust alignment if needed for mobile */
-        align-items: flex-start; /* Keep left-aligned if desired */
-    }
+  .leftColumn {
+    margin-bottom: 20px;
+    align-items: flex-start;
+  }
 
-    .title {
-        font-size: 38px; /* Adjust font size for mobile readability */
-        letter-spacing: -3px; /* Adjust letter spacing for mobile */
-        text-align: left; /* Center the title on mobile if preferred */
-        width: 100%; /* Ensure title takes full width of column */
-    }
+  .title {
+    font-size: 38px;
+    letter-spacing: -3px;
+    text-align: left;
+    width: 100%;
+  }
 
-    .rightColumn {
-        /* No specific changes to display needed here, as it's already flex */
-        height: auto; /* Allow height to adjust to content */
-        padding-left: 0; /* Remove padding if not needed when stacked */
-        align-items: flex-start; /* Align contact info to the left */
-    }
+  .rightColumn {
+    height: auto;
+    padding-left: 0;
+    align-items: flex-start;
+  }
 
-    .contactInfo {
-        padding-left: 0; /* Remove left padding from contactInfo as well */
-        align-items: flex-start; /* Ensure contact info is left-aligned within its column */
-        width: 100%; /* Ensure contactInfo takes full width */
-    }
+  .contactInfo {
+    padding-left: 0;
+    align-items: flex-start;
+    width: 100%;
+  }
 
-    .name {
-        font-size: 20px; /* Adjust font size for mobile */
-        text-align: left; /* Keep name left-aligned */
-        margin: 0 0 12px;
-    }
+  .name {
+    font-size: 20px;
+    text-align: left;
+    margin: 0 0 12px;
+  }
 
-    .email {
-        font-size: 12px; /* Adjust font size for mobile */
-        text-align: left; /* Keep email left-aligned */
-    }
+  .email {
+    font-size: 12px;
+    text-align: left;
+  }
 }

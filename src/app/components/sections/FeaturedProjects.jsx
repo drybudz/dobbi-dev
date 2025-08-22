@@ -4,6 +4,12 @@ import Link from 'next/link';
 import Image from 'next/image';
 import styles from './styles/FeaturedProjects.module.css';
 import { useState, useEffect, useRef } from 'react';
+import { gsap } from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
+
+if (typeof window !== 'undefined') {
+  gsap.registerPlugin(ScrollTrigger);
+}
 
 export default function FeaturedProjects({
   beforeText,
@@ -12,9 +18,9 @@ export default function FeaturedProjects({
 }) {
   const [featuredProject, setFeaturedProject] = useState(null);
   const imageColumnRef = useRef(null); // Ref to the image column for position
-  const [parallaxOffset, setParallaxOffset] = useState(0);
 
   useEffect(() => {
+    // Select a random project on mount
     if (projects.length > 0) {
       const randomIndex = Math.floor(Math.random() * projects.length);
       setFeaturedProject(projects[randomIndex]);
@@ -22,42 +28,31 @@ export default function FeaturedProjects({
   }, [projects]);
 
   useEffect(() => {
-    const handleScroll = () => {
-      if (imageColumnRef.current) {
-        const imageColumnRect = imageColumnRef.current.getBoundingClientRect();
-        const windowHeight = window.innerHeight;
-
-        // Calculate how much of the element is visible
-        const elementVisibleRatio = (windowHeight - imageColumnRect.top) / (windowHeight + imageColumnRect.height);
-
-        // Adjust a multiplier for stronger/weaker effect.
-        // We want movement to happen as the element scrolls from bottom to top of viewport.
-        // Let's use a range for parallax movement, e.g., total 20% of imageColumn height.
-        // If the image is 120% tall, 20% is the extra height.
-        const totalParallaxRange = imageColumnRect.height * 0.2; // 20% of container height for movement
-
-        // Map the scroll position to the parallax range
-        // When element is at bottom of viewport, offset is 0 (or centered in its extra height)
-        // When element is at top of viewport, offset is maxMovement
-        // We want it to start with a slight negative offset and move to a positive one
-        // A simple linear mapping:
-        // When sectionTop is windowHeight, offset is -totalParallaxRange / 2 (start slightly up)
-        // When sectionTop is -imageColumnRect.height, offset is +totalParallaxRange / 2 (end slightly down)
-        const scrollProgress = (windowHeight - imageColumnRect.top) / (windowHeight + imageColumnRect.height);
-        let offset = (scrollProgress - 0.5) * totalParallaxRange; // Center the movement around 0
-
-        // Clamp offset to ensure it stays within the available extra height
-        offset = Math.max(-totalParallaxRange / 2, Math.min(totalParallaxRange / 2, offset));
-
-        setParallaxOffset(offset);
-      }
-    };
-
-    window.addEventListener('scroll', handleScroll);
-    handleScroll(); // Call once to set initial position
+    // Parallax effect for the image column
+    if (imageColumnRef.current) {
+      gsap.fromTo(
+        imageColumnRef.current,
+        { y: 0 }, // Start at original position
+        {
+          y: -100, // Move up by 200px for parallax effect
+          scrollTrigger: {
+            trigger: imageColumnRef.current,
+            start: 'top 80%', // Start when top of image column is 80% in view
+            end: 'bottom 70%', // End when bottom of image column hits top of viewport
+            scrub: true, // Smoothly tie to scroll
+            invalidateOnRefresh: true, // Recalculate on resize
+            onEnter: () => console.log('Parallax enter:', imageColumnRef.current.style.transform),
+            onUpdate: (self) => console.log('Parallax progress:', self.progress.toFixed(2), imageColumnRef.current.style.transform),
+            onLeave: () => console.log('Parallax leave:', imageColumnRef.current.style.transform),
+          }
+        }
+      );
+    } else {
+      console.warn('imageColumnRef is null');
+    }
 
     return () => {
-      window.removeEventListener('scroll', handleScroll);
+      ScrollTrigger.getAll().forEach(trigger => trigger.kill()); // Cleanup ScrollTriggers
     };
   }, []);
 
@@ -87,7 +82,7 @@ export default function FeaturedProjects({
               <Link href={`/work/${featuredProject.slug?.current || '#'}`} className={styles.imageLink}>
                 <div
                   className={styles.parallaxWrapper}
-                  style={{ transform: `translateY(${parallaxOffset}px)` }}
+                  // Removed inline parallaxOffset since GSAP handles it
                 >
                   <Image
                     src={featuredProject.largeProjectImages[0].asset.url}

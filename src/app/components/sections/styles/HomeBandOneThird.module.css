@@ -1,12 +1,18 @@
 /* components/sections/styles/HomeBandOneThird.module.css */
 .bandContainer {
-  display: grid;
-  grid-template-columns: 25% 75%;
-  align-items: flex-start;
   max-width: 1440px;
   margin: 0 auto;
-  padding: 120px 30px 30px;
+  padding: 15px 30px 30px;
+  position: relative; /* For ScrollTrigger context */
+}
+
+.copyText {
+  border-top: 1px solid #8d8d8d;
+  display: grid;
+  grid-template-columns: 25% 75%; /* Apply 25%/75% ratio here for left and right columns */
+  align-items: flex-start;
   gap: 40px;
+  padding-top: 25px;
 }
 
 .leftColumn {
@@ -21,13 +27,15 @@
   line-height: 87%;
   text-align: left;
   font-weight: 700;
-  color: #fff; /* Added for consistency */
+  color: #fff;
 }
 
 .rightColumn {
   display: flex;
   align-items: center;
 }
+
+/* Removing the upward */
 
 .description {
   letter-spacing: -1.44px;
@@ -36,22 +44,25 @@
   line-height: 108%;
   font-weight: 500;
   text-align: left;
-  white-space: pre-wrap; 
+  white-space: pre-wrap;
   padding-right: 30px;
 }
 
 /* Responsive adjustments */
 @media (max-width: 575px) {
-  .bandContainer {
-    grid-template-columns: 1fr;
+  .copyText {
+    grid-template-columns: 1fr; /* Stack columns on mobile */
     gap: 30px;
+  }
+
+  .bandContainer {
     padding: 120px 17px 30px;
   }
-  
+
   .title {
     font-size: 42px;
   }
-  
+
   .description {
     font-size: 20px;
     letter-spacing: -0.96px;

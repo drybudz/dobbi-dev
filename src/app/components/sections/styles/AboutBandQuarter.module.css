@@ -1,0 +1,149 @@
+/* components/sections/styles/AboutBandQuarter.module.css, its called Quarter but at the end 30/70 to match Figma */
+
+.bandContainer {
+  max-width: 1350px;
+  margin: 0 auto;
+  padding: 25px 20px;
+  display: grid;
+  
+}
+
+.copyText {
+  grid-template-columns: 30% 70%; /* 30% for leftColumn, 70% for rightColumn */
+  align-items: flex-start;
+  border-top: 1px solid #8D8D8D; /* Moved border-top here */
+  display: grid;
+  padding-top: 25px;
+}
+
+.leftColumn {
+  display: flex;
+  align-items: flex-start; /* Align h3 to top */
+}
+
+.title {
+  letter-spacing: -1.96px;
+  margin: 0;
+  font-size: 54px;
+  line-height: 87%;
+  text-align: left; /* Default left align for desktop */
+  font-weight: 700;
+}
+
+.rightColumn {
+  display: flex;
+  align-items: center; /* Center text vertically */
+  height: 100%;
+}
+
+.text {
+  letter-spacing: -1.1px;
+  color: #fff;
+  margin: 0;
+  font-size: 25px;
+  line-height: 108%;
+  text-align: left; /* Default left align for desktop */
+  font-weight: 500;
+}
+@media (max-width: 1px) {
+
+}
+
+@media (max-width: 1000px) {
+
+    .bandContainer {
+    grid-template-columns: 1fr; /* Stacks columns into a single column */
+    /* margin: 0 20px !important; */
+  }
+
+  .copyText {
+    grid-template-columns: 1fr; /* Stack columns in copyText on mobile */
+    border-top: 1px solid #8D8D8D; /* Moved border-top here */
+  }
+
+  .leftColumn {
+    margin-bottom: 20px; /* Add space between the stacked title and text */
+    align-items: center; /* Still centering flex items for 768px breakpoint */
+    text-align: center; /* Center text within the title column for 768px breakpoint */
+  }
+
+  .title {
+    font-size: 54px; /* Adjust font size for mobile */
+    letter-spacing: -1.96px; /* Adjust letter spacing for mobile */
+    text-align: left; /* Center text for 768px breakpoint */
+    
+  }
+
+  .rightColumn {
+    height: auto; /* Allow height to adjust to content on mobile */
+  }
+
+  .text {
+    font-size: 25px; /* Adjust font size for mobile */
+    letter-spacing: -1.5px; /* Adjust letter spacing for mobile */
+    text-align: left; /* Center text for 768px breakpoint */
+    margin-top: 20px;
+  }
+    
+
+}
+
+@media (max-width: 768px) {
+  .bandContainer {
+    grid-template-columns: 1fr; /* Stacks columns into a single column */
+    /* margin: 0 20px !important; */
+  }
+
+  .copyText {
+    grid-template-columns: 1fr; /* Stack columns in copyText on mobile */
+    border-top: 1px solid #8D8D8D; /* Moved border-top here */
+  }
+
+  .leftColumn {
+    margin-bottom: 20px; /* Add space between the stacked title and text */
+    align-items: center; /* Still centering flex items for 768px breakpoint */
+    text-align: center; /* Center text within the title column for 768px breakpoint */
+  }
+
+  .title {
+    font-size: 54px; /* Adjust font size for mobile */
+    letter-spacing: -1.96px; /* Adjust letter spacing for mobile */
+    text-align: left; /* Center text for 768px breakpoint */
+    
+  }
+
+  .rightColumn {
+    height: auto; /* Allow height to adjust to content on mobile */
+  }
+
+  .text {
+    font-size: 25px; /* Adjust font size for mobile */
+    letter-spacing: -1.5px; /* Adjust letter spacing for mobile */
+    text-align: left; /* Center text for 768px breakpoint */
+    margin-top: 20px;
+  }
+}
+
+/* New breakpoint for "under 575px" (using max-width: 574px) */
+@media (max-width: 574px) {
+  .leftColumn {
+    align-items: flex-start; /* Revert to top alignment for flex items */
+    text-align: left; /* Left align text within the title column */
+    margin: 0; /* Remove margin auto to prevent centering */
+  }
+
+  .title {
+    font-size: 35px; /* Slightly smaller font for very small screens */
+    text-align: left; /* Explicitly left align title */
+    margin: 0; /* Remove margin auto to prevent centering */
+  }
+
+  .rightColumn {
+    /* No need to change align-items here if text-align is applied to .text */
+  }
+
+  .text {
+    font-size: 20px; /* Keep font size */
+    text-align: left; /* Explicitly left align text */
+  }
+}

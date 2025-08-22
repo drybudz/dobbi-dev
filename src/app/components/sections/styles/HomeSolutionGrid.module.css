@@ -31,6 +31,7 @@
 .solutionItem {
   text-align: left;
   cursor: default; /* Indicates these are interactive on desktop */
+  position: relative; /* For parallax transform context */
 }
 
 .solutionTitle {

@@ -20,10 +20,23 @@
     letter-spacing: -3.44px;
     font-weight: 700;
     text-align: center;
-    z-index: 0; /* Ensure title is on top of all images */
+    z-index: 10; /* Ensure title is on top of all images */
     position: relative;
     text-wrap: balance;
     margin: 0;
+    padding: 0;
+}
+
+
+.noImages {
+  height: 70vh; /* Enforce full viewport height */
+  display: flex;
+  justify-content: center;
+  align-items: center; /* Reinforce vertical centering */
+}
+
+.noImages .floatingImagesGrid {
+  display: none; /* Hide grid when no images */
 }
 
 .floatingImagesGrid {
@@ -51,6 +64,7 @@
     object-fit: cover;
     /* No need for width/height here as they are set via props in JSX and handled by Next/Image */
 }
+/* ? Remove this one above? k.: */
 
 /* Responsive Adjustments */
 
@@ -71,23 +85,22 @@
 
 /* Mobile (<= 576px breakpoint) */
 @media (max-width: 576px) {
-    .title {
-        z-index: 5; /* Ensure title is on top of all images */
-    }
-
-    .HeroBannerContainer {
-        height: 80vh; /* Shorter height on mobile */
-    }
-    .title {
-        font-size: 45px; /* Font size 4px as per request - assuming typo and meant 40px */
-        letter-spacing: -2.44px;
-    }
-    .floatingImagesGrid {
-        /* Mobile: 5 columns, auto rows */
-        grid-template-columns: repeat(5, 52px); /* 5 columns, each 52px wide */
-        grid-template-rows: repeat(auto-fit, 92px); /* Auto-fit rows, each 92px high */
-        gap: 30px 60px; /* Smaller gaps for mobile */
-    }
+  .title {
+    z-index: 10;
+    font-size: 45px;
+    letter-spacing: -2.44px;
+  }
+  .HeroBannerContainer {
+    min-height: 70vh; /* Adjust for mobile */
+  }
+  .floatingImagesGrid {
+    grid-template-columns: repeat(5, 52px);
+    grid-template-rows: repeat(auto-fit, 92px);
+    gap: 30px 60px;
+  }
+  .noImages {
+    height: 70vh; /* Match mobile height */
+  }
 }
 
 /* Ensure the grid takes full width even if content doesn't perfectly fill it */

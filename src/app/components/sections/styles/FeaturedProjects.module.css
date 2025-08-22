@@ -5,6 +5,7 @@
   padding: 80px 30px 0px;
 }
 
+/* Full-width text styling */
 .fullWidthText {
   font-size: 45px;
   line-height: 110%;
@@ -20,6 +21,7 @@
   margin: 0 0 100px 0;
 }
 
+/* Project container grid layout */
 .projectContainer {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -27,6 +29,7 @@
   margin-bottom: 110px;
 }
 
+/* Image column styling */
 .imageColumn {
   position: relative; /* Crucial for absolute positioning of children */
   aspect-ratio: 1/1;
@@ -43,7 +46,7 @@
   overflow: hidden; /* Also hide overflow here for good measure */
 }
 
-/* NEW: Styles for the parallax wrapper div */
+/* Styles for the parallax wrapper div */
 .parallaxWrapper {
   position: absolute;
   width: 100%;
@@ -51,16 +54,17 @@
   top: -10%; /* Center this taller div vertically within its parent */
   left: 0;
   will-change: transform; /* Hint to browsers for performance */
-  transition: transform 0.1s linear; /* Smooth the parallax movement */
+  /* Removed transition since GSAP handles the animation */
 }
 
+/* Image styling */
 .projectImage {
   /* Next.js Image with fill will now fill the .parallaxWrapper */
   object-fit: cover; /* Ensures the image always covers the area of .parallaxWrapper */
   /* No need for position/width/height here as 'fill' handles it */
 }
 
-
+/* Text column styling */
 .textColumn {
   display: flex;
   flex-direction: column;
@@ -164,7 +168,6 @@
 
 /* Further Mobile Portrait adjustments */
 @media (max-width: 575px) {
-
   .fullWidthText {
     letter-spacing: -1.44px;
   }

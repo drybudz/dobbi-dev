@@ -152,31 +152,34 @@ const HeroBannerFloating = ({ title, projects, imageDisplayOption }) => {
 
     return (
         <section>
-            <div className={styles.HeroBannerContainer} id="hero-banner-floating" ref={heroRef}>
-                <h2 className={styles.title}>
-                    {splitTitle.map((word, i) => (
-                        <span
-                            key={word + i}
-                        >
-                            {word + " "}
-                        </span>
-                    ))}
-                </h2>
-                <div className={styles.floatingImagesGrid}>
-                    {/* The FloatingImage component now handles the check internally */}
-                    {finalImageUrls.map((url, index) => (
-                        <FloatingImage
-                            key={url + index}
-                            src={url}
-                            alt={`Floating Image ${index}`}
-                            index={index}
-                            imageWidth={imageW}
-                            imageHeight={imageH}
-                        />
-                    ))}
-                </div>
-            </div>
-        </section>
+      <div
+        className={`${styles.HeroBannerContainer} ${
+          imageDisplayOption === 'noImages' ? styles.noImages : ''
+        }`}
+        id="hero-banner-floating"
+        ref={heroRef}
+      >
+        <h2 className={styles.title}>
+          {splitTitle.map((word, i) => (
+            <span key={word + i}>
+              {word + ' '}
+            </span>
+          ))}
+        </h2>
+        <div className={styles.floatingImagesGrid}>
+          {finalImageUrls.map((url, index) => (
+            <FloatingImage
+              key={url + index}
+              src={url}
+              alt={`Floating Image ${index}`}
+              index={index}
+              imageWidth={imageW}
+              imageHeight={imageH}
+            />
+          ))}
+        </div>
+      </div>
+    </section>
     );
 };
 

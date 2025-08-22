@@ -4,8 +4,9 @@
     align-items: flex-start;
     max-width: 1350px;
     margin: 0 auto;
-    padding: 80px 20px;
+    padding: 25px 0px;
     display: grid;
+    border-top: 1px solid #8D8D8D;
 }
 
 .leftColumn {
@@ -29,7 +30,7 @@
 }
 
 .text {
-    letter-spacing: -.96px;
+    letter-spacing: -1.1px;
     color: #fff;
     margin: 0;
     font-size: 25px;

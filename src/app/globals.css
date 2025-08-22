@@ -397,6 +397,10 @@ header .contactInfo {
   }
 }
 
+.workPage section {
+    height: 100vh;
+}
+
 
 /* END Work Page Styles */
 

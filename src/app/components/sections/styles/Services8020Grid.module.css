@@ -67,7 +67,6 @@
   height: auto;
 }
 
-
 .serviceTitle {
   font-size: 20px; /* Adjust as per your design */
   line-height: 112%;
@@ -139,7 +138,7 @@
 
   .leftColumn {
     gap: 50px; /* Smaller gap for mobile */
-    padding: 20px 0 40px 0;
+    padding: 20px 0 90px 0;
   }
 
   .title {
@@ -149,10 +148,13 @@
 
   .description {
     font-size: 20px; /* Smaller description on mobile */
+    white-space: normal;
   }
 
   .rightColumn {
     gap: 20px; /* Adjust gap between service items */
+    padding: 40px 0;
+    border-top: 1px solid #8D8D8D;
   }
 
   .serviceTitle {

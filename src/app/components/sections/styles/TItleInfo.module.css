@@ -30,6 +30,13 @@
   text-align: center;
 }
 
+@media (max-width: 900px) {
+  .description {
+     white-space: normal; /* Allow text to wrap on smaller screens */
+  }
+  
+
+}
 @media (max-width: 575px) {
   .title {
     font-size: 36px;
