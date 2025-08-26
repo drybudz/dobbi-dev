@@ -151,7 +151,7 @@ const HeroBannerFloating = ({ title, projects, imageDisplayOption }) => {
     const splitTitle = title.split(" ");
 
     return (
-        <section>
+        <section id="hbs">
       <div
         className={`${styles.HeroBannerContainer} ${
           imageDisplayOption === 'noImages' ? styles.noImages : ''

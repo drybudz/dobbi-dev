@@ -5,8 +5,12 @@
   gap: 80px;
   max-width: 1200px;
   margin: 0 auto;
-  padding: 160px 20px;
+  padding: 90px 20px 160px 20px;
   align-items: center;
+  height: calc(100vh - 70px);
+  justify-content: center;
+  position: relative; /* For ScrollTrigger context */
+  overflow: hidden; /* Prevent overflow from parallax */
 }
 
 .title {
@@ -28,15 +32,15 @@
   letter-spacing: -0.96px;
   white-space: pre-wrap;
   text-align: center;
+  transform: translateY(0); /* Ensure proper positioning for parallax */
 }
 
 @media (max-width: 900px) {
   .description {
-     white-space: normal; /* Allow text to wrap on smaller screens */
+     white-space: normal;
   }
-  
-
 }
+
 @media (max-width: 575px) {
   .title {
     font-size: 36px;
@@ -53,7 +57,7 @@
   }
 
   .titleInfo {
-    padding: 90px 17px 30px 17px;
+    padding: 0px 17px 30px 17px;
     align-items: center;
     gap: 30px;
   }

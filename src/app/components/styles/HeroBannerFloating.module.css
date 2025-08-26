@@ -25,11 +25,12 @@
     text-wrap: balance;
     margin: 0;
     padding: 0;
+    top: -70px;
 }
 
 
 .noImages {
-  height: 70vh; /* Enforce full viewport height */
+  height: calc(100vh + 30px); /* Enforce full viewport height */
   display: flex;
   justify-content: center;
   align-items: center; /* Reinforce vertical centering */
@@ -99,7 +100,7 @@
     gap: 30px 60px;
   }
   .noImages {
-    height: 70vh; /* Match mobile height */
+    height: 100vh; /* Match mobile height */
   }
 }
 
