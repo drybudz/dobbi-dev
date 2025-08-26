@@ -1,18 +1,20 @@
 /* components/sections/styles/Services8020Grid.module.css */
 .gridContainer {
     grid-template-columns: 77% 23%;
-    align-items: flex-start;
+    /* align-items: flex-start; */
+    align-items: anchor-center;
     max-width: 1820px;
     margin: 0 auto;
-    padding: 150px 30px 30px;
+    padding: 30px 30px 30px;
     display: grid;
+    height: calc(100vh - 120px);
     /* gap: 40px; */
 }
 
 .leftColumn {
   display: flex;
   flex-direction: column;
-  gap: 200px;
+  gap: 160px;
   padding-right: 10px;
 }
 

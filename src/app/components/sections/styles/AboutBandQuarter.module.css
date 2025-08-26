@@ -1,9 +1,9 @@
 /* components/sections/styles/AboutBandQuarter.module.css, its called Quarter but at the end 30/70 to match Figma */
 
 .bandContainer {
-  max-width: 1350px;
+  max-width: 1440px;
   margin: 0 auto;
-  padding: 25px 20px;
+  padding: 25px 25px;
   display: grid;
   
 }
