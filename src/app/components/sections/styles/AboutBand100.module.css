@@ -9,7 +9,8 @@
 }
 
 .text {
-  letter-spacing: -.96px;
+  /* letter-spacing: -.96px; */
+  letter-spacing: -1.64px;
   color: #fff;
   margin: 0;
   font-size: 48px;

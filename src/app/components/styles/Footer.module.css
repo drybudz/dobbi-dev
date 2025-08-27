@@ -9,6 +9,7 @@
   max-width: 1820px;
   margin: 0 auto;
   background-color: #000;
+  z-index: -100;
 }
 
 .leftContainer {

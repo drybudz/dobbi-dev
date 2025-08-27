@@ -1,14 +1,22 @@
 /* components/sections/styles/Services8020Grid.module.css */
+.sectionWrapper {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  width: 100%;
+  min-height: 100vh;
+  padding: 30px 0;
+}
+
 .gridContainer {
-    grid-template-columns: 77% 23%;
-    /* align-items: flex-start; */
-    align-items: anchor-center;
-    max-width: 1820px;
-    margin: 0 auto;
-    padding: 30px 30px 30px;
-    display: grid;
-    height: calc(100vh - 120px);
-    /* gap: 40px; */
+  grid-template-columns: 77% 23%;
+  align-items: flex-start;
+  max-width: 1820px;
+  margin: 0 auto;
+  padding: 30px 30px;
+  display: grid;
+  height: auto;
+  width: 100%;
 }
 
 .leftColumn {
@@ -19,152 +27,149 @@
 }
 
 .title {
-    letter-spacing: -4.96px;
-    margin: 0;
-    font-size: 80px;
-    line-height: 87%;
-    text-align: left;
-    font-weight: 700;
-    white-space: pre-wrap;
+  letter-spacing: -4.96px;
+  margin: 0;
+  font-size: 80px;
+  line-height: 87%;
+  text-align: left;
+  font-weight: 700;
+  white-space: pre-wrap;
 }
 
 .description {
-    letter-spacing: -.48px;
-    margin: 0;
-    font-size: 25px;
-    line-height: 108%;
-    text-align: left;
-    white-space: pre-wrap;
+  letter-spacing: -.48px;
+  margin: 0;
+  font-size: 25px;
+  line-height: 108%;
+  text-align: left;
+  white-space: pre-wrap;
 }
 
 .rightColumn {
   display: flex;
   flex-direction: column;
-  gap: 30px; /* This gap will now apply between service items */
+  gap: 30px;
+  transform: translateY(0); /* Ensure proper positioning for parallax */
 }
 
 /* --- Services List Styling --- */
 .servicesList {
   display: flex;
   flex-direction: column;
-  /* We'll control gap on .serviceItem.active directly */
 }
 
 .serviceItem {
-  cursor: ns-resize; /* Indicate it's clickable/hoverable */
+  cursor: ns-resize;
   transition:
     color 0.7s ease,
     padding 0.7s ease;
-    height: 0.7s ease; /* Add padding to transition */
-  /* Remove default margins/padding that might interfere */
-   overflow: hidden;
+  height: 0.7s ease;
+  overflow: hidden;
   margin: 0;
-  padding: 0; /* Ensure no initial padding */
+  padding: 0;
 }
 
-/* Add space above and below when active */
 .serviceItem.active {
-  padding-top: 40px; /* Adjust as needed for space above */
-  padding-bottom: 40px; /* Adjust as needed for space below */
+  padding-top: 40px;
+  padding-bottom: 40px;
   height: auto;
 }
 
 .serviceTitle {
-  font-size: 20px; /* Adjust as per your design */
+  font-size: 20px;
   line-height: 112%;
   letter-spacing: -1.12px; 
-  font-weight: 500; /* Default gray color */
+  font-weight: 500;
   color: #8D8D8D;
   margin: 0; 
   transition:
     color 0.3s ease,
-    font-weight 0.3s ease; /* Smooth transition for font-weight */
+    font-weight 0.3s ease;
 }
-
-/* When the serviceItem is active */
-/* -----------HOVERED----------- */
 
 .serviceItem.active .serviceTitle {
   font-size: 25px;
-  color: #fff; /* Title turns white on hover */
-  font-weight: 700; /* Title turns bold on hover */
+  color: #fff;
+  font-weight: 700;
   margin-bottom: 10px;
   line-height: 87%;
   letter-spacing: -1.12px; 
 }
 
-/* Description and Options */
 .serviceDescription {
-  font-size: 25px; /* Adjust as per your design */
+  font-size: 25px;
   line-height: 87%;
   letter-spacing: -1.12px; 
-  color: #fff; /* Description is white when active */
-  white-space: pre-wrap; /* Maintains line breaks from Sanity text field */ 
+  color: #fff;
+  white-space: pre-wrap;
   margin-bottom: 25px;
 }
 
 .serviceOptionsList {
-  list-style: none; /* Removes default bullet points */
+  list-style: none;
   padding: 0;
   margin: 0;
-  display: flex; /* To make options horizontal */
-  flex-wrap: wrap; /* Wrap options if they get too long */
-  gap: 2px; /* Space between options and dots */
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2px;
   align-items: center;
   text-transform: capitalize;
 }
 
 .serviceOptionItem {
-  font-size: 12px; /* Adjust as per your design */
+  font-size: 12px;
   line-height: 1;
-  color: #fff; /* Options are white when active */
+  color: #fff;
   display: flex;
   align-items: center;
 }
 
-/* Add dots between options */
 .serviceOptionItem:not(:last-child)::after {
   content: '•';
-  color: #fff; /* Dot color */
-  margin: 0 5px; /* Space around the dot */
+  color: #fff;
+  margin: 0 5px;
 }
-
 
 /* Responsive */
 @media (max-width: 575px) {
+  .sectionWrapper {
+    min-height: auto;
+    padding: 0;
+  }
 
   .gridContainer {
-    grid-template-columns: 1fr; /* Stack columns */
-    padding: 50px 17px 40px; /* Adjust padding for mobile */
+    grid-template-columns: 1fr;
+    padding: 50px 17px 40px;
   }
 
   .leftColumn {
-    gap: 50px; /* Smaller gap for mobile */
+    gap: 50px;
     padding: 20px 0 90px 0;
   }
 
   .title {
-    font-size: 35px; /* Smaller title on mobile */
+    font-size: 35px;
     letter-spacing: -2.5px;
+    white-space: normal;
   }
 
   .description {
-    font-size: 20px; /* Smaller description on mobile */
+    font-size: 20px;
     white-space: normal;
   }
 
   .rightColumn {
-    gap: 20px; /* Adjust gap between service items */
+    gap: 20px;
     padding: 40px 0;
     border-top: 1px solid #8D8D8D;
   }
 
   .serviceTitle {
-    font-size: 20px; /* Adjust service title size on mobile */
+    font-size: 20px;
   }
 
   .serviceDescription {
-    font-size: 25px; /* Adjust description size on mobile */
+    font-size: 25px;
   }
 
   .serviceOptionsList {
@@ -172,17 +177,11 @@
   }
 
   .serviceOptionItem {
-    font-size: 14px; /* Adjust option size on mobile */
+    font-size: 14px;
   }
 
   .serviceItem.active {
-    padding-top: 30px; /* Adjust for mobile */
-    padding-bottom: 30px; /* Adjust for mobile */
+    padding-top: 30px;
+    padding-bottom: 30px;
   }
-
-  .title {
-    white-space: normal;
-  }
-
-      
 }

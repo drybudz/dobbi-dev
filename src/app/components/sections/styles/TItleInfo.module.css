@@ -29,7 +29,8 @@
   font-size: 25px;
   line-height: 108%;
   font-weight: 500;
-  letter-spacing: -0.96px;
+  /* letter-spacing: -0.96px; */
+  letter-spacing: -1.44px;
   white-space: pre-wrap;
   text-align: center;
   transform: translateY(0); /* Ensure proper positioning for parallax */

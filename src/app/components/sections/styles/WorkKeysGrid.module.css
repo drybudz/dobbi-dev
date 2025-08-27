@@ -3,6 +3,7 @@
   max-width: 1440px;
   margin: 0 auto;
   padding: 60px 25px 40px;
+  transform: translateY(0); /* Ensure proper positioning for parallax */
 }
 
 .grid {
@@ -22,7 +23,7 @@
   margin: 0;
   font-size: 54px;
   line-height: 87%;
-  letter-spacing: -1.96px;
+  letter-spacing: -.96px;
   align-self: start;
 }
 
@@ -30,7 +31,8 @@
   padding: 20px 0px 0px;
   text-align: left;
   margin: 0px 0px 20px 0px;
-  transition: none; /* Let JavaScript handle all transitions */
+  cursor: default;
+  position: relative; /* For parallax transform context */
 }
 
 .keyTitle {
@@ -42,7 +44,7 @@
   color: #fff;
   border-top: 1px solid #8D8D8D;
   padding: 10px 0 20px;
-  transition: border-top-color 0.3s ease, border-width 0.3s ease;
+  transition: none; /* GSAP handles all animations */
 }
 
 .keyDescription {
@@ -51,22 +53,9 @@
   margin: 0;
   color: #8D8D8D;
   font-weight: 500;
-  letter-spacing: -0.6px;
+  letter-spacing: -.48px;
   white-space: pre-wrap;
-  transition: color 0.3s ease, font-weight 0.3s ease;
-}
-
-/* Desktop hover effects */
-@media (hover: hover) and (pointer: fine) {
-  .keyItem:hover .keyTitle {
-    border-top-color: #fff;
-    border-top-width: 2px;
-  }
-  
-  .keyItem:hover .keyDescription {
-    color: #fff;
-    font-weight: 700;
-  }
+  transition: none; /* GSAP handles all animations */
 }
 
 .subtitleColumn {
@@ -81,7 +70,7 @@
   text-align: left;
   font-size: 25px;
   white-space: pre-wrap;
-  letter-spacing: -0.6px;
+  letter-spacing: -1.44px;
   font-weight: 500;
 }
 
@@ -94,7 +83,6 @@
 
   .title {
     font-size: 35px;
-    /* padding: 0 20px; */
   }
 
   .subtitle {
@@ -115,21 +103,5 @@
 
   .titleColumn {
     margin-bottom: 30px;
-  }
-  
-  /* Mobile-specific active state (handled by IntersectionObserver) */
-  .keyItem.active .keyTitle {
-    border-top-color: #fff;
-    border-top-width: 2px;
-  }
-  
-  .keyItem.active .keyDescription {
-    color: #fff;
-    font-weight: 700;
-  }
-
-  .keyTitle,
-  .keyDescription {
-    transition: all 0.3s ease !important;
   }
 }

@@ -1,7 +1,13 @@
 // components/sections/WorkKeysGrid.js
 'use client';
-import { useRef, useEffect, useState } from 'react';
+import { useRef, useEffect, useState, useCallback } from 'react';
 import styles from './styles/WorkKeysGrid.module.css';
+import { gsap } from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
+
+if (typeof window !== 'undefined') {
+  gsap.registerPlugin(ScrollTrigger);
+}
 
 export default function WorkKeysGrid({ 
   title, 
@@ -9,7 +15,13 @@ export default function WorkKeysGrid({
   items = [] 
 }) {
   const keyItemsRef = useRef([]);
+  const workKeysRef = useRef(null);
   const [isMobile, setIsMobile] = useState(false);
+  const animationsRef = useRef([]); // Store all animation references
+
+  const setKeyItemRef = useCallback((el, index) => {
+    keyItemsRef.current[index] = el;
+  }, []);
 
   useEffect(() => {
     const checkMobile = () => {
@@ -22,54 +34,161 @@ export default function WorkKeysGrid({
   }, []);
 
   useEffect(() => {
-    if (!isMobile) return;
+    // Clear previous animations
+    animationsRef.current.forEach(anim => {
+      if (anim && anim.scrollTrigger) {
+        anim.scrollTrigger.kill();
+      } else if (anim && typeof anim.kill === 'function') {
+        anim.kill();
+      }
+    });
+    animationsRef.current = [];
 
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          const keyTitle = entry.target.querySelector(`.${styles.keyTitle}`);
-          const keyDesc = entry.target.querySelector(`.${styles.keyDescription}`);
-          
-          if (entry.isIntersecting) {
-            // Item is in view
-            keyTitle.style.borderTopColor = '#fff';
-            keyTitle.style.borderWidth = '2px';
-            keyDesc.style.color = '#fff';
-            keyDesc.style.fontWeight = '700';
-            // Animate in with 0.3s duration
-            keyTitle.style.transition = 'border-top-color 0.3s ease, border-width 0.3s ease';
-            keyDesc.style.transition = 'color 0.3s ease, font-weight 0.3s ease';
-          } else {
-            // Item is out of view
-            keyTitle.style.borderTopColor = '#8D8D8D';
-            keyTitle.style.borderWidth = '1px';
-            keyDesc.style.color = '#8D8D8D';
-            keyDesc.style.fontWeight = '500';
-            // Animate out with 0.3s duration
-            keyTitle.style.transition = 'border-top-color 0.3s ease, border-width 0.3s ease';
-            keyDesc.style.transition = 'color 0.3s ease, font-weight 0.3s ease';
+    // Parallax effect for the entire workKeys section
+    if (workKeysRef.current) {
+      const parallaxAnim = gsap.fromTo(
+        workKeysRef.current,
+        { y: 30 },
+        {
+          y: -70,
+          scrollTrigger: {
+            trigger: workKeysRef.current,
+            start: 'top 80%',
+            end: 'bottom top',
+            scrub: true,
+            invalidateOnRefresh: true,
+            id: 'workKeys-parallax'
+          }
+        }
+      );
+      animationsRef.current.push(parallaxAnim);
+    }
+
+    // Staggered animation for keyItems
+    const keyItems = keyItemsRef.current.filter(item => item);
+    if (keyItems.length) {
+      const staggerAnim = ScrollTrigger.create({
+        trigger: workKeysRef.current,
+        start: 'top 80%',
+        end: 'top 30%',
+        scrub: true,
+        id: 'workKeys-stagger',
+        onUpdate: (self) => {
+          const progress = self.progress;
+          keyItems.forEach((item, index) => {
+            const delay = index * 0.2;
+            const keyTitle = item.querySelector(`.${styles.keyTitle}`);
+            const keyDesc = item.querySelector(`.${styles.keyDescription}`);
+
+            if (keyTitle && keyDesc) {
+              if (progress > delay) {
+                gsap.to(keyTitle, {
+                  borderTopColor: '#FFFFFF',
+                  borderWidth: '2px',
+                  duration: 0.5,
+                  overwrite: true
+                });
+                gsap.to(keyDesc, {
+                  color: '#FFFFFF',
+                  fontWeight: 700,
+                  duration: 0.5,
+                  overwrite: true
+                });
+              } else {
+                gsap.to(keyTitle, {
+                  borderTopColor: '#8D8D8D',
+                  borderWidth: '1px',
+                  duration: 0.5,
+                  overwrite: true
+                });
+                gsap.to(keyDesc, {
+                  color: '#8D8D8D',
+                  fontWeight: 500,
+                  duration: 0.5,
+                  overwrite: true
+                });
+              }
+            }
+          });
+        }
+      });
+      animationsRef.current.push(staggerAnim);
+    }
+
+    // Mobile scroll and desktop hover behavior
+    items.slice(0, 5).forEach((item, index) => {
+      const keyItem = keyItemsRef.current[index];
+      if (!keyItem) return;
+
+      const keyTitle = keyItem.querySelector(`.${styles.keyTitle}`);
+      const keyDesc = keyItem.querySelector(`.${styles.keyDescription}`);
+
+      if (!keyTitle || !keyDesc) return;
+
+      gsap.set(keyTitle, { borderTopColor: '#8D8D8D', borderWidth: '1px' });
+      gsap.set(keyDesc, { color: '#8D8D8D', fontWeight: 500 });
+
+      if (isMobile) {
+        const mobileAnim = ScrollTrigger.create({
+          trigger: keyItem,
+          start: 'bottom bottom-=100px',
+          end: 'top top+=50px',
+          id: `workKeys-mobile-${index}`,
+          onEnter: () => {
+            gsap.to(keyTitle, { borderTopColor: '#FFFFFF', borderWidth: '2px', duration: 0.5 });
+            gsap.to(keyDesc, { color: '#FFFFFF', fontWeight: 700, duration: 0.5 });
+          },
+          onLeave: () => {
+            gsap.to(keyTitle, { borderTopColor: '#8D8D8D', borderWidth: '1px', duration: 0.5 });
+            gsap.to(keyDesc, { color: '#8D8D8D', fontWeight: 500, duration: 0.5 });
+          },
+          onEnterBack: () => {
+            gsap.to(keyTitle, { borderTopColor: '#FFFFFF', borderWidth: '2px', duration: 0.5 });
+            gsap.to(keyDesc, { color: '#FFFFFF', fontWeight: 700, duration: 0.5 });
+          },
+          onLeaveBack: () => {
+            gsap.to(keyTitle, { borderTopColor: '#8D8D8D', borderWidth: '1px', duration: 0.5 });
+            gsap.to(keyDesc, { color: '#8D8D8D', fontWeight: 500, duration: 0.5 });
           }
         });
-      },
-      {
-        threshold: 1, // Trigger when 50% of item is visible
-        rootMargin: '0px 0px -280px 0px' // Adjust this to change when the effect triggers
+        animationsRef.current.push(mobileAnim);
+      } else {
+        const handleMouseEnter = () => {
+          gsap.to(keyTitle, { borderTopColor: '#FFFFFF', borderWidth: '2px', duration: 0.3 });
+          gsap.to(keyDesc, { color: '#FFFFFF', fontWeight: 700, duration: 0.3 });
+        };
+        const handleMouseLeave = () => {
+          gsap.to(keyTitle, { borderTopColor: '#8D8D8D', borderWidth: '1px', duration: 0.3 });
+          gsap.to(keyDesc, { color: '#8D8D8D', fontWeight: 500, duration: 0.3 });
+        };
+        
+        keyItem.addEventListener('mouseenter', handleMouseEnter);
+        keyItem.addEventListener('mouseleave', handleMouseLeave);
+        
+        // Store cleanup functions
+        animationsRef.current.push({
+          kill: () => {
+            keyItem.removeEventListener('mouseenter', handleMouseEnter);
+            keyItem.removeEventListener('mouseleave', handleMouseLeave);
+          }
+        });
       }
-    );
-
-    keyItemsRef.current.forEach((item) => {
-      if (item) observer.observe(item);
     });
 
     return () => {
-      keyItemsRef.current.forEach((item) => {
-        if (item) observer.unobserve(item);
+      // Clean up only our own animations
+      animationsRef.current.forEach(anim => {
+        if (anim && anim.scrollTrigger) {
+          anim.scrollTrigger.kill();
+        } else if (anim && typeof anim.kill === 'function') {
+          anim.kill();
+        }
       });
     };
-  }, [isMobile, items]);
+  }, [items, isMobile]);
 
   return (
-    <section className={styles.workKeys}>
+    <section className={styles.workKeys} ref={workKeysRef}>
       <div className={styles.grid}>
         <div className={styles.titleColumn}>
           <h2 className={styles.title}>{title}</h2>
@@ -79,7 +198,7 @@ export default function WorkKeysGrid({
           <div 
             key={index} 
             className={styles.keyItem}
-            ref={(el) => (keyItemsRef.current[index] = el)}
+            ref={(el) => setKeyItemRef(el, index)}
             style={{
               gridColumn: index < 3 ? index + 2 : index - 1,
               gridRow: index < 3 ? 1 : 2
