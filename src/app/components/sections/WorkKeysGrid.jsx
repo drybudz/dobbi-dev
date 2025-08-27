@@ -17,7 +17,7 @@ export default function WorkKeysGrid({
   const keyItemsRef = useRef([]);
   const workKeysRef = useRef(null);
   const [isMobile, setIsMobile] = useState(false);
-  const animationsRef = useRef([]); // Store all animation references
+  const animationsRef = useRef([]);
 
   const setKeyItemRef = useCallback((el, index) => {
     keyItemsRef.current[index] = el;
@@ -53,7 +53,7 @@ export default function WorkKeysGrid({
           y: -70,
           scrollTrigger: {
             trigger: workKeysRef.current,
-            start: 'top 80%',
+            start: 'top 50%',
             end: 'bottom top',
             scrub: true,
             invalidateOnRefresh: true,
@@ -66,17 +66,21 @@ export default function WorkKeysGrid({
 
     // Staggered animation for keyItems
     const keyItems = keyItemsRef.current.filter(item => item);
-    if (keyItems.length) {
+    if (keyItems.length && workKeysRef.current) {
+      // Calculate the total delay needed for all items
+      const totalItems = keyItems.length;
+      const delayPerItem = 0.8 / totalItems; // Distribute across 80% of progress
+      
       const staggerAnim = ScrollTrigger.create({
         trigger: workKeysRef.current,
-        start: 'top 80%',
-        end: 'top 30%',
+        start: 'top 80%', // Start when top is 85% in view
+        end: 'top 30%', // End when bottom is 15% from bottom of viewport
         scrub: true,
         id: 'workKeys-stagger',
         onUpdate: (self) => {
           const progress = self.progress;
           keyItems.forEach((item, index) => {
-            const delay = index * 0.2;
+            const delay = index * delayPerItem;
             const keyTitle = item.querySelector(`.${styles.keyTitle}`);
             const keyDesc = item.querySelector(`.${styles.keyDescription}`);
 
@@ -85,26 +89,26 @@ export default function WorkKeysGrid({
                 gsap.to(keyTitle, {
                   borderTopColor: '#FFFFFF',
                   borderWidth: '2px',
-                  duration: 0.5,
+                  duration: 0.3,
                   overwrite: true
                 });
                 gsap.to(keyDesc, {
                   color: '#FFFFFF',
                   fontWeight: 700,
-                  duration: 0.5,
+                  duration: 0.3,
                   overwrite: true
                 });
               } else {
                 gsap.to(keyTitle, {
                   borderTopColor: '#8D8D8D',
                   borderWidth: '1px',
-                  duration: 0.5,
+                  duration: 0.3,
                   overwrite: true
                 });
                 gsap.to(keyDesc, {
                   color: '#8D8D8D',
                   fontWeight: 500,
-                  duration: 0.5,
+                  duration: 0.3,
                   overwrite: true
                 });
               }
@@ -165,7 +169,6 @@ export default function WorkKeysGrid({
         keyItem.addEventListener('mouseenter', handleMouseEnter);
         keyItem.addEventListener('mouseleave', handleMouseLeave);
         
-        // Store cleanup functions
         animationsRef.current.push({
           kill: () => {
             keyItem.removeEventListener('mouseenter', handleMouseEnter);
@@ -176,7 +179,6 @@ export default function WorkKeysGrid({
     });
 
     return () => {
-      // Clean up only our own animations
       animationsRef.current.forEach(anim => {
         if (anim && anim.scrollTrigger) {
           anim.scrollTrigger.kill();
