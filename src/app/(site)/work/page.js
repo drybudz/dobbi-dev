@@ -1,6 +1,6 @@
 'use client';
 import { useAppContext } from "@/app/components/AppContext";
-import TitleInfo from "@/app/components/sections/TitleInfo";
+// import TitleInfo from "@/app/components/sections/TitleInfo";
 import Link from "next/link";
 import WorkGrid from "@/app/components/sections/WorkGrid"; //v1
 // import WorkGrid4x4 from "@/app/components/sections/WorkGrid4x4";//v2
