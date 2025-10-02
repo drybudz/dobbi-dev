@@ -203,7 +203,10 @@ export default function HomeSolutionGrid({
             <h3 className={styles.solutionTitle}>{solution.solutionTitle}</h3>
             <p className={styles.solutionTextA}>{solution.solutionTextA}</p>
             {solution.solutionTextB && (
-              <p className={styles.solutionTextB}>{solution.solutionTextB}</p>
+              <p className={styles.solutionTextB}>
+                <span className={styles.afterArrow}></span>
+                <span className={styles.solutionTextBContent}>{solution.solutionTextB}</span>
+              </p>
             )}
           </div>
         ))}

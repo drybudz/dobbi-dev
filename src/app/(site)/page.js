@@ -5,7 +5,7 @@ import HeroBanner from "../components/HeroBanner";
 import HeroBannerFloating from "../components/HeroBannerFloating";
 import TwoLinks50s from "../components/sections/TwoLinks50s";
 import HomeBandOneThird from "../components/sections/HomeBandOneThird";
-import FeaturedProjects from "../components/sections/FeaturedProjects";
+import FeaturedProjectsV2 from "../components/sections/FeaturedProjectsV2";
 import HomeSolutionGrid from "../components/sections/HomeSolutionGrid";
 import HomeBand50Contact from "../components/sections/HomeBand50Contact";
 
@@ -35,12 +35,10 @@ export default function Home() {
         title={homePageData.whatTitle}
         description={homePageData.whatDescription}
       />
-      <FeaturedProjects
+      <FeaturedProjectsV2
         beforeText={homePageData.homeBeforeProjectDescription}
         projects={homePageData.featuredProjects || []}
         afterText={homePageData.homeAfterProjectDescription}
-      />
-      <TwoLinks50s
         leftLink={{
           title: "Explore Our Services",
           slug: "/services"
@@ -50,6 +48,16 @@ export default function Home() {
           slug: "/work"
         }}
       />
+      {/* <TwoLinks50s
+        leftLink={{
+          title: "Explore Our Services",
+          slug: "/services"
+        }}
+        rightLink={{
+          title: "See Our Work",
+          slug: "/work"
+        }}
+      /> */}
       <HomeSolutionGrid
         title={homePageData.homeGroupTitle}
         solutions={homePageData.solutions || []}

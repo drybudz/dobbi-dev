@@ -79,6 +79,8 @@ const FloatingImage = ({ src, alt, index, imageWidth, imageHeight }) => {
 // Main HeroBannerFloating Component
 const HeroBannerFloating = ({ title, projects, imageDisplayOption }) => {
     const heroRef = useRef(null);
+    const sectionRef = useRef(null);
+    const arrowRef = useRef(null);
     const [offsetHeight, setOffsetHeight] = useState(0);
     const [offsetWidth, setOffsetWidth] = useState(0);
 
@@ -97,6 +99,18 @@ const HeroBannerFloating = ({ title, projects, imageDisplayOption }) => {
 
     // State to hold the shuffled image URLs, initialized empty for SSR
     const [finalImageUrls, setFinalImageUrls] = useState([]);
+
+    const handleScroll = () => {
+        const nextSection = sectionRef.current?.nextElementSibling;
+        if (nextSection && nextSection.tagName === 'SECTION') {
+            const yOffset = -100; // Adjust this value as needed
+            const elementPosition = nextSection.getBoundingClientRect().top + window.pageYOffset;
+            window.scrollTo({
+                top: elementPosition + yOffset,
+                behavior: 'smooth'
+            });
+        }
+    };
 
     useEffect(() => {
         // This runs only on the client after initial hydration
@@ -126,7 +140,6 @@ const HeroBannerFloating = ({ title, projects, imageDisplayOption }) => {
         setFinalImageUrls(tempFinalImageUrls);
     }, [projects, totalImagesNeeded, imageDisplayOption]); // Re-run if projects or totalImagesNeeded change (though totalImagesNeeded is static)
 
-
     useLayoutEffect(() => {
         if (heroRef.current) {
             setOffsetHeight(heroRef.current.offsetHeight);
@@ -148,10 +161,43 @@ const HeroBannerFloating = ({ title, projects, imageDisplayOption }) => {
         };
     }, []);
 
+    useEffect(() => {
+        if (arrowRef.current) {
+            gsap.to(arrowRef.current, {
+                y: -10,
+                duration: 3.5,
+                yoyo: true,
+                repeat: 1,
+                ease: "power2.inOut",
+            });
+        }
+    }, []);
+
+    // Parallax effect for the arrow
+    useEffect(() => {
+        const handleScrollParallax = () => {
+            if (arrowRef.current) {
+                const scrollY = window.scrollY;
+                const parallaxValue = Math.min(scrollY * 0.5, 200); // Move up to 200px max
+                gsap.to(arrowRef.current, {
+                    y: -parallaxValue,
+                    duration: 0.1,
+                    ease: "none",
+                    overwrite: true
+                });
+            }
+        };
+
+        window.addEventListener('scroll', handleScrollParallax);
+        return () => {
+            window.removeEventListener('scroll', handleScrollParallax);
+        };
+    }, []);
+
     const splitTitle = title.split(" ");
 
     return (
-        <section id="hbs">
+        <section id="hbs" ref={sectionRef}>
       <div
         className={`${styles.HeroBannerContainer} ${
           imageDisplayOption === 'noImages' ? styles.noImages : ''
@@ -178,6 +224,15 @@ const HeroBannerFloating = ({ title, projects, imageDisplayOption }) => {
             />
           ))}
         </div>
+        <Image
+            ref={arrowRef}
+            src="/scroll-down.png"
+            alt="Scroll down"
+            width={60}
+            height={30}
+            className={styles.scrollArrow}
+            onClick={handleScroll}
+        />
       </div>
     </section>
     );

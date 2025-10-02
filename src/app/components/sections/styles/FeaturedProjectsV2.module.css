@@ -1,0 +1,429 @@
+/* components/sections/styles/FeaturedProjectsV2.module.css */
+.container {
+  max-width: 1440px;
+  margin: 0 auto;
+  padding: 0px 30px 0px;
+}
+
+/* Full-width text styling */
+.fullWidthText {
+  font-size: 45px;
+  line-height: 110%;
+  letter-spacing: -1.64px;
+  color: #fff;
+  margin: 0 0 50px 0;
+  text-align: left;
+  font-weight: 500;
+  white-space: pre-wrap;
+}
+
+/* Project container grid layout */
+.projectContainer {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+  margin-bottom: 110px;
+}
+
+/* Image column styling */
+.imageColumn {
+  position: relative; /* Crucial for absolute positioning of children */
+  aspect-ratio: 1/1;
+  overflow: hidden; /* Crucial for hiding parts of the image that move out of bounds */
+}
+
+/* Ensure the Link wrapping the Image fills its container */
+.imageLink {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden; /* Also hide overflow here for good measure */
+}
+
+/* Styles for the parallax wrapper div */
+.parallaxWrapper {
+  position: absolute;
+  width: 100%;
+  height: 120%; /* Make this div taller than its parent (.imageLink or .imageColumn) */
+  top: -10%; /* Center this taller div vertically within its parent */
+  left: 0;
+  will-change: transform; /* Hint to browsers for performance */
+  /* Removed transition since GSAP handles the animation */
+}
+
+/* Image styling */
+.projectImage {
+  /* Next.js Image with fill will now fill the .parallaxWrapper */
+  object-fit: cover; /* Ensures the image always covers the area of .parallaxWrapper */
+  /* No need for position/width/height here as 'fill' handles it */
+}
+
+/* Text column styling */
+.textColumn {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.projectName {
+  font-size: 54px;
+  line-height: 87%;
+  letter-spacing: -2.96px;
+  font-weight: 700;
+  margin: 0 0 20px 0;
+  width: 70%;
+}
+
+.projectName a,
+.mobileProjectName a {
+  color: #fff;
+  text-decoration: none;
+}
+
+.projectMeta {
+  display: flex;
+  gap: 20px;
+  color: #8D8D8D;
+  font-size: 25px;
+  font-weight: 500;
+  letter-spacing: -0.32px;
+  line-height: 108%;
+}
+
+.projectMeta a {
+  text-decoration: none;
+  color: inherit;
+}
+
+.projectMeta a:hover {
+  color: #fff;
+}
+
+.arrow {
+  display: inline-block;
+  width: 17px;
+  height: 17px;
+  background-image: url('/arrow-link-dobbi.png');
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  transition: background-image 0.3s ease;
+  margin-left: 10px;
+}
+
+.projectMeta a:hover .arrow {
+  background-image: url('/arrow-link-dobbi-w.png');
+}
+
+/* Mobile-only project name - hidden by default */
+.mobileProjectName {
+  display: none;
+}
+
+/* Copy text band structure */
+.copyText {
+  /* border-top: 1px solid #8d8d8d; */
+  display: grid;
+  grid-template-columns: 25% 75%;
+  align-items: flex-start;
+  gap: 40px;
+  /* padding-top: 25px; */
+}
+
+.leftColumn {
+  display: flex;
+  align-items: flex-start;
+}
+
+.rightColumn {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding-right: 30px;
+  gap: 50px;
+}
+
+/* After section 70/30 layout */
+.afterSection {
+  display: grid;
+  grid-template-columns: 7fr 3fr;
+  gap: 4%;
+  margin-bottom: 50px;
+  align-items: start;
+  width: 100%;
+}
+
+.afterTextContainer {
+  display: flex;
+  align-items: flex-start;
+  gap: 20px;
+}
+
+.afterText {
+  font-size: 25px;
+  line-height: 110%;
+  letter-spacing: -1.44px;
+  color: #fff;
+  margin: 0;
+  text-align: left;
+  font-weight: 500;
+  white-space: pre-wrap;
+  width: 100%;
+}
+
+.afterArrow {
+  display: inline-block;
+  width: 27px;
+  height: 15px;
+  flex-shrink: 0;
+  background-image: url('/images/arrow-r.png');
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  margin-top: 4px;
+}
+
+.afterTextContainer:hover .afterArrow {
+  filter: brightness(0) invert(1);
+}
+
+.linksContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  padding: 0;
+}
+
+.link {
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  color: #fff;
+  border: 1px solid #fff;
+  border-radius: 50px;
+  transition: all 0.3s ease;
+  padding: 5px 15px;
+  justify-content: flex-start;
+  width: fit-content;
+  position: relative;
+}
+
+.leftLink {
+  justify-content: flex-start;
+}
+
+.rightLink {
+  justify-content: flex-start;
+}
+
+.link .arrow {
+  position: absolute;
+  left: 15px;
+  top: 50%;
+  transform: translateY(-50%) scale(0);
+  opacity: 0;
+  width: 17px;
+  height: 17px;
+  border: 1px solid #fff;
+  border-radius: 50%;
+  flex-shrink: 0;
+  transition: opacity 0.3s ease, transform 0.3s ease;
+  background: transparent;
+}
+
+.link:hover {
+  padding-left: 45px;
+  padding-right: 45px;
+}
+
+.link:hover .arrow {
+  opacity: 1;
+  transform: translateY(-50%) scale(1);
+}
+
+.linkText {
+  letter-spacing: -.32px;
+  font-size: 20px;
+  line-height: 121%;
+  font-weight: 500;
+  transition: transform 0.3s ease;
+  margin-left: 0;
+}
+
+.link:hover .linkText {
+  transform: translateX(30px);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .projectContainer {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+  }
+
+  /* Show mobile project name and hide desktop one */
+  .mobileProjectName {
+    display: block;
+    font-size: 36px;
+    line-height: 87%;
+    letter-spacing: -2.96px;
+    font-weight: 700;
+    width: 100%;
+    order: 1;
+    margin-left: 4px;
+  }
+
+  .projectName {
+    display: none;
+  }
+
+  .imageColumn {
+    order: 2;
+  }
+
+  .textColumn {
+    order: 3;
+    margin-top: -15px;
+  }
+
+  .afterSection {
+    grid-template-columns: 1fr;
+    gap: 30px;
+  }
+
+  .afterText {
+    font-size: 20px;
+    white-space: unset;
+    letter-spacing: -0.73px;
+  }
+
+  .afterArrow {
+    width: 14px;
+    height: 14px;
+    margin-top: 2px;
+  }
+
+  .afterTextContainer:hover .afterArrow {
+    filter: brightness(0) invert(1);
+  }
+
+  .linkText {
+    font-size: 17px;
+  }
+
+  .link .arrow {
+    width: 14px;
+    height: 14px;
+  }
+
+  .link {
+    padding: 12px;
+    border-radius: 40px;
+  }
+
+  .link:hover {
+    padding-left: 37px;
+    padding-right: 37px;
+  }
+
+  .link:hover .linkText {
+    transform: translateX(22px);
+  }
+
+  .linksContainer {
+    padding: 20px 17px;
+  }
+
+  .fullWidthText {
+    font-size: 35px;
+    white-space: unset;
+    margin: 0;
+  }
+}
+
+@media (max-width: 575px) {
+  .copyText {
+    grid-template-columns: 1fr;
+    gap: 30px;
+  }
+
+  .container {
+    padding: 120px 17px 30px;
+  }
+
+  .fullWidthText {
+    letter-spacing: -1.44px;
+    font-size: 42px;
+  }
+
+  .fullWidthText:first-child {
+    padding: 0 4px;
+  }
+
+  .mobileProjectName {
+    font-size: 41px;
+  }
+
+  .projectMeta {
+    font-size: 20px;
+    gap: 15px;
+    margin-left: 4px;
+  }
+
+  .arrow {
+    width: 15px;
+    height: 15px;
+  }
+
+  .projectContainer {
+    margin-bottom: 75px;
+  }
+
+  .afterText {
+    letter-spacing: -0.96px;
+    padding: 0 4px;
+  }
+
+  .afterArrow {
+    width: 15px;
+    height: 15px;
+  }
+
+  .afterTextContainer:hover .afterArrow {
+    filter: brightness(0) invert(1);
+  }
+
+  .linksContainer {
+    padding: 0px 17px 40px 17px;
+    gap: 15px;
+  }
+
+  .link {
+    padding: 10px;
+    border-radius: 30px;
+  }
+
+  .link:hover {
+    padding-left: 35px;
+    padding-right: 35px;
+  }
+}
+
+@media (max-width: 320px) {
+  .linksContainer {
+    gap: 20px;
+  }
+
+  .link {
+    width: 100%;
+  }
+
+  /* Explicitly ensure both left and right links are left-aligned when stacked */
+  .leftLink,
+  .rightLink {
+    justify-content: flex-start;
+  }
+}

@@ -28,9 +28,23 @@
     top: -70px;
 }
 
+.scrollArrow {
+    position: absolute;
+    bottom: 120px;
+    left: 50%;
+    transform: translateX(-50%);
+    cursor: pointer;
+    z-index: 10;
+    /* opacity: 0.7; */
+    transition: opacity 0.3s ease;
+}
+
+.scrollArrow:hover {
+    opacity: 1;
+}
 
 .noImages {
-  height: calc(100vh + 30px); /* Enforce full viewport height */
+  height: 100vh; /* Enforce full viewport height */
   display: flex;
   justify-content: center;
   align-items: center; /* Reinforce vertical centering */
@@ -82,6 +96,11 @@
         grid-template-rows: repeat(5, 92px); /* Slightly fewer rows */
         gap: 50px 100px; /* Slightly smaller gaps */
     }
+    .scrollArrow {
+        bottom: 15px;
+        width: 50px !important;
+        height: 25px !important;
+    }
 }
 
 /* Mobile (<= 576px breakpoint) */
@@ -101,6 +120,11 @@
   }
   .noImages {
     height: 100vh; /* Match mobile height */
+  }
+  .scrollArrow {
+    bottom: 10px;
+    width: 40px !important;
+    height: 20px !important;
   }
 }
 
