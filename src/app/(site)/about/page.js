@@ -1,6 +1,6 @@
 'use client';
 
-import TitleInfo from '@/app/components/sections/TitleInfo';
+import TitleInfo from '@/app/components/sections/TitleInfoArrow';
 // import AboutHorizontalStack from '@/app/components/sections/AboutHorizontalStack';
 import AboutBand50 from '@/app/components/sections/AboutBand50';
 import AboutBand100 from '@/app/components/sections/AboutBand100';
