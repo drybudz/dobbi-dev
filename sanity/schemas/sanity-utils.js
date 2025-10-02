@@ -397,7 +397,9 @@ export async function getProject(slug) {
           },
         },
         "pageNote": *[_type == "pageNote"][0] { 
-          ...
+          _id,
+          title,
+          description
         }
       }`
     );

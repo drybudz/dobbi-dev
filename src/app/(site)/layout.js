@@ -4,7 +4,6 @@ import { getPages } from "../../../sanity/schemas/sanity-utils";
 import HeaderNavigation from "../components/HeaderNavigation";
 import Footer from "../components/Footer";
 import HomeChecker from "../components/HomeChecker";
-import { getAllPagesData } from "../../../sanity/schemas/sanity-utils";
 import { getAllDobbiData } from "../../../sanity/schemas/sanity-utils";
 import styles from "./layout.module.css"
 
