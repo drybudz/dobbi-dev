@@ -4,16 +4,21 @@
   display: flex;
   flex-direction: column;
   min-height: 100vh;
+  position: relative; /* Added to ensure proper stacking context */
 }
 
 .siteContainer {
   display: flex;
   flex-direction: column;
   flex: 1;
+  position: relative; /* Added to ensure proper stacking context */
+  z-index: 1; /* Ensure content is above gradient */
   /* Ensure this container grows to push footer down */
 }
 
 .mainContent {
   flex: 1 0 auto; /* Key line - grows and shrinks as needed */
   width: 100%;
+  position: relative; /* Added to ensure proper stacking context */
+  z-index: 1; /* Ensure content is above gradient */
 }

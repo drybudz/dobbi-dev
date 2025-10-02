@@ -50,7 +50,7 @@ export default function FeaturedProjectsV2({
         }
       );
     } else {
-      console.warn('imageColumnRef is null');
+      // console.warn('imageColumnRef is null');
     }
 
     return () => {

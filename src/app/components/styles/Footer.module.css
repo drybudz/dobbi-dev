@@ -8,8 +8,8 @@
   /* position: relative;  Removed because it was giving me some weird issues, showing data from previous page, coming from logo Link*/
   max-width: 1820px;
   margin: 0 auto 70px auto;
-  background-color: #000;
-  z-index: -100;
+  background-color: transparent;
+  z-index: 1;
 }
 
 .leftContainer {

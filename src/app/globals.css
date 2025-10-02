@@ -64,7 +64,19 @@ body {
 
 body {
   color: #fff;
-  background-color: #000;
+  background: linear-gradient(
+    -20deg,
+   #9E9E9E 0%,
+    #353535 10%,
+    #141414 20%,
+    #282828 30%,
+    #373737 40%,
+    #252525 50%,
+    #010101 60%,
+    #010101 70%,
+    #010101 80%,
+    #111 100% 
+  );
   font-family: 'Albert Sans', sans-serif;
    /* Font smoothing */
    -webkit-font-smoothing: antialiased;

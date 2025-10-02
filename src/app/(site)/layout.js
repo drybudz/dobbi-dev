@@ -4,6 +4,7 @@ import { getPages } from "../../../sanity/schemas/sanity-utils";
 import HeaderNavigation from "../components/HeaderNavigation";
 import Footer from "../components/Footer";
 import HomeChecker from "../components/HomeChecker";
+import NoiseOverlay from "../components/NoiseOverlay";
 import { getAllDobbiData } from "../../../sanity/schemas/sanity-utils";
 import styles from "./layout.module.css"
 
@@ -42,6 +43,7 @@ export default async function RootLayout({ children }) {
       <head>
       </head>
       <body className={styles.body}>
+        <NoiseOverlay />
         <AppProvider initialData={allData}>
           <div className={styles.siteContainer}>
             <HomeChecker />
