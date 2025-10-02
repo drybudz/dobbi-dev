@@ -1,5 +1,5 @@
 // components/sections/TitleInfo.js
-import styles from './styles/TitleInfo.module.css';
+import styles from './styles/TItleInfo.module.css';
 import { useEffect, useRef } from 'react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
