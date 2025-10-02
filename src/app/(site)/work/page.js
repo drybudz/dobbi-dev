@@ -1,6 +1,7 @@
 'use client';
 import { useAppContext } from "@/app/components/AppContext";
 // import TitleInfo from "@/app/components/sections/TitleInfo";
+import TitleDisplay from "@/app/components/sections/TitleDisplay";
 import Link from "next/link";
 import WorkGrid from "@/app/components/sections/WorkGrid"; //v1
 // import WorkGrid4x4 from "@/app/components/sections/WorkGrid4x4";//v2
@@ -21,7 +22,11 @@ export default function Work() {
           title={workPageData.workPageTitle}
           description={workPageData.workDescription}
         /> */}
-
+        <TitleDisplay
+          title={workPageData.workPageTitle}
+          description={workPageData.workDescription}
+        />
+      
       {/* <WorkGrid featuredProjects={workPageData.featuredProjects} /> */}
       
       {/* Thins one below is validated for empty gallery in Sanity, but needs to hidden for the 100vh at global to work 
