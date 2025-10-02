@@ -32,7 +32,7 @@ export default function Services8020Grid({
         rightColumnRef.current,
         { y: 0 },
         {
-          y: 200, // Move right column down on scroll
+          y: 100, // Move right column down on scroll
           scrollTrigger: {
             trigger: sectionRef.current,
             start: 'top 15%',

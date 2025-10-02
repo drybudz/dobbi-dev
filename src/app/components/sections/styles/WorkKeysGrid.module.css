@@ -23,12 +23,12 @@
   margin: 0;
   font-size: 54px;
   line-height: 87%;
-  letter-spacing: -.96px;
+  letter-spacing: -2.96px;
   align-self: start;
 }
 
 .keyItem {
-  padding: 20px 0px 0px;
+  padding: 0px 0px 20px;
   text-align: left;
   margin: 0px 0px 20px 0px;
   cursor: default;
@@ -61,7 +61,14 @@
 .subtitleColumn {
   grid-column: 4;
   grid-row: 2;
-  padding: 20px 0;
+  display: flex;
+  align-items: flex-start;
+  gap: 20px;
+  padding: 0px 0 20px 0;
+}
+
+.subtitleArrow {
+  flex-shrink: 0;
 }
 
 .subtitle {
@@ -103,5 +110,15 @@
 
   .titleColumn {
     margin-bottom: 30px;
+  }
+  .subtitleColumn {
+    justify-content: flex-start;
+    gap: 20px;
+    padding: 15px 0;
+  }
+
+  .subtitleArrow {
+    width: 27px;
+    height: 14px;
   }
 }

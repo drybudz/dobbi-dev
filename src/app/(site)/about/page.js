@@ -1,6 +1,6 @@
 'use client';
 
-import TitleInfo from '@/app/components/sections/TitleInfoArrow';
+import TitleInfoArrow from '@/app/components/sections/TitleInfoArrow';
 // import AboutHorizontalStack from '@/app/components/sections/AboutHorizontalStack';
 import AboutBand50 from '@/app/components/sections/AboutBand50';
 import AboutBand100 from '@/app/components/sections/AboutBand100';
@@ -9,6 +9,9 @@ import AboutGallery from '@/app/components/sections/AboutGallery';
 import WorkKeysGrid from '@/app/components/sections/WorkKeysGrid';
 import ChatLink from '@/app/components/sections/ChatLink';
 import MiniGallery from '@/app/components/sections/MiniGallery';
+
+import HomeBandOneThird from "@/app/components/sections/HomeBandOneThird";
+import FeaturedProjectsV2 from "@/app/components/sections/FeaturedProjectsV2";
 
 import Image from 'next/image';
 import StickySidebar from '@/app/components/StickySidebar';
@@ -24,6 +27,9 @@ export default function About() {
     // const aboutPageData = await getAboutPage()
     const { allData } = useAppContext();
     const aboutPageData = allData?.aboutPage || null;
+      const homePageData = allData?.homePage || null;
+
+
     // console.log("@AB------About Page Data:", aboutPageData);
     // console.log("@AB------About Page Data:", aboutPageData.aboutSmallImages);
 
@@ -33,7 +39,11 @@ export default function About() {
     return (
         
         <div className="aboutPage">
-      <TitleInfo 
+      {/* <TitleInfo 
+        title={aboutPageData.aboutTitle}
+        description={aboutPageData.aboutDescription}
+      /> */}
+      <TitleInfoArrow
         title={aboutPageData.aboutTitle}
         description={aboutPageData.aboutDescription}
       />
@@ -46,7 +56,7 @@ export default function About() {
         text1={aboutPageData.horizontalImageTopText}
         text2={aboutPageData.horizontalImageBottomText}
       /> */}
-       <AboutBand100 
+       {/* <AboutBand100 
         text={aboutPageData.horizontalImageTopText}
       />
       <AboutBandQuarter 
@@ -55,6 +65,23 @@ export default function About() {
       />
       <AboutBand100 
         text={aboutPageData.horizontalImageBottomText}
+      /> */}
+      <HomeBandOneThird
+        title={aboutPageData.aboutBandTitle}
+        description={aboutPageData.aboutBandText}
+      />
+      <FeaturedProjectsV2
+        beforeText={aboutPageData.horizontalImageTopText}
+        projects={homePageData.featuredProjects || []}
+        afterText={aboutPageData.horizontalImageBottomText}
+        leftLink={{
+          title: "Explore Our Services",
+          slug: "/services"
+        }}
+        rightLink={{
+          title: "See Our Work",
+          slug: "/work"
+        }}
       />
       <AboutGallery
         largeImage={aboutPageData.aboutLargeImage}

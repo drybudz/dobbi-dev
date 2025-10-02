@@ -1,6 +1,7 @@
 // components/sections/WorkKeysGrid.js
 'use client';
 import { useRef, useEffect, useState, useCallback } from 'react';
+import Image from 'next/image';
 import styles from './styles/WorkKeysGrid.module.css';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
@@ -212,6 +213,13 @@ export default function WorkKeysGrid({
         ))}
 
         <div className={styles.subtitleColumn}>
+          <Image
+            src="/images/arrow-r.png"
+            alt="Right arrow"
+            width={27}
+            height={14}
+            className={styles.subtitleArrow}
+          />
           <p className={styles.subtitle}>{subtitle}</p>
         </div>
       </div>

@@ -140,10 +140,9 @@
   .solutionTextB {
     font-size: 12px;
     margin: 0 0 15px 0;
-    padding-left: 8px; /* Adjusted padding for mobile */
   }
 
   .solutionTextBContent {
-    margin-left: 6px; /* Adjusted spacing for mobile */
+    margin-left: 20px; /* Adjusted spacing for mobile */
   }
 }

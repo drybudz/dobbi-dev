@@ -351,7 +351,7 @@
   }
 
   .container {
-    padding: 120px 17px 30px;
+    padding: 0px 17px 30px;
   }
 
   .fullWidthText {
@@ -388,7 +388,7 @@
   }
 
   .afterArrow {
-    width: 15px;
+    width: 27px;
     height: 15px;
   }
 
