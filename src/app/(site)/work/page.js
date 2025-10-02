@@ -17,10 +17,10 @@ export default function Work() {
   return (
     
       <div className="workPage">
-        <TitleInfo 
+        {/* <TitleInfo 
           title={workPageData.workPageTitle}
           description={workPageData.workDescription}
-        />
+        /> */}
 
       {/* <WorkGrid featuredProjects={workPageData.featuredProjects} /> */}
       
