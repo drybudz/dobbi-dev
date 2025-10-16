@@ -1,11 +1,18 @@
 'use client';
 
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 
 const NoiseOverlay = () => {
   const canvasRef = useRef(null);
+  const [isClient, setIsClient] = useState(false);
 
   useEffect(() => {
+    setIsClient(true);
+  }, []);
+
+  useEffect(() => {
+    if (!isClient) return;
+    
     const generateNoise = () => {
       const canvas = canvasRef.current;
       if (!canvas) return;
@@ -16,13 +23,13 @@ const NoiseOverlay = () => {
 
       ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-      for (let i = 0; i < 100000; i++) {
-        ctx.fillStyle = "rgba(0, 0, 0, 0.7)";
+      for (let i = 0; i < 50000; i++) {
+        ctx.fillStyle = "rgba(0, 0, 0, 0.5)";
         ctx.beginPath();
         ctx.arc(
           Math.random() * canvas.width,
           Math.random() * canvas.height,
-          0.77,
+          0.5,
           0,
           Math.PI * 2
         );
@@ -41,7 +48,11 @@ const NoiseOverlay = () => {
     return () => {
       window.removeEventListener('resize', handleResize);
     };
-  }, []);
+  }, [isClient]);
+
+  if (!isClient) {
+    return null; // Don't render on server
+  }
 
   return (
     <canvas
@@ -54,7 +65,7 @@ const NoiseOverlay = () => {
         height: '100vh',
         zIndex: 1,
         pointerEvents: 'none',
-        opacity: 0.3,
+        opacity: 0.7,
       }}
     />
   );
