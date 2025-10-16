@@ -1,8 +1,7 @@
-/* components/sections/styles/WorkKeysGrid.module.css */
 .workKeys {
   max-width: 1440px;
   margin: 0 auto;
-  padding: 60px 25px 40px;
+  padding: 60px 25px 140px; /* Increased bottom padding for more scroll room */
   transform: translateY(0); /* Ensure proper positioning for parallax */
 }
 
@@ -25,6 +24,8 @@
   line-height: 87%;
   letter-spacing: -2.96px;
   align-self: start;
+  color: #fff; /* Explicit color for consistency */
+  will-change: transform; /* Optimize for GSAP transforms */
 }
 
 .keyItem {
@@ -79,12 +80,13 @@
   white-space: pre-wrap;
   letter-spacing: -1.44px;
   font-weight: 500;
+  color: #fff; /* Explicit color for consistency */
 }
 
 /* Mobile styles */
 @media (max-width: 575px) {
   .workKeys {
-    padding: 25px 17px 0px;
+    padding: 25px 17px 100px; /* Adjusted bottom padding for mobile */
     margin-bottom: 10px !important;
   }
 

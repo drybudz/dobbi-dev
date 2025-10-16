@@ -1,4 +1,3 @@
-// components/sections/WorkKeysGrid.js
 'use client';
 import { useRef, useEffect, useState, useCallback } from 'react';
 import Image from 'next/image';
@@ -17,6 +16,7 @@ export default function WorkKeysGrid({
 }) {
   const keyItemsRef = useRef([]);
   const workKeysRef = useRef(null);
+  const titleRef = useRef(null); // New ref for title parallax
   const [isMobile, setIsMobile] = useState(false);
   const animationsRef = useRef([]);
 
@@ -27,6 +27,9 @@ export default function WorkKeysGrid({
   useEffect(() => {
     const checkMobile = () => {
       setIsMobile(window.innerWidth <= 768);
+      if (typeof window !== 'undefined') {
+        ScrollTrigger.refresh(); // Refresh triggers on resize
+      }
     };
     
     checkMobile();
@@ -45,7 +48,7 @@ export default function WorkKeysGrid({
     });
     animationsRef.current = [];
 
-    // Parallax effect for the entire workKeys section
+    // Parallax effect for the entire workKeys section (existing)
     if (workKeysRef.current) {
       const parallaxAnim = gsap.fromTo(
         workKeysRef.current,
@@ -65,7 +68,22 @@ export default function WorkKeysGrid({
       animationsRef.current.push(parallaxAnim);
     }
 
-    // Staggered animation for keyItems
+    // NEW: Parallax for title - moves down as we scroll down
+    if (titleRef.current) {
+      const titleAnim = gsap.to(titleRef.current, {
+        y: 250, // Adjust for more/less movement (positive = down)
+        scrollTrigger: {
+          trigger: workKeysRef.current,
+          start: 'top 20%',
+          end: 'bottom -20%', // Extended end for more room/movement
+          scrub: 0.5, // Slight ease for smoother feel
+          id: 'title-parallax'
+        }
+      });
+      animationsRef.current.push(titleAnim);
+    }
+
+    // Staggered animation for keyItems (existing - unchanged)
     const keyItems = keyItemsRef.current.filter(item => item);
     if (keyItems.length && workKeysRef.current) {
       // Calculate the total delay needed for all items
@@ -120,7 +138,7 @@ export default function WorkKeysGrid({
       animationsRef.current.push(staggerAnim);
     }
 
-    // Mobile scroll and desktop hover behavior
+    // Mobile scroll and desktop hover behavior (existing - unchanged)
     items.slice(0, 5).forEach((item, index) => {
       const keyItem = keyItemsRef.current[index];
       if (!keyItem) return;
@@ -194,7 +212,7 @@ export default function WorkKeysGrid({
     <section className={styles.workKeys} ref={workKeysRef}>
       <div className={styles.grid}>
         <div className={styles.titleColumn}>
-          <h2 className={styles.title}>{title}</h2>
+          <h2 ref={titleRef} className={styles.title}>{title}</h2> {/* Added ref */}
         </div>
 
         {items.slice(0, 5).map((item, index) => (

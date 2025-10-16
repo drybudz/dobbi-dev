@@ -192,7 +192,7 @@
 .linksContainer {
   display: flex;
   flex-direction: column;
-  gap: 20px;
+  gap: 7px;
   padding: 0;
 }
 
@@ -204,7 +204,7 @@
   border: 1px solid #fff;
   border-radius: 50px;
   transition: all 0.3s ease;
-  padding: 5px 15px;
+  padding: 3px 13px;
   justify-content: flex-start;
   width: fit-content;
   position: relative;
@@ -220,12 +220,12 @@
 
 .link .arrow {
   position: absolute;
-  left: 15px;
+  left: 0px;
   top: 50%;
   transform: translateY(-50%) scale(0);
   opacity: 0;
-  width: 17px;
-  height: 17px;
+  width: 15px;
+  height: 15px;
   border: 1px solid #fff;
   border-radius: 50%;
   flex-shrink: 0;
@@ -234,7 +234,7 @@
 }
 
 .link:hover {
-  padding-left: 45px;
+  padding-left: 3px;
   padding-right: 45px;
 }
 

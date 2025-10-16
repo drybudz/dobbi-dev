@@ -13,9 +13,10 @@ export default function HomeSolutionGrid({
   solutions = []
 }) {
   const gridRefs = useRef([]);
-  const solutionsRef = useRef(null); // Ref for the entire solutions section
+  const solutionsRef = useRef(null);
+  const titleRef = useRef(null); // New ref for title parallax
   const [isMobile, setIsMobile] = useState(false);
-  const animationsRef = useRef([]); // Store animation references for cleanup
+  const animationsRef = useRef([]);
 
   const setGridRef = useCallback((el, index) => {
     gridRefs.current[index] = el;
@@ -24,6 +25,9 @@ export default function HomeSolutionGrid({
   useEffect(() => {
     const handleResize = () => {
       setIsMobile(window.innerWidth <= 574);
+      if (typeof window !== 'undefined') {
+        ScrollTrigger.refresh(); // Refresh triggers on resize
+      }
     };
     
     handleResize();
@@ -42,7 +46,7 @@ export default function HomeSolutionGrid({
     });
     animationsRef.current = [];
 
-    // Parallax effect for the entire solutions section
+    // Parallax effect for the entire solutions section (existing)
     if (solutionsRef.current) {
       const parallaxAnim = gsap.fromTo(
         solutionsRef.current,
@@ -62,7 +66,22 @@ export default function HomeSolutionGrid({
       animationsRef.current.push(parallaxAnim);
     }
 
-    // Staggered animation for solutionItems
+    // NEW: Parallax for title - moves down as we scroll down
+    if (titleRef.current) {
+      const titleAnim = gsap.to(titleRef.current, {
+        y: 250, // Adjust value for more/less movement (positive = down)
+        scrollTrigger: {
+          trigger: solutionsRef.current,
+          start: 'top 20%',
+          end: 'bottom -20%', // Extended end for more room/movement
+          scrub: 0.5, // Slight ease for smoother feel
+          id: 'title-parallax'
+        }
+      });
+      animationsRef.current.push(titleAnim);
+    }
+
+    // Staggered animation for solutionItems (existing - unchanged)
     const items = gridRefs.current.filter(item => item);
     if (items.length) {
       const staggerAnim = ScrollTrigger.create({
@@ -74,7 +93,7 @@ export default function HomeSolutionGrid({
         onUpdate: (self) => {
           const progress = self.progress;
           items.forEach((item, index) => {
-            const delay = index * 0.2; // Stagger delay
+            const delay = index * 0.2;
             const textA = item.querySelector(`.${styles.solutionTextA}`);
             const textB = item.querySelector(`.${styles.solutionTextB}`);
 
@@ -117,7 +136,7 @@ export default function HomeSolutionGrid({
       animationsRef.current.push(staggerAnim);
     }
 
-    // Mobile scroll and desktop hover behavior
+    // Mobile scroll and desktop hover behavior (existing - unchanged)
     solutions.slice(0, 5).forEach((solution, index) => {
       const item = gridRefs.current[index];
       if (!item) return;
@@ -161,7 +180,6 @@ export default function HomeSolutionGrid({
         item.addEventListener('mouseenter', handleMouseEnter);
         item.addEventListener('mouseleave', handleMouseLeave);
         
-        // Store cleanup functions
         animationsRef.current.push({
           kill: () => {
             item.removeEventListener('mouseenter', handleMouseEnter);
@@ -172,7 +190,6 @@ export default function HomeSolutionGrid({
     });
 
     return () => {
-      // Clean up only our own animations
       animationsRef.current.forEach(anim => {
         if (anim && anim.scrollTrigger) {
           anim.scrollTrigger.kill();
@@ -187,7 +204,7 @@ export default function HomeSolutionGrid({
     <section className={styles.solutions} ref={solutionsRef}>
       <div className={styles.grid}>
         <div className={styles.titleColumn}>
-          <h2 className={styles.title}>{title}</h2>
+          <h2 ref={titleRef} className={styles.title}>{title}</h2> {/* Added ref */}
         </div>
 
         {solutions.slice(0, 5).map((solution, index) => (
@@ -211,7 +228,7 @@ export default function HomeSolutionGrid({
           </div>
         ))}
 
-        <div className={styles.emptyColumn}></div>
+        {/* REMOVED: <div className={styles.emptyColumn}></div> */}
       </div>
     </section>
   );

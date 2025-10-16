@@ -1,8 +1,7 @@
-/* HomeSolutionGrid.module.css */
 .solutions {
   max-width: 1440px;
   margin: 0 auto;
-  padding: 70px 20px;
+  padding: 70px 20px 170px; /* Increased bottom padding for more scroll room */
 }
 
 .grid {
@@ -11,7 +10,7 @@
   grid-template-rows: auto auto;
   column-gap: 30px;
   row-gap: 40px;
-  border-top: 1px solid #8d8d8d;
+  /* border-top: 1px solid #8d8d8d; */
   padding-top: 70px;
 }
 
@@ -28,6 +27,7 @@
   letter-spacing: -0.96px;
   text-align: left;
   color: #fff;
+  will-change: transform; /* Optimize for GSAP transforms */
 }
 
 .solutionItem {
@@ -86,10 +86,7 @@
   margin-top: 4px;
 }
 
-.emptyColumn {
-  grid-column: 4;
-  grid-row: 2;
-}
+/* REMOVED: .emptyColumn {} */
 
 /* Responsive Breakpoints */
 @media (max-width: 768px) {
@@ -99,8 +96,7 @@
   }
 
   .titleColumn,
-  .solutionItem,
-  .emptyColumn {
+  .solutionItem {
     grid-column: 1 !important;
     grid-row: auto !important;
   }
@@ -113,7 +109,7 @@
 
 @media (max-width: 575px) {
   .solutions {
-    padding: 17px;
+    padding: 17px 17px 120px; /* Adjusted bottom padding for mobile */
     margin-bottom: 0px !important;
   }
 
