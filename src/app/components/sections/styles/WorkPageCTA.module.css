@@ -1,0 +1,120 @@
+/* components/sections/styles/WorkPageCTA.module.css */
+.WorkPageCTA {
+  display: flex;
+  flex-direction: column;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 90px 20px 260px 20px; /* Increased bottom padding to give room for extra down movement */
+  align-items: center;
+  justify-content: flex-start; /* Changed from center to allow natural flow */
+  position: relative; /* For ScrollTrigger context */
+  overflow: hidden; /* Prevent overflow from parallax */
+}
+
+.title {
+  margin: 80px 0 80px; /* Large gap after title */
+  font-size: 80px;
+  font-weight: 700;
+  line-height: 87%;
+  white-space: pre-wrap;
+  letter-spacing: -3.44px;
+  text-align: center;
+}
+
+.description {
+  max-width: 800px;
+  margin: 0 0 50px 0; /* Medium gap after description */
+  font-size: 25px;
+  line-height: 108%;
+  font-weight: 500;
+  letter-spacing: -1.44px;
+  white-space: pre-wrap;
+  text-align: center;
+  transform: translateY(0); /* Ensure proper positioning for parallax */
+  will-change: transform; /* Optimize for GSAP */
+}
+
+.text {
+  max-width: 800px;
+  margin: 0 0 25px 0; /* Small gap after "Interested..." */
+  font-size: 20px;
+  line-height: 108%;
+  font-weight: 300;
+  letter-spacing: -0.96px;
+  white-space: pre-wrap;
+  text-align: center;
+  will-change: transform; /* Optimize for GSAP */
+}
+
+.name {
+  margin: 0 0 5px 0; /* Tiny gap after name */
+  font-size: 20px;
+  line-height: 108%;
+  font-weight: 100;
+  letter-spacing: -0.96px;
+  text-align: center;
+  will-change: transform; /* Optimize for GSAP (removed font-size) */
+}
+
+.email {
+  margin: 0; /* No bottom margin */
+  font-size: 20px;
+  line-height: 108%;
+  font-weight: 300;
+  letter-spacing: -0.96px;
+  text-align: center;
+  color: inherit;
+  text-decoration: none;
+  will-change: transform; /* Optimize for GSAP */
+}
+
+.email:hover {
+  text-decoration: underline;
+}
+
+@media (max-width: 900px) {
+  .description,
+  .text {
+    white-space: normal;
+  }
+}
+
+@media (max-width: 575px) {
+  .title {
+    font-size: 36px;
+    text-align: center;
+    white-space: pre-wrap;
+    letter-spacing: -2.187px;
+    margin-bottom: 40px; /* Reduced for mobile */
+  }
+
+  .description {
+    font-size: 20px;
+    letter-spacing: -0.96px;
+    white-space: normal;
+    text-align: center;
+    margin-bottom: 30px; /* Reduced for mobile */
+  }
+
+  .text,
+  .name,
+  .email {
+    font-size: 20px;
+    letter-spacing: -0.96px;
+    white-space: normal;
+    text-align: center;
+  }
+
+  .text {
+    margin-bottom: 8px; /* Slightly reduced for mobile */
+  }
+
+  .name {
+    margin-bottom: 3px; /* Slightly reduced for mobile */
+  }
+
+  .WorkPageCTA {
+    padding: 0px 17px 130px 17px; /* Adjusted bottom padding for mobile */
+    align-items: center;
+  }
+}

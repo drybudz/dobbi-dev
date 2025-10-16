@@ -22,6 +22,24 @@ const workPage = {
         description: 'Main description for the work page',
       },
       {
+        name: 'workPageCTAText',
+        title: 'Work Page CTA Text',
+        type: 'string',
+        description: 'Main description for the work page CTA',
+      },
+      {
+        name: 'workPageCTAName',
+        title: 'Work Page CTA Name',
+        type: 'string',
+        description: 'Name to display for the work page CTA',
+      },
+      {
+        name: 'workPageCTAEmail',
+        title: 'Work Page CTA Email',
+        type: 'string',
+        description: 'Email address for the work page CTA',
+      },
+      {
         name: 'featuredProjects',
         title: 'Featured Projects',
         type: 'array',

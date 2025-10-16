@@ -178,6 +178,9 @@ export async function getAllDobbiData() {
           pageTitle,
           workPageTitle,
           workDescription,
+          workPageCTAText,
+          workPageCTAName,
+          workPageCTAEmail,
           featuredProjects[]->{
             _id,
             name,

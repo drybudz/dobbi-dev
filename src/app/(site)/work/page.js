@@ -2,6 +2,8 @@
 import { useAppContext } from "@/app/components/AppContext";
 // import TitleInfo from "@/app/components/sections/TitleInfo";
 import TitleDisplay from "@/app/components/sections/TitleDisplay";
+import CTACentered from "@/app/components/sections/CTACentered";
+import WorkPageCTA from "@/app/components/sections/WorkPageCTA";
 import Link from "next/link";
 import WorkGrid from "@/app/components/sections/WorkGrid"; //v1
 // import WorkGrid4x4 from "@/app/components/sections/WorkGrid4x4";//v2
@@ -22,10 +24,28 @@ export default function Work() {
           title={workPageData.workPageTitle}
           description={workPageData.workDescription}
         /> */}
-        <TitleDisplay
+        
+        {/* These 2 look better on the next component */}
+        {/* <TitleDisplay
           title={workPageData.workPageTitle}
           description={workPageData.workDescription}
         />
+        
+        <CTACentered
+          text={workPageData.workPageCTAText}
+          name={workPageData.workPageCTAName}
+          email={workPageData.workPageCTAEmail}
+        /> */}
+
+        <WorkPageCTA
+          title={workPageData.workPageTitle}
+          description={workPageData.workDescription}
+          text={workPageData.workPageCTAText}
+          name={workPageData.workPageCTAName}
+          email={workPageData.workPageCTAEmail}
+        />
+
+
       
       {/* <WorkGrid featuredProjects={workPageData.featuredProjects} /> */}
       
