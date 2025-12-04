@@ -138,7 +138,6 @@ export async function getAllDobbiData() {
           
           // Work Keys Section
           workKeysTitle,
-          workKeysSubtitle,
           workKeysList[]{
             keyTitle,
             keyDescription

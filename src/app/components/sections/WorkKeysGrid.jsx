@@ -230,16 +230,18 @@ export default function WorkKeysGrid({
           </div>
         ))}
 
-        <div className={styles.subtitleColumn}>
-          <Image
-            src="/images/arrow-r.png"
-            alt="Right arrow"
-            width={27}
-            height={14}
-            className={styles.subtitleArrow}
-          />
-          <p className={styles.subtitle}>{subtitle}</p>
-        </div>
+        {subtitle && (
+          <div className={styles.subtitleColumn}>
+            <Image
+              src="/images/arrow-r.png"
+              alt="Right arrow"
+              width={27}
+              height={14}
+              className={styles.subtitleArrow}
+            />
+            <p className={styles.subtitle}>{subtitle}</p>
+          </div>
+        )}
       </div>
     </section>
   );

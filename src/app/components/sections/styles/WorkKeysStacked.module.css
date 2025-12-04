@@ -1,0 +1,131 @@
+/* components/sections/styles/WorkKeysStacked.module.css */
+.workKeysStacked {
+  max-width: 1440px;
+  margin: 0 auto;
+  padding: 30px 30px;
+  position: relative;
+}
+
+.gridContainer {
+  display: grid;
+  grid-template-columns: 20% 80%;
+  gap: 40px;
+  align-items: flex-start;
+}
+
+.titleColumn {
+  display: flex;
+  align-items: flex-start;
+}
+
+.title {
+  font-size: 45px;
+  line-height: 87%;
+  letter-spacing: -2.96px;
+  font-weight: 700;
+  color: #fff;
+  margin: 0;
+  white-space: pre-wrap;
+  text-align: left;
+}
+
+.itemsColumn {
+  display: flex;
+  flex-direction: column;
+}
+
+.keyItem {
+  border-top: 0.74px solid #fff;
+  color: #8D8D8D;
+  cursor: pointer;
+  overflow: hidden;
+  transition: padding 0.9s cubic-bezier(0.4, 0, 0.2, 1);
+  padding-top: 15px;
+  padding-bottom: 25px;
+  padding-left: 0;
+  padding-right: 0;
+}
+
+.keyItem.expanded {
+  padding-top: 40px;
+  padding-bottom: 40px;
+}
+
+.keyItem.lastItem {
+  border-bottom: 0.74px solid #fff;
+}
+
+.keyTitle {
+  font-size: 29.6px;
+  line-height: 112%;
+  letter-spacing: -1.12px;
+  font-weight: 500;
+  color: #8D8D8D;
+  margin: 0;
+  transition: color 0.6s cubic-bezier(0.4, 0, 0.2, 1), font-weight 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.keyItem.expanded .keyTitle {
+  color: #fff;
+  font-weight: 700;
+  margin-bottom: 10px;
+}
+
+.keyDescription {
+  font-size: 17.76px;
+  line-height: 108%;
+  color: #fff;
+  margin: 0;
+  padding-top: 15px;
+  padding-bottom: 25px;
+  white-space: pre-wrap;
+  animation: fadeIn 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .workKeysStacked {
+    padding: 50px 17px 40px;
+  }
+
+  .gridContainer {
+    grid-template-columns: 1fr;
+    gap: 30px;
+  }
+
+  .title {
+    font-size: 35px;
+    letter-spacing: -2.5px;
+    white-space: pre-wrap;
+  }
+
+  .keyItem {
+    padding-top: 20px;
+    padding-bottom: 20px;
+  }
+
+  .keyItem.expanded {
+    padding-top: 40px;
+    padding-bottom: 40px;
+  }
+
+  .keyTitle {
+    font-size: 25px;
+  }
+
+  .keyDescription {
+    font-size: 20px;
+  }
+}
+

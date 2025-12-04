@@ -192,12 +192,6 @@ const aboutPage = {
     {
       name: 'workKeysTitle',
       title: 'Work Keys Title',
-      type: 'string',
-      group: 'workKeys',
-    },
-    {
-      name: 'workKeysSubtitle',
-      title: 'Work Keys Subtitle',
       type: 'text',
       group: 'workKeys',
     },

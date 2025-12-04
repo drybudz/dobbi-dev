@@ -7,6 +7,7 @@ import AboutBand100 from '@/app/components/sections/AboutBand100';
 import AboutBandQuarter from '@/app/components/sections/AboutBandQuarter';
 import AboutGallery from '@/app/components/sections/AboutGallery';
 import WorkKeysGrid from '@/app/components/sections/WorkKeysGrid';
+import WorkKeysStacked from '@/app/components/sections/WorkKeysStacked';
 import ChatLink from '@/app/components/sections/ChatLink';
 import MiniGallery from '@/app/components/sections/MiniGallery';
 
@@ -99,9 +100,13 @@ export default function About() {
         mediumImage={aboutPageData.aboutMediumImage}
         smallImages={aboutPageData.aboutSmallImages || []} 
       />
-      <WorkKeysGrid
+      {/* <WorkKeysGrid
         title={aboutPageData.workKeysTitle}
         subtitle={aboutPageData.workKeysSubtitle}
+        items={aboutPageData.workKeysList || []}
+      /> */}
+      <WorkKeysStacked
+        title={aboutPageData.workKeysTitle}
         items={aboutPageData.workKeysList || []}
       />
       {/* <ChatLink 
