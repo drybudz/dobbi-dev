@@ -29,9 +29,9 @@ export default function Work() {
         {/* <TitleDisplay
           title={workPageData.workPageTitle}
           description={workPageData.workDescription}
-        />
+        /> */}
         
-        <CTACentered
+        {/* <CTACentered
           text={workPageData.workPageCTAText}
           name={workPageData.workPageCTAName}
           email={workPageData.workPageCTAEmail}

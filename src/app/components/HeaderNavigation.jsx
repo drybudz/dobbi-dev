@@ -159,8 +159,8 @@ export default function HeaderNavigation() {
                     About
                 </Link>
                 <Link 
-                    href={`mailto:${homePage?.connectEmail || "kawika@dobbiagency.com"}`} 
-                    className={styles.navLink}
+                    href="/contact" 
+                    className={`${styles.navLink} ${pathname === "/contact" ? styles.active : ""}`}
                     onClick={handleNavLinkClick}
                 >
                     Contact

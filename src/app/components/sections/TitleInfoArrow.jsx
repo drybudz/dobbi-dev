@@ -121,7 +121,9 @@ export default function TitleInfoArrow({ title, description }) {
   return (
     <section className={styles.titleInfo} ref={sectionRef} id="titleInfoArrow">
       <h2 className={styles.title}>{title}</h2>
-      <p className={styles.description} ref={descriptionRef}>{description}</p>
+      {description && description.trim() && (
+        <p className={styles.description} ref={descriptionRef}>{description}</p>
+      )}
       <Image
         ref={arrowRef}
         src="/scroll-down.png"

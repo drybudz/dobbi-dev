@@ -229,6 +229,10 @@ export async function getAllDobbiData() {
             projectFPO
           }
         },
+        "contactPage": *[_type == "contactPage"][0]{
+          contactTitle,
+          contactDescription
+        },
         "pageFooter": *[_type == "pageFooter"][0]{
           copyrightBrandName,
           copyrightText,
