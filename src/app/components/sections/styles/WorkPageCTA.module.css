@@ -74,6 +74,7 @@
   text-decoration: none;
   color: inherit;
   display: inline-block;
+  position: relative;
 }
 
 .ctaButton {
@@ -87,10 +88,37 @@
   font-family: 'Albert Sans', sans-serif;
   transition: all 0.3s ease;
   white-space: nowrap;
+  position: relative;
+}
+
+.ctaArrow {
+  position: absolute;
+  left: 3px;
+  top: 50%;
+  transform: translateY(-50%) scale(0);
+  opacity: 0;
+  width: 15px;
+  height: 15px;
+  border: 1px solid #fff;
+  border-radius: 50%;
+  flex-shrink: 0;
+  transition: opacity 0.3s ease, transform 0.3s ease;
+  background: transparent;
+  z-index: 1;
 }
 
 .ctaButtonLink:hover .ctaButton {
-  background: rgba(255, 255, 255, 0.1);
+  padding-left: 3px;
+  padding-right: 30px;
+}
+
+.ctaButtonLink:hover .ctaArrow {
+  opacity: 1;
+  transform: translateY(-50%) scale(1);
+}
+
+.ctaButtonLink:hover .ctaButton {
+  transform: translateX(30px);
 }
 
 @media (max-width: 900px) {

@@ -1,4 +1,4 @@
-/* components/sections/styles/HomeBandOneThird.module.css */
+/* components/sections/styles/Home2080.module.css */
 .bandContainer {
   max-width: 1440px;
   margin: 0 auto;
@@ -9,7 +9,7 @@
 .copyText {
   border-top: 1px solid #8d8d8d;
   display: grid;
-  grid-template-columns: 25% 75%; /* Apply 25%/75% ratio here for left and right columns */
+  grid-template-columns: 20% 80%; /* 20%/80% ratio for left and right columns */
   align-items: flex-start;
   gap: 40px;
   padding-top: 25px;
@@ -23,19 +23,18 @@
 .title {
   letter-spacing: -2.96px;
   margin: 0;
-  font-size: 54px;
+  font-size: 45px;
   line-height: 87%;
   text-align: left;
   font-weight: 700;
   color: #fff;
+  white-space: pre-wrap;
 }
 
 .rightColumn {
   display: flex;
   align-items: center;
 }
-
-/* Removing the upward */
 
 .description {
   letter-spacing: -1.44px;
@@ -68,3 +67,4 @@
     letter-spacing: -0.96px;
   }
 }
+

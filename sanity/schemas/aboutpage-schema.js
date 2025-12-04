@@ -92,12 +92,45 @@ const aboutPage = {
       type: 'text',
       group: 'horizontalImages',
     },
+    {
+      name: 'aboutCTALinks',
+      title: 'About CTA Links',
+      type: 'array',
+      of: [
+        {
+          type: 'object',
+          fields: [
+            {
+              name: 'title',
+              title: 'Title',
+              type: 'string',
+              description: 'Text displayed on the button',
+            },
+            {
+              name: 'slug',
+              title: 'Slug',
+              type: 'string',
+              description: 'URL for the button. Use "/page" for internal pages or full URL for external links.',
+            },
+          ],
+          preview: {
+            select: {
+              title: 'title',
+              subtitle: 'slug',
+            },
+          },
+        },
+      ],
+      validation: Rule => Rule.max(2),
+      description: 'CTA links displayed below the bottom horizontal image text (max 2).',
+      group: 'horizontalImages',
+    },
 
     // About Band Group
     {
       name: 'aboutBandTitle',
       title: 'About Band Title',
-      type: 'string',
+      type: 'text',
       group: 'aboutBand',
     },
     {

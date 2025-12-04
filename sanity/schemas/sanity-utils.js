@@ -109,6 +109,10 @@ export async function getAllDobbiData() {
             alt
           },
           horizontalImageBottomText,
+          aboutCTALinks[]{
+            title,
+            slug
+          },
           
           // About Band Section
           aboutBandTitle,

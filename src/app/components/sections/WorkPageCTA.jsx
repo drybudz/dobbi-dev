@@ -162,6 +162,13 @@ export default function WorkPageCTA({ title, description, subtitle, ctaTitle, ct
               </span>
             );
 
+            const fullButtonContent = (
+              <>
+                <span className={styles.ctaArrow} aria-hidden="true" />
+                {buttonContent}
+              </>
+            );
+
             if (isInternal) {
               return (
                 <Link
@@ -169,7 +176,7 @@ export default function WorkPageCTA({ title, description, subtitle, ctaTitle, ct
                   href={button.ctaUrl}
                   className={styles.ctaButtonLink}
                 >
-                  {buttonContent}
+                  {fullButtonContent}
                 </Link>
               );
             } else {
@@ -181,7 +188,7 @@ export default function WorkPageCTA({ title, description, subtitle, ctaTitle, ct
                   target={button.openInNewTab ? '_blank' : '_self'}
                   rel={button.openInNewTab ? 'noopener noreferrer' : undefined}
                 >
-                  {buttonContent}
+                  {fullButtonContent}
                 </a>
               );
             }

@@ -126,7 +126,7 @@
 .copyText {
   /* border-top: 1px solid #8d8d8d; */
   display: grid;
-  grid-template-columns: 25% 75%;
+  grid-template-columns: 20% 80%;
   align-items: flex-start;
   gap: 40px;
   /* padding-top: 25px; */

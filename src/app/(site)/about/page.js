@@ -10,8 +10,9 @@ import WorkKeysGrid from '@/app/components/sections/WorkKeysGrid';
 import ChatLink from '@/app/components/sections/ChatLink';
 import MiniGallery from '@/app/components/sections/MiniGallery';
 
-import HomeBandOneThird from "@/app/components/sections/HomeBandOneThird";
+import Home2080 from "@/app/components/sections/Home2080";
 import FeaturedProjectsV2 from "@/app/components/sections/FeaturedProjectsV2";
+import FeaturedProjects2080 from "@/app/components/sections/FeaturedProjects2080";
 
 import Image from 'next/image';
 import StickySidebar from '@/app/components/StickySidebar';
@@ -66,11 +67,15 @@ export default function About() {
       <AboutBand100 
         text={aboutPageData.horizontalImageBottomText}
       /> */}
-      <HomeBandOneThird
+      {/* <HomeBandOneThird
+        title={aboutPageData.aboutBandTitle}
+        description={aboutPageData.aboutBandText}
+      /> */}
+      <Home2080
         title={aboutPageData.aboutBandTitle}
         description={aboutPageData.aboutBandText}
       />
-      <FeaturedProjectsV2
+      {/* <FeaturedProjectsV2
         beforeText={aboutPageData.horizontalImageTopText}
         projects={homePageData.featuredProjects || []}
         afterText={aboutPageData.horizontalImageBottomText}
@@ -82,6 +87,12 @@ export default function About() {
           title: "See Our Work",
           slug: "/work"
         }}
+      /> */}
+      <FeaturedProjects2080
+        beforeText={aboutPageData.horizontalImageTopText}
+        projects={homePageData.featuredProjects || []}
+        afterText={aboutPageData.horizontalImageBottomText}
+        ctaLinks={aboutPageData.aboutCTALinks || []}
       />
       <AboutGallery
         largeImage={aboutPageData.aboutLargeImage}
