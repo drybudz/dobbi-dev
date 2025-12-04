@@ -4,11 +4,12 @@
   flex-direction: column;
   max-width: 1200px;
   margin: 0 auto;
-  padding: 90px 20px 260px 20px; /* Increased bottom padding to give room for extra down movement */
+  padding: 90px 20px 240px 20px; /* Bottom padding adjusted for 120px parallax movement */
   align-items: center;
   justify-content: flex-start; /* Changed from center to allow natural flow */
   position: relative; /* For ScrollTrigger context */
   overflow: hidden; /* Prevent overflow from parallax */
+  z-index: 5; /* Above footer */
 }
 
 .title {
@@ -27,54 +28,74 @@
   font-size: 25px;
   line-height: 108%;
   font-weight: 500;
-  letter-spacing: -1.44px;
+  letter-spacing: -0.48px;
   white-space: pre-wrap;
   text-align: center;
   transform: translateY(0); /* Ensure proper positioning for parallax */
   will-change: transform; /* Optimize for GSAP */
 }
 
-.text {
+.subtitle {
   max-width: 800px;
-  margin: 0 0 25px 0; /* Small gap after "Interested..." */
+  margin: 0 0 25px 0; /* Small gap after subtitle */
   font-size: 20px;
   line-height: 108%;
-  font-weight: 300;
+  font-weight: 500;
   letter-spacing: -0.96px;
   white-space: pre-wrap;
   text-align: center;
+  color: #C6C6C6;
   will-change: transform; /* Optimize for GSAP */
 }
 
-.name {
-  margin: 0 0 5px 0; /* Tiny gap after name */
+.ctaTitle {
+  margin: 0 0 20px 0; /* Gap before buttons */
   font-size: 20px;
   line-height: 108%;
-  font-weight: 100;
+  font-weight: 500;
   letter-spacing: -0.96px;
   text-align: center;
-  will-change: transform; /* Optimize for GSAP (removed font-size) */
+  color: white;
+  will-change: transform; /* Optimize for GSAP */
 }
 
-.email {
-  margin: 0; /* No bottom margin */
-  font-size: 20px;
-  line-height: 108%;
-  font-weight: 300;
-  letter-spacing: -0.96px;
-  text-align: center;
-  color: inherit;
+.ctaButtonsContainer {
+  display: flex;
+  gap: 20px;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  position: relative;
+  z-index: 15; /* Above footer and section */
+  will-change: transform; /* Optimize for GSAP */
+}
+
+.ctaButtonLink {
   text-decoration: none;
-  will-change: transform; /* Optimize for GSAP */
+  color: inherit;
+  display: inline-block;
 }
 
-.email:hover {
-  text-decoration: underline;
+.ctaButton {
+  display: inline-block;
+  padding: 3px 9px; /* Low top/bottom (3px), x3 on sides (9px) */
+  border: 1px solid white;
+  border-radius: 20px;
+  font-size: 20px;
+  font-weight: 400;
+  color: white;
+  font-family: 'Albert Sans', sans-serif;
+  transition: all 0.3s ease;
+  white-space: nowrap;
+}
+
+.ctaButtonLink:hover .ctaButton {
+  background: rgba(255, 255, 255, 0.1);
 }
 
 @media (max-width: 900px) {
   .description,
-  .text {
+  .subtitle {
     white-space: normal;
   }
 }
@@ -96,25 +117,30 @@
     margin-bottom: 30px; /* Reduced for mobile */
   }
 
-  .text,
-  .name,
-  .email {
+  .subtitle,
+  .ctaTitle {
     font-size: 20px;
     letter-spacing: -0.96px;
     white-space: normal;
     text-align: center;
   }
 
-  .text {
+  .subtitle {
     margin-bottom: 8px; /* Slightly reduced for mobile */
   }
 
-  .name {
-    margin-bottom: 3px; /* Slightly reduced for mobile */
+  .ctaTitle {
+    margin-bottom: 15px; /* Gap before buttons on mobile */
+  }
+
+  .ctaButtonsContainer {
+    flex-direction: column;
+    gap: 20px;
+    width: 100%;
   }
 
   .WorkPageCTA {
-    padding: 0px 17px 130px 17px; /* Adjusted bottom padding for mobile */
+    padding: 0px 17px 200px 17px; /* Bottom padding adjusted for 120px parallax movement on mobile */
     align-items: center;
   }
 }

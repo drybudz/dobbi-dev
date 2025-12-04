@@ -40,9 +40,9 @@ export default function Work() {
         <WorkPageCTA
           title={workPageData.workPageTitle}
           description={workPageData.workDescription}
-          text={workPageData.workPageCTAText}
-          name={workPageData.workPageCTAName}
-          email={workPageData.workPageCTAEmail}
+          subtitle={workPageData.workPageSubtitle}
+          ctaTitle={workPageData.workPageCTATitle}
+          ctaButtons={workPageData.workPageCTAButtons || []}
         />
 
 

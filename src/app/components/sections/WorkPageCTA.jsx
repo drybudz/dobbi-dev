@@ -3,17 +3,24 @@ import styles from './styles/WorkPageCTA.module.css';
 import { useEffect, useRef } from 'react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import Link from 'next/link';
 
 // Register ScrollTrigger plugin
 gsap.registerPlugin(ScrollTrigger);
 
-export default function WorkPageCTA({ title, description, text, name, email }) {
+export default function WorkPageCTA({ title, description, subtitle, ctaTitle, ctaButtons = [] }) {
   const descriptionRef = useRef(null);
-  const textRef = useRef(null);
-  const nameRef = useRef(null);
-  const emailRef = useRef(null);
+  const subtitleRef = useRef(null);
+  const ctaTitleRef = useRef(null);
+  const ctaButtonsRef = useRef(null);
   const sectionRef = useRef(null);
   const parallaxRefs = useRef([]); // Store multiple animation references
+
+  // Helper function to check if URL is internal
+  const isInternalUrl = (url) => {
+    if (!url) return false;
+    return url.startsWith('/');
+  };
 
   useEffect(() => {
     const handleResize = () => {
@@ -83,65 +90,104 @@ export default function WorkPageCTA({ title, description, text, name, email }) {
         parallaxRefs.current.push(descAnim);
       }
 
-      // Parallax for text (100px more down than base)
-      if (textRef.current) {
-        const textAnim = gsap.to(textRef.current, {
-          y: 170,
+      // Parallax for subtitle
+      if (subtitleRef.current) {
+        const subtitleAnim = gsap.to(subtitleRef.current, {
+          y: 100,
           scrollTrigger: {
             trigger: sectionRef.current,
             start: 'top 15%',
             end: 'bottom top',
             scrub: true,
             invalidateOnRefresh: true,
-            id: 'WorkPageCTA-text-parallax'
+            id: 'WorkPageCTA-subtitle-parallax'
           }
         });
-        parallaxRefs.current.push(textAnim);
+        parallaxRefs.current.push(subtitleAnim);
       }
 
-      // Parallax for name (100px more down, no font size change)
-      if (nameRef.current) {
-        const nameAnim = gsap.to(nameRef.current, {
-          y: 170,
+      // Parallax for ctaTitle
+      if (ctaTitleRef.current) {
+        const ctaTitleAnim = gsap.to(ctaTitleRef.current, {
+          y: 100,
           scrollTrigger: {
             trigger: sectionRef.current,
             start: 'top 15%',
             end: 'bottom top',
             scrub: 0.3, // Keep smoother scrub
             invalidateOnRefresh: true,
-            id: 'WorkPageCTA-name-parallax'
+            id: 'WorkPageCTA-ctaTitle-parallax'
           }
         });
-        parallaxRefs.current.push(nameAnim);
+        parallaxRefs.current.push(ctaTitleAnim);
       }
 
-      // Parallax for email (100px more down)
-      if (emailRef.current) {
-        const emailAnim = gsap.to(emailRef.current, {
-          y: 170,
+      // Parallax for CTA buttons
+      if (ctaButtonsRef.current) {
+        const ctaButtonsAnim = gsap.to(ctaButtonsRef.current, {
+          y: 100,
           scrollTrigger: {
             trigger: sectionRef.current,
             start: 'top 15%',
             end: 'bottom top',
             scrub: true,
             invalidateOnRefresh: true,
-            id: 'WorkPageCTA-email-parallax'
+            id: 'WorkPageCTA-buttons-parallax'
           }
         });
-        parallaxRefs.current.push(emailAnim);
+        parallaxRefs.current.push(ctaButtonsAnim);
       }
     }
 
     return cleanupAnimations;
-  }, [title, description, text, name, email]);
+  }, [title, description, subtitle, ctaTitle, ctaButtons]);
 
   return (
     <section className={styles.WorkPageCTA} ref={sectionRef} id="WorkPageCTA">
       <h2 className={styles.title}>{title}</h2>
       <p className={styles.description} ref={descriptionRef}>{description}</p>
-      <p className={styles.text} ref={textRef}>{text}</p>
-      <p className={styles.name} ref={nameRef}>{name}</p>
-      <a href={`mailto:${email}`} className={styles.email} ref={emailRef}>{email}</a>
+      {subtitle && (
+        <p className={styles.subtitle} ref={subtitleRef}>{subtitle}</p>
+      )}
+      {ctaTitle && (
+        <p className={styles.ctaTitle} ref={ctaTitleRef}>{ctaTitle}</p>
+      )}
+      {ctaButtons && ctaButtons.length > 0 && (
+        <div className={styles.ctaButtonsContainer} ref={ctaButtonsRef}>
+          {ctaButtons.map((button, index) => {
+            const isInternal = isInternalUrl(button.ctaUrl);
+            const buttonContent = (
+              <span className={styles.ctaButton}>
+                {button.ctaText}
+              </span>
+            );
+
+            if (isInternal) {
+              return (
+                <Link
+                  key={index}
+                  href={button.ctaUrl}
+                  className={styles.ctaButtonLink}
+                >
+                  {buttonContent}
+                </Link>
+              );
+            } else {
+              return (
+                <a
+                  key={index}
+                  href={button.ctaUrl}
+                  className={styles.ctaButtonLink}
+                  target={button.openInNewTab ? '_blank' : '_self'}
+                  rel={button.openInNewTab ? 'noopener noreferrer' : undefined}
+                >
+                  {buttonContent}
+                </a>
+              );
+            }
+          })}
+        </div>
+      )}
     </section>
   );
 }

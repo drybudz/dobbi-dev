@@ -22,22 +22,54 @@ const workPage = {
         description: 'Main description for the work page',
       },
       {
-        name: 'workPageCTAText',
-        title: 'Work Page CTA Text',
+        name: 'workPageSubtitle',
+        title: 'Work Page Subtitle',
         type: 'string',
-        description: 'Main description for the work page CTA',
+        description: 'Subtitle displayed on the work page',
       },
       {
-        name: 'workPageCTAName',
-        title: 'Work Page CTA Name',
+        name: 'workPageCTATitle',
+        title: 'Work Page CTA Title',
         type: 'string',
-        description: 'Name to display for the work page CTA',
+        description: 'Title displayed above the CTA buttons',
       },
       {
-        name: 'workPageCTAEmail',
-        title: 'Work Page CTA Email',
-        type: 'string',
-        description: 'Email address for the work page CTA',
+        name: 'workPageCTAButtons',
+        title: 'Work Page CTA Buttons',
+        type: 'array',
+        of: [
+          {
+            type: 'object',
+            fields: [
+              {
+                name: 'ctaText',
+                title: 'CTA Text',
+                type: 'string',
+                description: 'Text displayed on the button',
+              },
+              {
+                name: 'ctaUrl',
+                title: 'CTA URL',
+                type: 'string',
+                description: 'URL for the button. Use "/page" for internal pages or full URL for external links.',
+              },
+              {
+                name: 'openInNewTab',
+                title: 'Open in New Tab',
+                type: 'boolean',
+                description: 'Check to open link in new tab.',
+                initialValue: false,
+              },
+            ],
+            preview: {
+              select: {
+                title: 'ctaText',
+                subtitle: 'ctaUrl',
+              },
+            },
+          },
+        ],
+        description: 'CTA buttons displayed on the work page',
       },
       {
         name: 'featuredProjects',
