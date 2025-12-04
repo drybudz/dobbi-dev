@@ -48,10 +48,9 @@ export default function World3D({ size = 100, showFloating = false }) {
     // Create sphere
     const geometry = new THREE.SphereGeometry(1, 32, 32);
     const textureLoader = new THREE.TextureLoader();
-    const texture = textureLoader.load('/images/world-texture.png');
     
+    // Create material first (without texture)
     const material = new THREE.MeshBasicMaterial({ 
-      map: texture,
       transparent: false
     });
     const sphere = new THREE.Mesh(geometry, material);
@@ -60,35 +59,87 @@ export default function World3D({ size = 100, showFloating = false }) {
 
     camera.position.z = 2.5;
 
-    // Auto-rotate animation
-    let lastTime = Date.now();
-    const autoRotateSpeed = 0.005;
+    // Store references for cleanup
+    let textureRef = null;
+    let geometryRef = geometry;
+    let materialRef = material;
 
-    const animate = () => {
-      const currentTime = Date.now();
-      const deltaTime = (currentTime - lastTime) / 16; // Normalize to ~60fps
-      lastTime = currentTime;
+    // Load texture and wait for it to load before starting animation
+    textureLoader.load(
+      '/images/world-texture.png',
+      // onLoad callback
+      (texture) => {
+        textureRef = texture;
+        material.map = texture;
+        material.needsUpdate = true;
+        
+        // Render once immediately after texture loads
+        renderer.render(scene, camera);
+        
+        // Now start the animation loop
+        let lastTime = Date.now();
+        const autoRotateSpeed = 0.02;
 
-      if (!isDraggingRef.current) {
-        // Auto-rotate on Y-axis only
-        sphere.rotation.y += autoRotateSpeed;
-      } else {
-        // Apply momentum/inertia when dragging stops
-        if (rotationVelocityRef.current.y !== 0) {
-          sphere.rotation.y += rotationVelocityRef.current.y;
-          rotationVelocityRef.current.y *= 0.95; // Friction
-          if (Math.abs(rotationVelocityRef.current.y) < 0.001) {
-            rotationVelocityRef.current.y = 0;
-            isDraggingRef.current = false;
+        const animate = () => {
+          const currentTime = Date.now();
+          const deltaTime = (currentTime - lastTime) / 16; // Normalize to ~60fps
+          lastTime = currentTime;
+
+          if (!isDraggingRef.current) {
+            // Auto-rotate on Y-axis only
+            sphere.rotation.y += autoRotateSpeed;
+          } else {
+            // Apply momentum/inertia when dragging stops
+            if (rotationVelocityRef.current.y !== 0) {
+              sphere.rotation.y += rotationVelocityRef.current.y;
+              rotationVelocityRef.current.y *= 0.95; // Friction
+              if (Math.abs(rotationVelocityRef.current.y) < 0.001) {
+                rotationVelocityRef.current.y = 0;
+                isDraggingRef.current = false;
+              }
+            }
           }
-        }
+
+          renderer.render(scene, camera);
+          animationFrameRef.current = requestAnimationFrame(animate);
+        };
+
+        animate();
+      },
+      // onProgress callback (optional)
+      undefined,
+      // onError callback
+      (error) => {
+        console.error('Error loading texture:', error);
+        // Start animation anyway with default material
+        let lastTime = Date.now();
+        const autoRotateSpeed = 0.02;
+
+        const animate = () => {
+          const currentTime = Date.now();
+          const deltaTime = (currentTime - lastTime) / 16;
+          lastTime = currentTime;
+
+          if (!isDraggingRef.current) {
+            sphere.rotation.y += autoRotateSpeed;
+          } else {
+            if (rotationVelocityRef.current.y !== 0) {
+              sphere.rotation.y += rotationVelocityRef.current.y;
+              rotationVelocityRef.current.y *= 0.95;
+              if (Math.abs(rotationVelocityRef.current.y) < 0.001) {
+                rotationVelocityRef.current.y = 0;
+                isDraggingRef.current = false;
+              }
+            }
+          }
+
+          renderer.render(scene, camera);
+          animationFrameRef.current = requestAnimationFrame(animate);
+        };
+
+        animate();
       }
-
-      renderer.render(scene, camera);
-      animationFrameRef.current = requestAnimationFrame(animate);
-    };
-
-    animate();
+    );
 
     // Mouse interaction
     const handleMouseDown = (e) => {
@@ -179,9 +230,9 @@ export default function World3D({ size = 100, showFloating = false }) {
       }
       
       renderer.dispose();
-      geometry.dispose();
-      material.dispose();
-      texture.dispose();
+      if (geometryRef) geometryRef.dispose();
+      if (materialRef) materialRef.dispose();
+      if (textureRef) textureRef.dispose();
     };
   }, [size]);
 

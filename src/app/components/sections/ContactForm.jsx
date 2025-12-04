@@ -24,7 +24,6 @@ export default function ContactForm() {
   const [rateLimitError, setRateLimitError] = useState('');
   const formRef = useRef(null);
   const successRef = useRef(null);
-  const worldRef = useRef(null);
 
   // Validation functions
   const validateName = (value) => {
@@ -176,15 +175,6 @@ export default function ContactForm() {
                 { opacity: 1, y: 0, duration: 0.5, ease: 'power2.out' }
               );
             }
-            // Show world after 1.7s delay
-            setTimeout(() => {
-              if (worldRef.current) {
-                gsap.fromTo(worldRef.current,
-                  { opacity: 0, scale: 0.8 },
-                  { opacity: 1, scale: 1, duration: 0.6, ease: 'power2.out' }
-                );
-              }
-            }, 1700);
           }
         });
       }
@@ -204,9 +194,6 @@ export default function ContactForm() {
       <section className={styles.contactFormContainer}>
         <div ref={successRef} className={styles.successMessage}>
           {contactPageData.formSuccessMessage || 'Thank you for your message! We\'ll get back to you soon.'}
-        </div>
-        <div ref={worldRef} className={styles.successWorldContainer} style={{ opacity: 0 }}>
-          <World3D size={250} showFloating={true} />
         </div>
       </section>
     );
