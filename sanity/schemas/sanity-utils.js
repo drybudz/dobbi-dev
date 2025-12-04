@@ -231,7 +231,12 @@ export async function getAllDobbiData() {
         },
         "contactPage": *[_type == "contactPage"][0]{
           contactTitle,
-          contactDescription
+          contactDescription,
+          formNamePlaceholder,
+          formEmailPlaceholder,
+          formCompanyPlaceholder,
+          formInterestedInPlaceholder,
+          formSuccessMessage
         },
         "pageFooter": *[_type == "pageFooter"][0]{
           copyrightBrandName,

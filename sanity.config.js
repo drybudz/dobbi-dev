@@ -10,9 +10,9 @@ const config = defineConfig({
     // projectId :2j7eol5d
     //apiVersion YYYY-MM-DD
 
-    projectId: '6agoqweu',
-    dataset: 'production',
-    apiVersion: "2025-05-15",
+    projectId: process.env.SANITY_PROJECT_ID || '6agoqweu',
+    dataset: process.env.SANITY_DATASET || 'production',
+    apiVersion: process.env.SANITY_API_VERSION || "2025-05-15",
     basePath: "/admin", //Access to Sanity Studio
   
     plugins: [structureTool()],

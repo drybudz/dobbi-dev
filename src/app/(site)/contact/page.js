@@ -1,6 +1,7 @@
 'use client';
 
 import TitleInfoArrow from '@/app/components/sections/TitleInfoArrow';
+import ContactForm from '@/app/components/sections/ContactForm';
 import { useAppContext } from '@/app/components/AppContext';
 
 export default function Contact() {
@@ -17,6 +18,7 @@ export default function Contact() {
                 title={contactPageData.contactTitle}
                 description={contactPageData.contactDescription}
             />
+            <ContactForm />
         </div>
     );
 }
