@@ -77,7 +77,7 @@
 .submitSectionWrapper {
   width: 80%;
   border-top: 1px solid white;
-  padding-top: 10px;
+  /* padding-top: 10px; */
 }
 
 .submitSection {
