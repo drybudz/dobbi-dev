@@ -3,8 +3,13 @@
 import { useState, useRef, useEffect } from 'react';
 import { useAppContext } from '@/app/components/AppContext';
 import gsap from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import World3D from './World3D';
 import styles from './styles/ContactForm.module.css';
+
+if (typeof window !== 'undefined') {
+  gsap.registerPlugin(ScrollTrigger);
+}
 
 export default function ContactForm() {
   const { allData } = useAppContext();
@@ -24,6 +29,11 @@ export default function ContactForm() {
   const [rateLimitError, setRateLimitError] = useState('');
   const formRef = useRef(null);
   const successRef = useRef(null);
+  const nameRowRef = useRef(null);
+  const emailRowRef = useRef(null);
+  const companyRowRef = useRef(null);
+  const interestedInRowRef = useRef(null);
+  const submitRowRef = useRef(null);
 
   // Validation functions
   const validateName = (value) => {
@@ -185,6 +195,52 @@ export default function ContactForm() {
     }
   };
 
+  // Animate form fields on scroll
+  useEffect(() => {
+    if (!formRef.current) return;
+
+    const fields = [
+      nameRowRef.current,
+      emailRowRef.current,
+      companyRowRef.current,
+      interestedInRowRef.current,
+      submitRowRef.current,
+    ].filter(Boolean);
+
+    const triggers = fields.map((field, index) => {
+      if (field) {
+        return gsap.fromTo(
+          field,
+          {
+            opacity: 0,
+            y: 30,
+          },
+          {
+            opacity: 1,
+            y: 0,
+            duration: 0.8,
+            delay: 0.3 + index * 0.1,
+            ease: 'power2.out',
+            scrollTrigger: {
+              trigger: field,
+              start: 'top 85%',
+              toggleActions: 'play reverse play reverse',
+            },
+          }
+        );
+      }
+      return null;
+    }).filter(Boolean);
+
+    return () => {
+      triggers.forEach((trigger) => {
+        if (trigger && trigger.scrollTrigger) {
+          trigger.scrollTrigger.kill();
+        }
+      });
+    };
+  }, [contactPageData]);
+
   if (!contactPageData) {
     return null;
   }
@@ -213,7 +269,7 @@ export default function ContactForm() {
           autoComplete="off"
         />
 
-        <div className={styles.formRow}>
+        <div className={styles.formRow} ref={nameRowRef}>
           <label className={styles.formLabel}>Name</label>
           <div className={styles.formFieldWrapper}>
             <input
@@ -229,7 +285,7 @@ export default function ContactForm() {
           </div>
         </div>
 
-        <div className={styles.formRow}>
+        <div className={styles.formRow} ref={emailRowRef}>
           <label className={styles.formLabel}>Email</label>
           <div className={styles.formFieldWrapper}>
             <input
@@ -245,7 +301,7 @@ export default function ContactForm() {
           </div>
         </div>
 
-        <div className={styles.formRow}>
+        <div className={styles.formRow} ref={companyRowRef}>
           <label className={styles.formLabel}>Company</label>
           <div className={styles.formFieldWrapper}>
             <input
@@ -261,7 +317,7 @@ export default function ContactForm() {
           </div>
         </div>
 
-        <div className={styles.formRow}>
+        <div className={styles.formRow} ref={interestedInRowRef}>
           <label className={styles.formLabel}>Interested in</label>
           <div className={styles.formFieldWrapper}>
             <input
@@ -277,7 +333,7 @@ export default function ContactForm() {
           </div>
         </div>
 
-        <div className={styles.formRow}>
+        <div className={styles.formRow} ref={submitRowRef}>
           <div className={styles.formLabel}></div>
           <div className={styles.submitSectionWrapper}>
             <div className={styles.submitSection}>

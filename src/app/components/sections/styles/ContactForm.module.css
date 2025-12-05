@@ -1,7 +1,7 @@
 .contactFormContainer {
   max-width: 1820px;
   margin: 0 auto;
-  padding: 80px 50px;
+  padding: 80px 30px;
 }
 
 .formWrapper {
@@ -91,6 +91,7 @@
   width: 50%;
   display: flex;
   align-items: center;
+  justify-content: flex-start;
   gap: 20px;
 }
 
@@ -149,6 +150,14 @@
 }
 
 @media (max-width: 768px) {
+  .contactFormContainer {
+    padding: 80px 20px;
+  }
+
+  .formWrapper {
+    gap: 40px;
+  }
+
   .formRow {
     flex-direction: column;
     gap: 10px;
@@ -162,15 +171,25 @@
     width: 100%;
   }
 
+  .submitSectionWrapper {
+    width: 100%;
+  }
+
   .submitSection {
-    flex-direction: column;
-    align-items: flex-start;
+    flex-direction: row;
+    align-items: center;
+    gap: 20px;
+  }
+
+  .submitButtonWrapper {
+    width: 50%;
+    justify-content: flex-start;
   }
 
   .worldContainer {
-    width: 100%;
-    justify-content: center;
-    margin-top: 20px;
+    width: 50%;
+    justify-content: flex-end;
+    margin-top: 0;
   }
 }
 
