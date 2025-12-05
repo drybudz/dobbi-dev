@@ -32,6 +32,7 @@
 .itemsColumn {
   display: flex;
   flex-direction: column;
+  padding-right: 40px;
 }
 
 .keyItem {
@@ -87,6 +88,7 @@
     opacity: 0;
     transform: translateY(-10px);
   }
+
   to {
     opacity: 1;
     transform: translateY(0);
@@ -127,5 +129,8 @@
   .keyDescription {
     font-size: 20px;
   }
-}
 
+  .itemsColumn {
+    padding-right: 0px;
+  }
+}
