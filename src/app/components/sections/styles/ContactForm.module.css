@@ -46,7 +46,7 @@
 .formInput {
   background: transparent;
   border: none;
-  border-top: 1px solid white;
+  border-top: 0.5px solid white;
   border-left: none;
   border-right: none;
   border-bottom: none;
@@ -97,7 +97,7 @@
 
 .submitButton {
   background: transparent;
-  border: 1px solid white;
+  border: 0.5px solid white;
   color: white;
   padding: 3px 105px 4px 14px;
   font-size: 25px;

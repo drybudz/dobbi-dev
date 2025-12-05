@@ -32,6 +32,21 @@ const aboutPage = {
   fields: [
     // General Information Group
     {
+      name: 'slug',
+      title: 'Page Slug',
+      type: 'string',
+      description: 'URL path for this page (e.g., "/about").',
+      group: 'general',
+      initialValue: '/about',
+      validation: Rule => Rule.required().custom((slug) => {
+        if (!slug) return 'Slug is required';
+        if (!slug.startsWith('/')) {
+          return 'Slug must start with "/"';
+        }
+        return true;
+      }),
+    },
+    {
       name: 'title',
       title: 'Page Title',
       type: 'string',

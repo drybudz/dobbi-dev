@@ -28,6 +28,21 @@ const homePage = {
   fields: [
     // General Information Group
     {
+      name: 'slug',
+      title: 'Page Slug',
+      type: 'string',
+      description: 'URL path for this page (e.g., "/" or "/home"). Defaults to "/" for home page.',
+      group: 'general',
+      initialValue: '/',
+      validation: Rule => Rule.custom((slug) => {
+        if (!slug) return 'Slug is required';
+        if (!slug.startsWith('/')) {
+          return 'Slug must start with "/"';
+        }
+        return true;
+      }),
+    },
+    {
       name: 'companyName',
       title: 'Company Name',
       type: 'string',

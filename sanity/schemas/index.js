@@ -6,6 +6,7 @@ import contactPage from "./contactpage-schema";
 import contactSubmission from "./contactsubmission-schema";
 import project from "./project-schema";
 import pageFooter from "./pagefooter-schema";
+import siteNavigation from "./sitenavigation-schema";
 
 const schemas = [
   homePage,
@@ -16,6 +17,7 @@ const schemas = [
   contactSubmission,
   project,
   pageFooter,
+  siteNavigation,
 ];
 
 export default schemas;

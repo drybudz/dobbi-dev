@@ -230,6 +230,14 @@ export async function getAllDobbiData() {
             linkUrl,
             openNewTab
           }
+        },
+        "siteNavigation": *[_type == "siteNavigation"][0]{
+          navigationItems[] {
+            title,
+            slug,
+            openInNewTab,
+            description
+          }
         }
       }`
     );

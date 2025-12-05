@@ -27,6 +27,7 @@ export default function ContactForm() {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [showSuccess, setShowSuccess] = useState(false);
   const [rateLimitError, setRateLimitError] = useState('');
+  const [submittingDots, setSubmittingDots] = useState(0);
   const formRef = useRef(null);
   const successRef = useRef(null);
   const nameRowRef = useRef(null);
@@ -195,6 +196,20 @@ export default function ContactForm() {
     }
   };
 
+  // Animate submitting dots
+  useEffect(() => {
+    if (!isSubmitting) {
+      setSubmittingDots(0);
+      return;
+    }
+
+    const interval = setInterval(() => {
+      setSubmittingDots((prev) => (prev + 1) % 3);
+    }, 420);
+
+    return () => clearInterval(interval);
+  }, [isSubmitting]);
+
   // Animate form fields on scroll
   useEffect(() => {
     if (!formRef.current) return;
@@ -343,7 +358,9 @@ export default function ContactForm() {
                   disabled={isSubmitting}
                   className={styles.submitButton}
                 >
-                  {isSubmitting ? 'Submitting...' : 'Submit'}
+                  {isSubmitting 
+                    ? `Submitting${'.'.repeat(submittingDots + 1)}` 
+                    : 'Submit'}
                 </button>
                 {rateLimitError && (
                   <span className={styles.rateLimitError}>{rateLimitError}</span>

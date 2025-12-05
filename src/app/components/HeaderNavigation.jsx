@@ -13,6 +13,8 @@ export default function HeaderNavigation() {
     const pathname = usePathname();
     const { allData } = useAppContext();
     const homePage = allData?.homePage || [];
+    const siteNavigation = allData?.siteNavigation || null;
+    const navigationItems = siteNavigation?.navigationItems || [];
     const menuRef = useRef(null);
     const [isMenuOpen, setIsMenuOpen] = useState(false);
     
@@ -100,8 +102,13 @@ export default function HeaderNavigation() {
         };
     }, [isMenuOpen, isMobile]); // Dependency on isMobile is important
 
-    // Close menu on route change
+    // Close menu on route change (for internal links only)
     const handleNavLinkClick = () => {
+        setIsMenuOpen(false);
+    };
+
+    // Handle external link clicks (close menu but don't prevent navigation)
+    const handleExternalLinkClick = () => {
         setIsMenuOpen(false);
     };
 
@@ -137,34 +144,73 @@ export default function HeaderNavigation() {
                 ref={menuRef}
                 className={`${styles.linksContainer} ${isMenuOpen && isMobile ? styles.menuOpen : ''}`}
             >
-                <Link 
-                    href="/services" 
-                    className={`${styles.navLink} ${pathname === "/services" ? styles.active : ""}`}
-                    onClick={handleNavLinkClick}
-                >
-                    Services
-                </Link>
-                <Link 
-                    href="/work" 
-                    className={`${styles.navLink} ${pathname.includes("/work") ? styles.active : ""}`}
-                    onClick={handleNavLinkClick}
-                >
-                    Work
-                </Link>
-                <Link 
-                    href="/about" 
-                    className={`${styles.navLink} ${pathname === "/about" ? styles.active : ""}`}
-                    onClick={handleNavLinkClick}
-                >
-                    About
-                </Link>
-                <Link 
-                    href="/contact" 
-                    className={`${styles.navLink} ${pathname === "/contact" ? styles.active : ""}`}
-                    onClick={handleNavLinkClick}
-                >
-                    Contact
-                </Link>
+                {navigationItems.length > 0 ? (
+                    navigationItems.map((item, index) => {
+                        const isInternal = item.slug?.startsWith('/');
+                        const isActive = isInternal && (pathname === item.slug || (item.slug !== '/' && pathname.startsWith(item.slug)));
+                        
+                        if (isInternal) {
+                            // Internal link - use Next.js Link
+                            return (
+                                <Link 
+                                    key={index}
+                                    href={item.slug} 
+                                    className={`${styles.navLink} ${isActive ? styles.active : ""}`}
+                                    onClick={handleNavLinkClick}
+                                >
+                                    {item.title}
+                                </Link>
+                            );
+                        } else {
+                            // External link - use regular anchor tag
+                            const shouldOpenInNewTab = item.openInNewTab !== false; // Default to true if undefined
+                            return (
+                                <a
+                                    key={index}
+                                    href={item.slug}
+                                    className={styles.navLink}
+                                    target={shouldOpenInNewTab ? '_blank' : '_self'}
+                                    rel={shouldOpenInNewTab ? 'noopener noreferrer' : undefined}
+                                    onClick={handleExternalLinkClick}
+                                >
+                                    {item.title}
+                                </a>
+                            );
+                        }
+                    })
+                ) : (
+                    // Fallback to hardcoded links if no navigation data
+                    <>
+                        <Link 
+                            href="/services" 
+                            className={`${styles.navLink} ${pathname === "/services" ? styles.active : ""}`}
+                            onClick={handleNavLinkClick}
+                        >
+                            Services
+                        </Link>
+                        <Link 
+                            href="/work" 
+                            className={`${styles.navLink} ${pathname.includes("/work") ? styles.active : ""}`}
+                            onClick={handleNavLinkClick}
+                        >
+                            Work
+                        </Link>
+                        <Link 
+                            href="/about" 
+                            className={`${styles.navLink} ${pathname === "/about" ? styles.active : ""}`}
+                            onClick={handleNavLinkClick}
+                        >
+                            About
+                        </Link>
+                        <Link 
+                            href="/contact" 
+                            className={`${styles.navLink} ${pathname === "/contact" ? styles.active : ""}`}
+                            onClick={handleNavLinkClick}
+                        >
+                            Contact
+                        </Link>
+                    </>
+                )}
             </div>
         </nav>
     );

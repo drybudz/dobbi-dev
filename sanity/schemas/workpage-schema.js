@@ -4,6 +4,20 @@ const workPage = {
     type: 'document',
     fields: [
       {
+        name: 'slug',
+        title: 'Page Slug',
+        type: 'string',
+        description: 'URL path for this page (e.g., "/work").',
+        initialValue: '/work',
+        validation: Rule => Rule.required().custom((slug) => {
+          if (!slug) return 'Slug is required';
+          if (!slug.startsWith('/')) {
+            return 'Slug must start with "/"';
+          }
+          return true;
+        }),
+      },
+      {
         name: 'pageTitle',
         title: 'Page Title',
         type: 'string',

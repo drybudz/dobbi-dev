@@ -4,6 +4,20 @@ const contactPage = {
     type: 'document',
     fields: [
       {
+        name: 'slug',
+        title: 'Page Slug',
+        type: 'string',
+        description: 'URL path for this page (e.g., "/contact").',
+        initialValue: '/contact',
+        validation: Rule => Rule.required().custom((slug) => {
+          if (!slug) return 'Slug is required';
+          if (!slug.startsWith('/')) {
+            return 'Slug must start with "/"';
+          }
+          return true;
+        }),
+      },
+      {
         name: 'contactTitle',
         title: 'Contact Title',
         type: 'string',
