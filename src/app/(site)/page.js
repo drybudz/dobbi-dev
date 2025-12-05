@@ -1,13 +1,9 @@
 'use client';
 
 import { useAppContext } from "../components/AppContext";
-import HeroBanner from "../components/HeroBanner";
 import HeroBannerFloating from "../components/HeroBannerFloating";
-import TwoLinks50s from "../components/sections/TwoLinks50s";
-import HomeBandOneThird from "../components/sections/HomeBandOneThird";
-import FeaturedProjectsV2 from "../components/sections/FeaturedProjectsV2";
-import HomeSolutionGrid from "../components/sections/HomeSolutionGrid";
-import HomeBand50Contact from "../components/sections/HomeBand50Contact";
+import HomeServices8020Grid from "../components/sections/HomeServices8020Grid";
+import HomeBand8020Contact from "../components/sections/HomeBand8020Contact";
 
 // export const revalidate = 300; // Revalidate every 5 minutes
 
@@ -31,41 +27,14 @@ export default function Home() {
         title={homePageData?.slogan}
         projects={homePageData}
         imageDisplayOption={homePageData?.imageDisplayOption} />
-      <HomeBandOneThird
-        title={homePageData.whatTitle}
-        description={homePageData.whatDescription}
+      <HomeServices8020Grid
+        servicesTitle={homePageData.homeServicesTitle}
+        servicesDescription={homePageData.homeServicesDescription}
+        servicesList={homePageData.homeServicesList || []}
       />
-      <FeaturedProjectsV2
-        beforeText={homePageData.homeBeforeProjectDescription}
-        projects={homePageData.featuredProjects || []}
-        afterText={homePageData.homeAfterProjectDescription}
-        leftLink={{
-          title: "Explore Our Services",
-          slug: "/services"
-        }}
-        rightLink={{
-          title: "See Our Work",
-          slug: "/work"
-        }}
-      />
-      {/* <TwoLinks50s
-        leftLink={{
-          title: "Explore Our Services",
-          slug: "/services"
-        }}
-        rightLink={{
-          title: "See Our Work",
-          slug: "/work"
-        }}
-      /> */}
-      <HomeSolutionGrid
-        title={homePageData.homeGroupTitle}
-        solutions={homePageData.solutions || []}
-      />
-      <HomeBand50Contact
+      <HomeBand8020Contact
         title={homePageData.connectTitle}
-        name={homePageData.connectName}
-        email={homePageData.connectEmail}
+        ctaLinks={homePageData.connectCTALinks || []}
       />
     </div>
   );

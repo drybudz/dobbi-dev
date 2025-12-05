@@ -61,39 +61,39 @@
 
 .ctaButtonsContainer {
   display: flex;
-  gap: 20px;
-  align-items: center;
-  justify-content: center;
-  flex-wrap: wrap;
+  flex-direction: column;
+  gap: 7px;
+  padding: 0;
   position: relative;
   z-index: 15; /* Above footer and section */
   will-change: transform; /* Optimize for GSAP */
 }
 
-.ctaButtonLink {
+.link {
+  display: flex;
+  align-items: center;
   text-decoration: none;
-  color: inherit;
-  display: inline-block;
-  position: relative;
-}
-
-.ctaButton {
-  display: inline-block;
-  padding: 3px 9px; /* Low top/bottom (3px), x3 on sides (9px) */
-  border: 1px solid white;
-  border-radius: 20px;
-  font-size: 20px;
-  font-weight: 400;
-  color: white;
-  font-family: 'Albert Sans', sans-serif;
+  color: #fff;
+  border: 1px solid #fff;
+  border-radius: 50px;
   transition: all 0.3s ease;
-  white-space: nowrap;
+  padding: 3px 13px;
+  justify-content: flex-start;
+  width: fit-content;
   position: relative;
 }
 
-.ctaArrow {
+.leftLink {
+  justify-content: flex-start;
+}
+
+.rightLink {
+  justify-content: flex-start;
+}
+
+.link .arrow {
   position: absolute;
-  left: 3px;
+  left: 10px;
   top: 50%;
   transform: translateY(-50%) scale(0);
   opacity: 0;
@@ -104,20 +104,28 @@
   flex-shrink: 0;
   transition: opacity 0.3s ease, transform 0.3s ease;
   background: transparent;
-  z-index: 1;
 }
 
-.ctaButtonLink:hover .ctaButton {
+.link:hover {
   padding-left: 3px;
-  padding-right: 30px;
+  padding-right: 45px;
 }
 
-.ctaButtonLink:hover .ctaArrow {
+.link:hover .arrow {
   opacity: 1;
   transform: translateY(-50%) scale(1);
 }
 
-.ctaButtonLink:hover .ctaButton {
+.linkText {
+  letter-spacing: -.32px;
+  font-size: 20px;
+  line-height: 121%;
+  font-weight: 500;
+  transition: transform 0.3s ease;
+  margin-left: 0;
+}
+
+.link:hover .linkText {
   transform: translateX(30px);
 }
 

@@ -13,16 +13,8 @@ const homePage = {
       title: 'Banner Section',
     },
     {
-      name: 'whatWeDo',
-      title: 'What We Do Section',
-    },
-    {
-      name: 'projects',
-      title: 'Projects Section',
-    },
-    {
-      name: 'solutions',
-      title: 'Solutions Section',
+      name: 'homeServices',
+      title: 'Home Services Section',
     },
     {
       name: 'connect',
@@ -119,97 +111,67 @@ const homePage = {
       group: 'banner',
     },
 
-    // What We Do Section Group
+    // Home Services Section Group
     {
-      name: 'whatTitle',
-      title: 'What Title',
-      type: 'string',
-      description: 'Title for the section under the home banner.',
-      group: 'whatWeDo',
-    },
-    {
-      name: 'whatDescription',
-      title: 'What Description',
+      name: 'homeServicesTitle',
+      title: 'Home Services Title',
       type: 'text',
-      description: 'Description for the section under the home banner.',
-      group: 'whatWeDo',
+      description: 'Main title for the services section',
+      group: 'homeServices',
     },
-
-    // Projects Section Group
     {
-      name: 'homeBeforeProjectDescription',
-      title: 'Before Projects Description',
+      name: 'homeServicesDescription',
+      title: 'Home Services Description',
       type: 'text',
-      description: 'Text to display before featured projects.',
-      group: 'projects',
+      description: 'Main description for the services section',
+      group: 'homeServices',
     },
     {
-      name: 'featuredProjects',
-      title: 'Featured Projects',
-      type: 'array',
-      of: [
-        {
-          type: 'reference',
-          to: { type: 'project' }
-        }
-      ],
-      description: 'Projects to feature on the home page (will use first large image).',
-      group: 'projects',
-    },
-    {
-      name: 'homeAfterProjectDescription',
-      title: 'After Projects Description',
-      type: 'text',
-      description: 'Text to display after featured projects.',
-      group: 'projects',
-    },
-    {
-      name: 'homeGroupTitle',
-      title: 'Group Title',
-      type: 'string',
-      description: 'Title for the group section under featured project.',
-      group: 'projects',
-    },
-
-    // Solutions Section Group
-    {
-      name: 'solutions',
-      title: 'Solutions',
+      name: 'homeServicesList',
+      title: 'Home Services List',
       type: 'array',
       of: [
         {
           type: 'object',
+          name: 'homeServiceItem',
+          title: 'Service',
           fields: [
             {
-              name: 'solutionTitle',
-              title: 'Solution Title',
+              name: 'serviceTitle',
+              title: 'Service Title',
               type: 'string',
-              description: 'Title for this solution.',
+              description: 'The title of this service.',
             },
             {
-              name: 'solutionTextA',
-              title: 'Solution Text (Part A)',
+              name: 'serviceDescription',
+              title: 'Service Description',
               type: 'text',
-              description: 'First part of solution description.',
+              description: 'A brief description of this service.',
             },
             {
-              name: 'solutionTextB',
-              title: 'Solution Text (Part B)',
-              type: 'text',
-              description: 'Second part of solution description.',
+              name: 'serviceOptions',
+              title: 'Service Options (Max 3)',
+              type: 'array',
+              of: [
+                {
+                  type: 'string',
+                  title: 'Option',
+                },
+              ],
+              validation: Rule => Rule.max(3).error('You can add a maximum of 3 options per service.'),
+              description: 'List up to 3 options for this service.',
             },
           ],
           preview: {
             select: {
-              title: 'solutionTitle',
-              subtitle: 'solutionTextA',
+              title: 'serviceTitle',
+              subtitle: 'serviceDescription',
             },
           },
         },
       ],
-      validation: Rule => Rule.max(5),
-      description: 'List of solutions (max 5).',
-      group: 'solutions',
+      description: 'Add and manage individual services with their descriptions and options.',
+      group: 'homeServices',
     },
 
     // Connect Section Group
@@ -221,17 +183,42 @@ const homePage = {
       group: 'connect',
     },
     {
-      name: 'connectName',
-      title: 'Connect Name',
-      type: 'string',
-      description: 'Name for the connect section.',
-      group: 'connect',
-    },
-    {
-      name: 'connectEmail',
-      title: 'Connect Email',
-      type: 'string',
-      description: 'Email for the connect section.',
+      name: 'connectCTALinks',
+      title: 'Connect CTA Links',
+      type: 'array',
+      of: [
+        {
+          type: 'object',
+          fields: [
+            {
+              name: 'ctaText',
+              title: 'CTA Text',
+              type: 'string',
+              description: 'Text displayed on the button',
+            },
+            {
+              name: 'ctaUrl',
+              title: 'CTA URL',
+              type: 'string',
+              description: 'URL for the button. Use "/page" for internal pages or full URL for external links.',
+            },
+            {
+              name: 'openInNewTab',
+              title: 'Open in New Tab',
+              type: 'boolean',
+              description: 'Check to open link in new tab.',
+              initialValue: false,
+            },
+          ],
+          preview: {
+            select: {
+              title: 'ctaText',
+              subtitle: 'ctaUrl',
+            },
+          },
+        },
+      ],
+      description: 'CTA buttons displayed in the connect section.',
       group: 'connect',
     },
 

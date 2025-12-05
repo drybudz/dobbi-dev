@@ -51,12 +51,7 @@ export async function getAllDobbiData() {
           }
         },
 
-          // What We Do Section
-          whatTitle,
-          whatDescription,
-
-          // Projects Section, uses the L image
-          homeBeforeProjectDescription,
+          // Featured Projects (used in about page)
           featuredProjects[]->{
             _id,
             name,
@@ -68,20 +63,23 @@ export async function getAllDobbiData() {
               alt
             }
           },
-          homeAfterProjectDescription,
-          
-          // Solutions Section
-          homeGroupTitle,
-          solutions[]{
-            solutionTitle,
-            solutionTextA,
-            solutionTextB
+
+          // Home Services Section
+          homeServicesTitle,
+          homeServicesDescription,
+          homeServicesList[]{
+            serviceTitle,
+            serviceDescription,
+            serviceOptions[]
           },
 
           // Connect Section
           connectTitle,
-          connectName,
-          connectEmail,
+          connectCTALinks[]{
+            ctaText,
+            ctaUrl,
+            openInNewTab
+          },
 
           // SEO
           seoTitle,
@@ -154,28 +152,6 @@ export async function getAllDobbiData() {
           // Chat Link
           chatLinkTitle,
           chatLinkAction
-        },
-        "servicesPage": *[_type == "servicesPage"][0]{
-          title,
-          // Main Content
-          servicesTitle,
-          servicesDescription,
-
-          // New Services List
-          servicesList[]{
-            serviceTitle,
-            serviceDescription,
-            serviceOptions[] // This will bring in all options (strings) for each service
-          },
-          
-          // Side Content
-          servicesSideListTop,
-          servicesSideTitle,
-          servicesSideDescription,
-          servicesSideList[]{
-            item
-          },
-          servicesSideListBottom
         },
         "workPage": *[_type == "workPage"][0]{
           pageTitle,

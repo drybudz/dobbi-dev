@@ -1,0 +1,15 @@
+{
+  "note": "This is a backup of the servicesPage schema structure. The actual data should be exported from Sanity Studio before deletion.",
+  "fields": [
+    "title",
+    "servicesTitle",
+    "servicesDescription",
+    "servicesList[]",
+    "servicesSideListTop[]",
+    "servicesSideTitle",
+    "servicesSideDescription",
+    "servicesSideList[]",
+    "servicesSideListBottom[]"
+  ],
+  "migration_note": "These fields will be moved to homePage with 'home' prefix (e.g., servicesTitle -> homeServicesTitle)"
+}
