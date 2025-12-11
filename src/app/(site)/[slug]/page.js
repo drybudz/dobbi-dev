@@ -7,6 +7,7 @@ import { useAppContext } from "@/app/components/AppContext";
 import { usePathname } from 'next/navigation';
 import { useEffect, useState } from 'react';
 import ImagesAnimation from "@/app/components/ImagesAnimation";
+import TitleDisplay from '@/app/components/sections/TitleDisplay';
 
 // export const revalidate = 300; // Revalidate every 5 minutes
 
@@ -22,30 +23,59 @@ export default function Page() {
     const pageTalent = pagesData.find(page => page.slug === 'talent');
     const pageWork = pagesData.find(page => page.slug === 'work');
 
-        // State for shuffled images to ensure consistency between server and client
-        const [shuffledImages, setShuffledImages] = useState([]);
+    // State for shuffled images to ensure consistency between server and client
+    const [shuffledImages, setShuffledImages] = useState([]);
 
-        useEffect(() => {
-            if (pageWork?.projects) {
-              const allProjectImages = [];
-              pageWork.projects.forEach((project) => {
-                const images = [project.mainImage, ...(project.projectImages || [])].filter(Boolean);
-                allProjectImages.push(...images);
-              });
-              
-              // Don't slice here - pass full array to animation component
-              const shuffled = [...allProjectImages].sort(() => Math.random() - 0.5);
-              setShuffledImages(shuffled); // Remove .slice(0, 16)
-            }
-          }, [pageWork]);
+    useEffect(() => {
+        if (pageWork?.projects) {
+          const allProjectImages = [];
+          pageWork.projects.forEach((project) => {
+            const images = [project.mainImage, ...(project.projectImages || [])].filter(Boolean);
+            allProjectImages.push(...images);
+          });
+          
+          // Don't slice here - pass full array to animation component
+          const shuffled = [...allProjectImages].sort(() => Math.random() - 0.5);
+          setShuffledImages(shuffled); // Remove .slice(0, 16)
+        }
+      }, [pageWork]);
 
+    // Determine current page type based on pathname
+    const isTalentPage = pathname === '/talent';
+    const isWorkPage = pathname === '/work';
 
-    if (!pageTalent || !pageWork) {
+    // First check: Is this a valid route for this component? (only /talent or /work)
+    if (!isTalentPage && !isWorkPage) {
+        // This is a 404 - route doesn't exist
         return (
-            <div>
-                <h1>Error loading content</h1>
-                {!pageTalent && <p>Could not find the "Talent" page.</p>}
-                {!pageWork && <p>Could not find the "Work" page.</p>}
+            <div className="notFoundPage">
+                <TitleDisplay
+                    title="Page Not Found"
+                    description="The page you're looking for doesn't exist or has been moved."
+                />
+            </div>
+        );
+    }
+
+    // Second check: If we're on /talent or /work, do we have the data?
+    if (isTalentPage && !pageTalent) {
+        return (
+            <div className="errorPage">
+                <TitleDisplay
+                    title="Error loading content"
+                    description="Could not find the 'Talent' page."
+                />
+            </div>
+        );
+    }
+
+    if (isWorkPage && !pageWork) {
+        return (
+            <div className="errorPage">
+                <TitleDisplay
+                    title="Error loading content"
+                    description="Could not find the 'Work' page."
+                />
             </div>
         );
     }
@@ -53,9 +83,6 @@ export default function Page() {
     // console.log("Full Page Data:", pageData);
     // console.log("Contact Info Data:", pageData.contactInfo);
 
-    // Determine current page type based on pathname
-    const isTalentPage = pathname === '/talent';
-    const isWorkPage = pathname === '/work';
     const currentPage = isTalentPage ? pageTalent : pageWork;
 
     return(

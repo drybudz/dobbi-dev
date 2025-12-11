@@ -79,7 +79,7 @@ body {
   ); */
 
   /* Is inverted */
-  background: linear-gradient(
+  /* background: linear-gradient(
   -20deg,
   #000 0%,
   #010101 3%,
@@ -105,7 +105,9 @@ body {
   #434343 86%,
   #5b5b5b 93%,
   #585858 100%
-);
+); */
+  /* as removed on Dec 11 */
+  background: #000;
   /* background-attachment: fixed;
   background-size: cover; */
   font-family: 'Albert Sans', sans-serif;
