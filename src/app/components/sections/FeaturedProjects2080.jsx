@@ -4,6 +4,7 @@ import Link from 'next/link';
 import Image from 'next/image';
 import styles from './styles/FeaturedProjects2080.module.css';
 import { useState, useEffect, useRef } from 'react';
+import { useRouter, usePathname } from 'next/navigation';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
@@ -19,11 +20,58 @@ export default function FeaturedProjects2080({
 }) {
   const [featuredProject, setFeaturedProject] = useState(null);
   const imageColumnRef = useRef(null); // Ref to the image column for position
+  const router = useRouter();
+  const pathname = usePathname();
 
   // Helper function to check if URL is internal
   const isInternalUrl = (url) => {
     if (!url) return false;
     return url.startsWith('/');
+  };
+
+  // Helper function to check if URL is a hash link (/#something)
+  const isHashLink = (url) => {
+    if (!url) return false;
+    return url.startsWith('/#');
+  };
+
+  // Helper function to scroll to element smoothly using GSAP from top of page
+  const scrollToElement = (hash) => {
+    // Extract the hash part (e.g., /#services -> services)
+    const elementId = hash.replace('/#', '').replace('#', '');
+    const element = document.getElementById(elementId);
+    if (element) {
+      // First scroll to top, then animate to target
+      window.scrollTo(0, 0);
+      
+      // Wait a brief moment for scroll to top, then animate to element
+      setTimeout(() => {
+        const elementTop = element.getBoundingClientRect().top + window.pageYOffset;
+        
+        gsap.to({ scroll: 0 }, {
+          scroll: elementTop,
+          duration: 1.5,
+          ease: "power3.out",
+          onUpdate: function() {
+            window.scrollTo(0, this.targets()[0].scroll);
+          }
+        });
+      }, 50);
+    }
+  };
+
+  // Handle hash link clicks
+  const handleHashLinkClick = (e, hash) => {
+    e.preventDefault();
+    const isHomePage = pathname === '/';
+    
+    if (isHomePage) {
+      // Already on home page, just scroll
+      scrollToElement(hash);
+    } else {
+      // Navigate to home with hash - use window.location to preserve hash
+      window.location.href = hash;
+    }
   };
 
   useEffect(() => {
@@ -135,6 +183,7 @@ export default function FeaturedProjects2080({
                   <div className={styles.linksContainer}>
                     {ctaLinks.map((link, index) => {
                       const isInternal = isInternalUrl(link.slug);
+                      const isHash = isHashLink(link.slug);
                       const linkContent = (
                         <>
                           <span className={styles.arrow} aria-hidden="true" />
@@ -142,7 +191,19 @@ export default function FeaturedProjects2080({
                         </>
                       );
 
-                      if (isInternal) {
+                      if (isHash) {
+                        // Handle hash links (/#services)
+                        return (
+                          <a
+                            key={index}
+                            href={link.slug}
+                            className={styles.link}
+                            onClick={(e) => handleHashLinkClick(e, link.slug)}
+                          >
+                            {linkContent}
+                          </a>
+                        );
+                      } else if (isInternal) {
                         return (
                           <Link
                             key={index}

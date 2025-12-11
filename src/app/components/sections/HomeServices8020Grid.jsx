@@ -50,7 +50,7 @@ export default function HomeServices8020Grid({
   }, []);
 
   return (
-    <section className={styles.sectionWrapper} ref={sectionRef}>
+    <section id="services" className={styles.sectionWrapper} ref={sectionRef}>
       <div className={styles.gridContainer}>
         <div className={styles.leftColumn}>
           <h2 className={styles.title}>{servicesTitle}</h2>
